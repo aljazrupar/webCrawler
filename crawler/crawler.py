@@ -10,6 +10,7 @@ import urllib.robotparser
 from queue import Queue, Empty
 from threading import Thread
 import concurrent.futures
+import threading
 
 internal_urls = set() #za vsak slucaj
 external_urls = set() #za vsak slucaj
@@ -17,6 +18,8 @@ external_urls = set() #za vsak slucaj
 queue = Queue()
 visited = set([])
 executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
+
+lock = threading.Lock()
 
 
 
@@ -63,7 +66,7 @@ def scraper(url): #Funkcija za obdelovanje ene strani in dodajenje linkov v queu
    
     for curr_url in urls:
         queue.put(curr_url)
-    print(list(queue.queue))
+    #print(list(queue.queue))
 
 def crawl():
     finish_count = 0
@@ -81,7 +84,7 @@ def crawl():
                 print(f'Processing url {target_url}')
                 job = executor.submit(scraper,target_url)
                 #mogoce je treba se neke callbacke delat in shranjevt nasledne linke prek tega.
-                print(job)
+                #print(job)
 
             
         except Empty:
@@ -89,8 +92,34 @@ def crawl():
         except Exception as e:
             print(e)
 
+def manage_seed_url(url):
+    with lock: 
+        cur = conn.cursor()
+        rp = urllib.robotparser.RobotFileParser()
+        robotsURL = urljoin(url,"/robots.txt")
+        rp.set_url(robotsURL)
+        rp.read()
+        
+        listSite_Maps = rp.site_maps()
+        textRobots = urllib.request.urlopen(robotsURL).read().decode("utf-8") 
+    
+        cur.execute("INSERT INTO crawldb.site VALUES(DEFAULT,%s, %s, %s)",(url,textRobots ,listSite_Maps))
+        cur.close()
 
 if __name__ == '__main__':
     seed_url = "https://www.gov.si/"  
+
+
+    #globalen dostop do baze in cursorja
+    global conn
+    conn = psycopg2.connect(host="localhost", user="postgres", password="ourpass")
+    conn.autocommit = True
+    
+    
     queue.put(seed_url)
+
+    manage_seed_url(seed_url)
     crawl()
+
+    
+    conn.close()

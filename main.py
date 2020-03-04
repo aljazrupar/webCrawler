@@ -5,8 +5,10 @@ import colorama
 import psycopg2
 import urllib
 import sys
+import argparse
 import urllib.robotparser
-
+from queue import Queue, Empty
+from concurrent.futures import ProcessPoolExecutor
 
 colorama.init()
 GREEN = colorama.Fore.GREEN
@@ -89,7 +91,7 @@ def crawlSite(url, max_urls=50):
     sys.exit()
 
 
-    conn = psycopg2.connect(host="localhost", user="postgres", password="PASS")
+    conn = psycopg2.connect(host="localhost", user="postgres", password="ourpass")
     conn.autocommit = True
     
     cur = conn.cursor()
@@ -102,13 +104,20 @@ def crawlSite(url, max_urls=50):
 
 
 
-if __name__ == "__main__":
-    import argparse
-   
-    crawlSite("https://www.gov.si/", max_urls=100)
 
-    print("[+] Total Internal links:", len(internal_urls))
-    print("[+] Total External links:", len(external_urls))
-    print("[+] Total URLs:", len(external_urls) + len(internal_urls))
+seed_url = "https://www.gov.si/"
+queued_urls = Queue()
+queued_urls.put(seed_url)
+
+processed_urls = set()
+
+
+
+
+crawlSite("https://www.gov.si/", max_urls=100)
+
+print("[+] Total Internal links:", len(internal_urls))
+print("[+] Total External links:", len(external_urls))
+print("[+] Total URLs:", len(external_urls) + len(internal_urls))
 
     

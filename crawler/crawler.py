@@ -1,15 +1,15 @@
+
 import requests
-from urllib.request import urlparse, urljoin
-from bs4 import BeautifulSoup
-import colorama
 import psycopg2
 import urllib
 import sys
 import argparse
-import urllib.robotparser
+import concurrent.futures
 from queue import Queue, Empty
 from threading import Thread
-import concurrent.futures
+from urllib.request import urlparse, urljoin
+from bs4 import BeautifulSoup
+
 
 internal_urls = set() #za vsak slucaj
 external_urls = set() #za vsak slucaj
@@ -17,8 +17,6 @@ external_urls = set() #za vsak slucaj
 queue = Queue()
 visited = set([])
 executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
-
-
 
 def is_valid(url):
     parsed = urlparse(url)
@@ -30,6 +28,7 @@ def get_all_website_links(url): #najde vse linke na enem URL
     # domain name of the URL without the protocol
     domain_name = urlparse(url).netloc
     soup = BeautifulSoup(requests.get(url).content, "html.parser")
+    print(soup)
 
     for a_tag in soup.findAll("a"):
         href = a_tag.attrs.get("href")
@@ -49,10 +48,8 @@ def get_all_website_links(url): #najde vse linke na enem URL
         if domain_name not in href:
             # external link
             if href not in external_urls:
-               #print(f"{GRAY}[!] External link: {href}{RESET}")
                 external_urls.add(href)
             continue
-        #print(f"{GREEN}[*] Internal link: {href}{RESET}")
         urls.add(href)
         internal_urls.add(href)
     return urls
@@ -76,6 +73,7 @@ def crawl():
                 sys.exit()
 
             target_url = queue.get(timeout=10) #dobi link iz queue, cakaj 10s
+
             if target_url not in visited:
                 visited.add(target_url)
                 print(f'Processing url {target_url}')
@@ -91,6 +89,7 @@ def crawl():
 
 
 if __name__ == '__main__':
-    seed_url = "https://www.gov.si/"  
+    seed_url = "https://www.gov.si/"
     queue.put(seed_url)
+
     crawl()

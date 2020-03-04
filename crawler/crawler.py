@@ -42,8 +42,10 @@ def get_all_website_links(url): #najde vse linke na enem URL
         #sparsa link
         href = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
         if not is_valid(href): #ni valid url
+            #TODO
             continue
         if href in internal_urls: #je ze v internal link. Popravi na queue pa visited
+            #TODO
             continue
         if domain_name not in href:
             # external link

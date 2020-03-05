@@ -11,6 +11,23 @@ import urllib.robotparser
 import psycopg2
 import requests
 from bs4 import BeautifulSoup
+"""
+GENERAL TODOs:
+- #1. README file mormo napisat kako deluje program itd
+- #2. Poročilo napisat
+- #3. Št. workerjev more bit parameter ko zaženeš skripto
+- #4. Pogledat če so časi kul (Ne več kot 1 request na 5sec na isti server)
+- #5. Id of new site je vse kul? da se čaka pa counter???
+- #6. Pregledat če so vsi URL v kanonični obliki in popravit
+- #7. A pogleda za duplikate @rupar?
+- #8. Dodat možnost da se pogleda če je stran že sparsana (Nek hash shranmo v bazo)
+- #9. Dodat da se sparsa še javascript
+- #10. Dodat da se sparsajo slike in shranjo v bazo
+- #11. Pogledat kak je tip podatkov in shrant tip v bazo (BINARY recmo)
+- #12. To make sure that you correctly gather all the needed content placed into the DOM by Javascript, you should use headless browsers. Googlebot implements this as a two-step process or expects to retrieve dynamically built web page from an HTTP server.
+ A to mamo?
+"""
+
 
 internal_urls = set()  # za vsak slucaj
 external_urls = set()  # za vsak slucaj
@@ -65,7 +82,7 @@ def scraper(target_url, id_of_new_site):  # Funkcija za obdelovanje ene strani i
     # dodaj se obdelavo strani.
 
     response = requests.get(target_url)
-    page_type_code = "NOT DEFINED"  # potrebno preverjanje še za druge type- binary...
+    page_type_code = "HTML"  # potrebno preverjanje še za druge type- binary...
     if response.headers['content-type'] == 'text/html':
         page_type_code = "HTML"
     status_code = response.status_code
@@ -84,7 +101,7 @@ def scraper(target_url, id_of_new_site):  # Funkcija za obdelovanje ene strani i
         print(2.1)
         # to ne dela neki.
         cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,%s ) RETURNING id",
-                    (id_of_new_site, page_type_code, target_url, html_content, status_code, timestamp))
+                    ("id_of_new_site", "page_type_code", "target_url", "html_content", "status_code", "timestamp"))
 
         print(2.2)
         cur.close()
@@ -95,7 +112,6 @@ def scraper(target_url, id_of_new_site):  # Funkcija za obdelovanje ene strani i
     for curr_url in urls:
         queue.put(curr_url)
     # print(list(queue.queue))
-
 
 def crawl(id_of_new_site):
     finish_count = 0
@@ -108,7 +124,6 @@ def crawl(id_of_new_site):
             if finish_count == 5:
                 sys.exit()
 
-            #Je to kul da čaka?
             target_url = queue.get(timeout=10)  # dobi link iz queue, cakaj 10s
 
             if target_url not in visited:
@@ -128,6 +143,7 @@ def crawl(id_of_new_site):
 
 
 def manage_seed_url(url):
+    #5. Upošteva robot.txt glede na to kaj piše notr
     with lock:
         cur = conn.cursor()
         rp = urllib.robotparser.RobotFileParser()
@@ -146,7 +162,7 @@ def manage_seed_url(url):
 
 
 if __name__ == '__main__':
-    seed_url = "https://www.gov.si/"
+    seed_url = "http://www.gov.si/"
     # globalen dostop do baze in cursorja
     global conn
     conn = psycopg2.connect(host="localhost", user="postgres", password="admin")

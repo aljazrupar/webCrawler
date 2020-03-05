@@ -87,23 +87,14 @@ def scraper(target_url, id_of_new_site):  # Funkcija za obdelovanje ene strani i
         page_type_code = "HTML"
     status_code = response.status_code
     html_content = response.text
-    timestamp = datetime.datetime.now().timestamp()
-    print(type(id_of_new_site))
-    print(type(page_type_code))
-    print(type(target_url))
-    print(type(html_content))
-    print(type(status_code))
-    print(type(timestamp))
 
     with lock:
-        print(2)
         cur = conn.cursor()
+
+        cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,CURRENT_TIMESTAMP )",
+        (id_of_new_site,'HTML' ,target_url,html_content,status_code)) #HTML se poprav
         print(2.1)
         # to ne dela neki.
-        cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,%s ) RETURNING id",
-                    ("id_of_new_site", "page_type_code", "target_url", "html_content", "status_code", "timestamp"))
-
-        print(2.2)
         cur.close()
 
     print(3)
@@ -111,7 +102,6 @@ def scraper(target_url, id_of_new_site):  # Funkcija za obdelovanje ene strani i
 
     for curr_url in urls:
         queue.put(curr_url)
-    # print(list(queue.queue))
 
 def crawl(id_of_new_site):
     finish_count = 0

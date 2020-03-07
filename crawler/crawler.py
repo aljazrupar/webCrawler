@@ -7,49 +7,40 @@ import urllib
 from queue import Queue, Empty
 from urllib.request import urlparse, urljoin
 import urllib.robotparser
-
+import time
 import psycopg2
 import requests
 from bs4 import BeautifulSoup
+
 """
 GENERAL TODOs:
-- #1. README file mormo napisat kako deluje program itd
-- #2. Poročilo napisat
-- #3. Št. workerjev more bit parameter ko zaženeš skripto
-- #4. Pogledat če so časi kul (Ne več kot 1 request na 5sec na isti server)
-- #5. Id of new site je vse kul? da se čaka pa counter???
-- #6. Pregledat če so vsi URL v kanonični obliki in popravit
-- #7. A pogleda za duplikate @rupar?
-- #8. Dodat možnost da se pogleda če je stran že sparsana (Nek hash shranmo v bazo)
-- #9. Dodat da se sparsa še javascript
-- #10. Dodat da se sparsajo slike in shranjo v bazo
-- #11. Pogledat kak je tip podatkov in shrant tip v bazo (BINARY recmo)
-- #12. To make sure that you correctly gather all the needed content placed into the DOM by Javascript, you should use headless browsers. Googlebot implements this as a two-step process or expects to retrieve dynamically built web page from an HTTP server.
- A to mamo?
+
+1.Narest lockse in threading
+2.Poročilo
+3.Narest hash strani in preverjat za duplikate
+4.Za linke najdt še onclick javascript
+5.Narest nekako da se dodajajo linki v db
+????To make sure that you correctly gather all the needed content placed into the DOM by Javascript, you should use headless browsers. Googlebot implements this as a two-step process or expects to retrieve dynamically built web page from an HTTP server.
+Za preveriti:
+5 sec na IP delay
+crawl-delay - kaj je kako ga preveriti
 """
 
+#num_workers = int(sys.argv[1])
 
-internal_urls = set()  # za vsak slucaj
-external_urls = set()  # za vsak slucaj
 
 queue = Queue()
 visited = set([])
-executor = concurrent.futures.ThreadPoolExecutor(max_workers=10)
-
+executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
+schemes = ["", "www", "http", "https"]
 lock = threading.Lock()
+visitedPages = set()
 
-def is_valid(url):
-    parsed = urlparse(url)
-    return bool(parsed.netloc) and bool(parsed.scheme)
-
-
-def get_all_website_links(url):  # najde vse linke na enem URL
+def get_all_website_links(url,id_of_new_page): # najde vse linke na enem URL
 
     urls = set()
     # domain name of the URL without the protocol
-    domain_name = urlparse(url).netloc
     soup = BeautifulSoup(requests.get(url).content, "html.parser")
-    print(soup)
 
     for a_tag in soup.findAll("a"):
         href = a_tag.attrs.get("href")
@@ -62,105 +53,168 @@ def get_all_website_links(url):  # najde vse linke na enem URL
 
         # sparsa link
         href = parsed_href.scheme + "://" + parsed_href.netloc + parsed_href.path
-        if not is_valid(href):  # ni valid url
-            # TODO
-            continue
-        if href in internal_urls:  # je ze v internal link. Popravi na queue pa visited
-            # TODO
-            continue
-        if domain_name not in href:
-            # external link
-            if href not in external_urls:
-                external_urls.add(href)
-            continue
-        urls.add(href)
-        internal_urls.add(href)
+
+        if("gov.si" in href):
+            urls.add(href)
+
+    img_tags = soup.find_all('img')
+
+    ImgUrls = [img['src'] for img in img_tags]
+    cur = conn.cursor()
+    for imgUrl in ImgUrls:
+
+        # zdruzi url z domeno ce ni ze cel link.
+        imgCleanUrl = urljoin(url, imgUrl)
+        parsed_img = urlparse(imgCleanUrl)
+        print(parsed_img)
+        # sparsa link
+        imgCleanUrl = parsed_img.scheme + "://" + parsed_img.netloc + parsed_img.path
+        filename = imgCleanUrl.split("/")[-1]
+        content_type = filename.split(".")[-1]
+
+        if parsed_img.scheme in schemes:
+            response = requests.get(imgCleanUrl)
+
+            cur.execute("INSERT INTO crawldb.image VALUES(DEFAULT,%s, %s, %s,%s ,CURRENT_TIMESTAMP)",
+                (id_of_new_page, filename, content_type, "BINARY"))
+    cur.close()
     return urls
 
 
-def scraper(target_url, id_of_new_site):  # Funkcija za obdelovanje ene strani in dodajenje linkov v queue
-    # dodaj se obdelavo strani.
+def scraper(url, id_of_new_site):  # Funkcija za obdelovanje ene strani in dodajenje linkov v queue
 
-    response = requests.get(target_url)
-    page_type_code = "HTML"  # potrebno preverjanje še za druge type- binary...
-    if response.headers['content-type'] == 'text/html':
-        page_type_code = "HTML"
+    response = requests.get(url)
+
     status_code = response.status_code
     html_content = response.text
 
-    with lock:
+    #TODO dodat še za duplicate page
+    if 'html' in response.headers['content-type']:
+
+        #with lock:
+
         cur = conn.cursor()
+        cur.execute("SELECT id FROM crawldb.page WHERE url=" + "'" + url + "'")
+        data = cur.fetchone()
+        if not data:
+
+            cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,CURRENT_TIMESTAMP )",
+                    (id_of_new_site, "HTML", url, html_content, status_code))
+            id_of_new_page = cur.fetchone()[0]
+
+        else:
+            id_of_new_page = data[0]
+
+    else:
+        #with lock:
 
         cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,CURRENT_TIMESTAMP )",
-        (id_of_new_site,'HTML' ,target_url,html_content,status_code)) #HTML se poprav
-        print(2.1)
-        # to ne dela neki.
+                        (id_of_new_site, 'BINARY', url, "NULL", status_code))
+        id_of_new_page = cur.fetchone()[0]
+
+        response = requests.get(url)
+
+        cur.execute("INSERT INTO crawldb.page_data VALUES(DEFAULT,%s, %s,%s ,%s )",
+                    (id_of_new_page,  response.headers['content-type'], "BINARY"))
+
         cur.close()
 
-    print(3)
-    urls = get_all_website_links(target_url)
-
+    urls = get_all_website_links(url, id_of_new_page)
     for curr_url in urls:
         queue.put(curr_url)
 
-def crawl(id_of_new_site):
-    finish_count = 0
+    if(not queue.empty()):
+        crawlNext()
+    else:
+        return
 
-    while True:
-        try:
-            finish_count += 1
-            #TODO to bo treba popravt
+def crawlNext():
 
-            if finish_count == 5:
-                sys.exit()
+    target_url = queue.get(block=True)
+    print(target_url)
+    if target_url not in visited:
 
-            target_url = queue.get(timeout=10)  # dobi link iz queue, cakaj 10s
-
-            if target_url not in visited:
-                visited.add(target_url)
-                print(f'Processing url {target_url}')
-
-                executor.submit(scraper, target_url, id_of_new_site)
-
-                # mogoce je treba se neke callbacke delat in shranjevt nasledne linke prek tega.
-                # print(job)
+        visited.add(target_url)
+        #executor.submit(checkPermissions, target_url)
+        time.sleep(5)
+        checkPermissions(target_url)
+    crawlNext()
+    if (queue.empty()):
+        return
 
 
-        except Empty:
-            print("All done")
-        except Exception as e:
-            print(e)
+def addSiteToDB(base_url, rp, robotsURL):
 
+    # Dodaj domensko stran v db, če je tam še ni
+    cur = conn.cursor()
+    cur.execute("SELECT 1 FROM crawldb.site WHERE domain=" + "'" + base_url + "'")
+    data = cur.fetchall()
+    if not data:
 
-def manage_seed_url(url):
-    #5. Upošteva robot.txt glede na to kaj piše notr
-    with lock:
+        if rp != "":
+            listSite_Maps = rp.site_maps()
+            textRobots = urllib.request.urlopen(robotsURL).read().decode("utf-8")
+        else:
+            listSite_Maps = ""
+            textRobots = ""
+        cur.execute("INSERT INTO crawldb.site VALUES(DEFAULT,%s, %s, %s) RETURNING id",
+            (base_url, textRobots, listSite_Maps))
+
+        id_of_new_site = cur.fetchone()[0]
+
+        cur.close()
+
+    else:
+        #Ce je domenska stran ze notri jo najdemo
         cur = conn.cursor()
+        cur.execute("SELECT id FROM crawldb.site WHERE domain=" + "'" + base_url + "'")
+
+        id_of_new_site = cur.fetchone()[0]
+
+    return id_of_new_site
+
+def checkPermissions(url):
+
+    #Kreiramo base URL strani
+    u = urlparse(url)
+
+    base_url = u.scheme + "://" + u.netloc
+    robotsURL = urljoin(base_url, "/robots.txt")
+
+    #Preverimo ali stran ima robots.txt
+    r = requests.get(robotsURL)
+
+    if (r.status_code < 400):
+
         rp = urllib.robotparser.RobotFileParser()
-        robotsURL = urljoin(url, "/robots.txt")
         rp.set_url(robotsURL)
         rp.read()
 
-        listSite_Maps = rp.site_maps()
-        textRobots = urllib.request.urlopen(robotsURL).read().decode("utf-8")
+        if (rp.can_fetch("*", url)):
 
-        cur.execute("INSERT INTO crawldb.site VALUES(DEFAULT,%s, %s, %s) RETURNING id",
-                    (url, textRobots, listSite_Maps))
-        id_of_new_site = cur.fetchone()[0]
-        cur.close()
-        return id_of_new_site
+            #Robot.txt dovoli crawlanje
+            id_of_new_site = addSiteToDB(base_url, rp, robotsURL)
+            scraper(url, id_of_new_site)
+    else:
+        # Robots.txt ne obstaja na strani
 
+        id_of_new_site = addSiteToDB(base_url, "", robotsURL)
+        scraper(url, id_of_new_site)
+    return
 
 if __name__ == '__main__':
-    seed_url = "http://www.gov.si/"
-    # globalen dostop do baze in cursorja
+
+    # Povezava z pgAdmin
     global conn
     conn = psycopg2.connect(host="localhost", user="postgres", password="admin")
     conn.autocommit = True
 
-    queue.put(seed_url)
+    #TODO DODAT ŠE DRUGE STRANI
 
-    id_of_new_site = manage_seed_url(seed_url)
-    crawl(id_of_new_site)
+    #Dodaj začetni URL
+    seed_url = "http://www.gov.si/"
+    #seed_url = "http://evem.gov.si/info/sistem-spot/"
+    queue.put(seed_url)
+    crawlNext()
 
     conn.close()

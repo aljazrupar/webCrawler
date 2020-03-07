@@ -88,17 +88,17 @@ def scraper(url, id_of_new_site):  # Funkcija za obdelovanje ene strani in dodaj
     status_code = response.status_code
     html_content = response.text
 
+    cur = conn.cursor()
     #TODO dodat še za duplicate page
     if 'html' in response.headers['content-type']:
 
         #with lock:
 
-        cur = conn.cursor()
         cur.execute("SELECT id FROM crawldb.page WHERE url=" + "'" + url + "'")
         data = cur.fetchone()
         if not data:
 
-            cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,CURRENT_TIMESTAMP )",
+            cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,CURRENT_TIMESTAMP ) RETURNING id",
                     (id_of_new_site, "HTML", url, html_content, status_code))
             id_of_new_page = cur.fetchone()[0]
 
@@ -108,7 +108,7 @@ def scraper(url, id_of_new_site):  # Funkcija za obdelovanje ene strani in dodaj
     else:
         #with lock:
 
-        cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,CURRENT_TIMESTAMP )",
+        cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT,%s, %s, %s,%s ,%s ,CURRENT_TIMESTAMP ) RETURNING id",
                         (id_of_new_site, 'BINARY', url, "NULL", status_code))
         id_of_new_page = cur.fetchone()[0]
 

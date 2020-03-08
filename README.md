@@ -21,7 +21,7 @@ psycopg2
 requests
 fBeautifulSoup
 
-Secondly since we are using pgAdmin 4, you should install the software on your computer locally and create database using template (TODO) found in the project folder.
+Secondly since we are using pgAdmin 4, you should install the software on your computer locally and create database using template crawldb.sql found in the project folder.
 Credentials should be initialised to:
 user: postgres
 password: admin

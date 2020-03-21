@@ -1,6 +1,7 @@
 import argparse
 import concurrent.futures
 import datetime
+import re
 import sys
 import threading
 import urllib
@@ -49,7 +50,7 @@ else:
     # Handle target environment that doesn't support HTTPS verification
     ssl._create_default_https_context = _create_unverified_https_context
 
-def get_Javascript_Onclick(url):
+def get_Javascript_Onclick(soap):
 
     #TO ŠE NE DELA
     """"
@@ -68,6 +69,12 @@ def get_Javascript_Onclick(url):
     """
     #for curr_url in urls:
     #    queue.put(curr_url)
+    urls = []
+
+    for elm_with_onclick in soup.find_all(attrs={"onclick": True}):
+        for url in re.findall('document\s*\.\s*location=\s*[\'"](.*)[\'"]', elm_with_onclick["onclick"]):
+            urls += [url]
+    return urls
 
 #----------------------------------------
 
@@ -94,15 +101,14 @@ def get_all_website_links(url,id_of_new_page, crawlDelay): # najde vse linke na 
         if("gov.si" in href):
             urls.add(href)
 
-    #TODO
-    get_Javascript_Onclick(url)
+    js_urls = get_Javascript_Onclick(soup)
 
     #Najde vse like na strani in jih shrani v bazo image
     img_tags = soup.find_all('img')
 
     ImgUrls = [img['src'] for img in img_tags]
     cur = conn.cursor()
-    for imgUrl in ImgUrls:
+    for imgUrl in ImgUrls + js_urls:
 
         # zdruzi url z domeno ce ni ze cel link.
         imgCleanUrl = urljoin(url, imgUrl)

@@ -1,7 +1,9 @@
 import argparse
 import concurrent.futures
 import datetime
+import hashlib
 import socket
+import ssl
 import sys
 import threading
 import urllib
@@ -30,7 +32,7 @@ GENERAL TODOs:
 
 """
 
-#num_workers = int(sys.argv[1])
+num_workers = int(sys.argv[1])
 
 
 WEB_DRIVER_LOCATION = "/Users/Administrator/Documents/FAX/2.Letnik MAG/WIER/chromedriver"
@@ -39,9 +41,11 @@ queue = Queue()
 visited = set([])
 executor = concurrent.futures.ThreadPoolExecutor(max_workers=1)
 schemes = ["", "www", "http", "https"]
-lock = threading.Lock()
+lock            = threading.Lock()
+worker_ip_lock  = threading.Lock()
 visitedPages = set()
 workers = []
+ips = {}
 
 class Worker:
     def __init__(self, index):
@@ -49,7 +53,7 @@ class Worker:
         self.currentIp = ""
         self.queue = MultiProcessingQueue()
 
-        self.p = Process(target=crawlNext, args=(self,))
+        self.p = threading.Thread(target=crawlNext, args=(self,))
         self.p.start()
 
     def join(self):
@@ -62,6 +66,9 @@ class Worker:
     def get_current_ip(self):
         with(worker_ip_lock):
             return self.currentIp
+
+    def __str__(self):
+        "[{}] {}".format(self.index, self.currentIp)
 
 #TA ZADEVA ŠE NE DELA ČISTO, KER VRNE NEK ID NAMEST URL-JA.. MORDA JE TREBA NAREDIT DRUGAČE
 #--------------------------------------------
@@ -230,10 +237,18 @@ def crawlNext(my_worker):
                 my_worker.currentIp = ""
                 while not queue.empty():
                     target_url = queue.get(block=True)
+                    # hostname = remove_prefix(target_url, "http://")
+                    domain = urlparse(target_url).netloc
 
-                    ip = socket.gethostbyname(target_url)
+                    if domain in ips:
+                        ip = ips[domain]
+                    else:
+                        ip = socket.gethostbyname(domain)
+                        ips[domain] = ip
+
+                    print("{} -> {}".format(domain, ip))
                     for worker in workers:
-                        if my_worker.currentIp == ip:
+                        if worker.currentIp == ip:
                             worker.queue.put(target_url)
                             break
                     else:
@@ -241,11 +256,12 @@ def crawlNext(my_worker):
                 else: # v vrsti ni še nobenega url-ja, ki bi ga worker lahko obdelal
                     target_url = ""
         time.sleep(5)
-        for worker in workers:
-            if not worker.currentIp == "":
-                break
-        else:
-            return
+        if target_url == "":
+            for worker in workers:
+                if not worker.currentIp == "":
+                    break
+            else:
+                return
 
     print(target_url)
     if target_url not in visited:
@@ -338,13 +354,12 @@ if __name__ == '__main__':
     conn.autocommit = True
 
     #Dodaj seed URLje
-    seed_urls = ["http://gov.si", "http://evem.gov.si", "http://e-uprava.gov.si", "http://e-prostor.gov.si."]
+    seed_urls = ["http://gov.si", "http://evem.gov.si", "http://e-uprava.gov.si", "http://e-prostor.gov.si"]
 
     for seed in seed_urls:
         queue.put(seed)
     # crawlNext()
-    n_workers = 1
-    for i in range(n_workers):
+    for i in range(num_workers):
         workers += [Worker(i)]
 
     for worker in workers:

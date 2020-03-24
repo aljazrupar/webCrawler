@@ -15,6 +15,7 @@ from urllib.request import urlparse, urljoin
 import psycopg2
 import requests
 from bs4 import BeautifulSoup
+# from .worker import Worker
 
 num_workers = int(sys.argv[1])
 
@@ -49,6 +50,25 @@ class Worker:
     def get_current_ip(self):
         with(worker_ip_lock):
             return self.currentIp
+
+    def can_process_url(self, target_url):
+        domain = urlparse(target_url).netloc
+
+        if domain in ips:
+            ip = ips[domain]
+        else:
+            print("Pridobivanje IP-ja za {}...".format(domain))
+            ip = socket.gethostbyname(domain)
+            ips[domain] = ip
+
+        print("{} -> {}".format(domain, ip))
+        for worker in workers:
+            if worker.currentIp == ip:
+                worker.queue.put(target_url)
+                return False
+        else:
+            self.currentIp = ip
+            return True
 
     def __str__(self):
         "[{}] {}".format(self.index, self.currentIp)
@@ -224,22 +244,7 @@ def get_next_url(my_worker):
                 while not queue.empty():
                     try:
                         target_url = queue.get(block=True)
-                        domain = urlparse(target_url).netloc
-
-                        if domain in ips:
-                            ip = ips[domain]
-                        else:
-                            print("Pridobivanje IP-ja za {}...".format(domain))
-                            ip = socket.gethostbyname(domain)
-                            ips[domain] = ip
-
-                        print("{} -> {}".format(domain, ip))
-                        for worker in workers:
-                            if worker.currentIp == ip:
-                                worker.queue.put(target_url)
-                                break
-                        else:
-                            my_worker.currentIp = ip
+                        if my_worker.can_process_url(target_url):
                             return target_url
                     except socket.gaierror as e:
                         print("Pridobivanje IP naslovani bilo uspešno")

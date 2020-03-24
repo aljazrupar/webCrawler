@@ -244,7 +244,9 @@ def get_next_url(my_worker):
                     except socket.gaierror as e:
                         print("Pridobivanje IP naslovani bilo uspešno")
                         print(e)
-
+                    except UnicodeError as e:
+                        print("Pridobivanje IP naslovani bilo uspešno, ker je naslov predolg")
+                        print(e)
         time.sleep(5)
         for worker in workers:
             if not worker.currentIp == "":

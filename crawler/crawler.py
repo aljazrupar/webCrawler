@@ -1,42 +1,23 @@
-import argparse
 import concurrent.futures
-import datetime
 import hashlib
+import re
 import socket
 import ssl
-import re
 import sys
 import threading
-import urllib
-from multiprocessing.context import Process
-from multiprocessing import Queue as MultiProcessingQueue
-from os import path
-from queue import Queue, Empty
-from urllib.request import urlparse, urljoin
-import urllib.robotparser
 import time
+import urllib
+import urllib.robotparser
+from multiprocessing import Queue as MultiProcessingQueue
+from queue import Queue
+from urllib.request import urlparse, urljoin
+
 import psycopg2
 import requests
 from bs4 import BeautifulSoup
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-import ssl
-import hashlib
-
-"""
-GENERAL TODOs:
-
-1.Narest lockse in threading
-2.Poročilo naspisat
-3.Za linke najdt onclick javascript (neki že narjeno v get_Javascript_onclick funkciji)
-4. Testirat kodo če vse dela in morda kj zoptimizirat, če dela prepočas
-
-"""
 
 num_workers = int(sys.argv[1])
 
-
-WEB_DRIVER_LOCATION = "/Users/Administrator/Documents/FAX/2.Letnik MAG/WIER/chromedriver"
 TIMEOUT = 5
 queue = Queue()
 visited = set([])
@@ -354,7 +335,6 @@ def checkPermissions(url):
     return
 
 if __name__ == '__main__':
-
     # Povezava z pgAdmin
     global conn
     conn = psycopg2.connect(host="localhost", user="postgres", password="admin")
@@ -365,7 +345,6 @@ if __name__ == '__main__':
 
     for seed in seed_urls:
         queue.put(seed)
-    # crawlNext()
     for i in range(num_workers):
         workers += [Worker(i)]
 

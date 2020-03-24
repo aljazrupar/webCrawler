@@ -82,7 +82,7 @@ else:
     # Handle target environment that doesn't support HTTPS verification
     ssl._create_default_https_context = _create_unverified_https_context
 
-def get_Javascript_Onclick(soap):
+def get_Javascript_Onclick(soup):
 
     #TO ŠE NE DELA
     """"

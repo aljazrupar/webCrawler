@@ -360,19 +360,39 @@ def save_current_state():
         cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url,))
         cur.close()
 
+
+def load_last_state():
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM crawldb.queue")
+    urls = cur.fetchall()
+    cur.close()
+    for (url,) in urls:
+        queue.put(url)
+
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM crawldb.visited")
+    urls = cur.fetchall()
+    cur.close()
+    global visited
+    visited = set(map(lambda x: x[0], urls))
+
 if __name__ == '__main__':
     # Povezava z pgAdmin
     global conn
     conn = psycopg2.connect(host="localhost", user="postgres", password="admin")
     conn.autocommit = True
 
-    #Dodaj seed URLje
-    seed_urls = ["http://gov.si", "http://evem.gov.si", "http://e-uprava.gov.si", "http://e-prostor.gov.si"]
+    load_last_state()
 
-    for seed in seed_urls:
-        queue.put(seed)
+    if queue.empty():
+        #Dodaj seed URLje
+        seed_urls = ["http://gov.si", "http://evem.gov.si", "http://e-uprava.gov.si", "http://e-prostor.gov.si"]
+
+        for seed in seed_urls:
+            queue.put(seed)
+
     for i in range(num_workers):
-        workers += [Worker(i, crawlNext)]
+        workers += [Worker(i)]
 
     threading.Thread(target=listen_to_keyboard).start()
 

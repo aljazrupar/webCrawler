@@ -28,7 +28,7 @@ lock            = threading.Lock()
 worker_ip_lock  = threading.Lock()
 visitedPages = set()
 workers = []
-ips = {}
+domains = {}
 stop_and_save = False
 
 class Worker:
@@ -52,14 +52,9 @@ class Worker:
             return self.currentIp
 
     def can_process_url(self, target_url):
-        domain = urlparse(target_url).netloc
+        domain = get_domain(target_url)
 
-        if domain in ips:
-            ip = ips[domain]
-        else:
-            print("Pridobivanje IP-ja za {}...".format(domain))
-            ip = socket.gethostbyname(domain)
-            ips[domain] = ip
+
 
         print("{} -> {}".format(domain, ip))
         for worker in workers:
@@ -72,6 +67,17 @@ class Worker:
 
     def __str__(self):
         "[{}] {}".format(self.index, self.currentIp)
+
+class Domain:
+    def __init__(self, ip, crawl_delay):
+        self.ip = ip
+        self.last_access = 0
+        self.crawl_delay = max(crawl_delay, 5)
+
+    def wait(self):
+        while self.last_access + 5 > time.time():
+            time.sleep(self.crawl_delay)
+        self.last_access = time.time()
 
 #TA ZADEVA ŠE NE DELA ČISTO, KER VRNE NEK ID NAMEST URL-JA.. MORDA JE TREBA NAREDIT DRUGAČE
 #--------------------------------------------
@@ -112,12 +118,24 @@ def get_Javascript_Onclick(soup):
 
 #----------------------------------------
 
+def get_domain(url):
+    domain = urlparse(url).netloc
+    if domain in domains:
+        return domains[domain]
+    else:
+        print("Pridobivanje IP-ja za {}...".format(domain))
+        ip = socket.gethostbyname(domain)
+        domain_obj = Domain(ip, 5)
+        domains[domain] = domain_obj
+        return domain_obj
+
+
 #TA FUNKCIJA GRE PO ENI SPLETNI STRANI IN IŠČE URLJE IN SLIKE
-def get_all_website_links(url,id_of_new_page, crawlDelay): # najde vse linke na enem URL
+def get_all_website_links(url,id_of_new_page, crawlDelay, response): # najde vse linke na enem URL
 
     urls = set()
-    soup = BeautifulSoup(requests.get(url).content, "html.parser")
-    time.sleep(crawlDelay)
+
+    soup = BeautifulSoup(response.content, "html.parser")
 
     for a_tag in soup.findAll("a"):
         href = a_tag.attrs.get("href")
@@ -155,24 +173,25 @@ def get_all_website_links(url,id_of_new_page, crawlDelay): # najde vse linke na 
             content_type = filename.split(".")[-1]
 
             if parsed_img.scheme in schemes:
-                response = requests.get(imgCleanUrl)
-                time.sleep(crawlDelay)
                 cur.execute("INSERT INTO crawldb.image VALUES(DEFAULT,%s, %s, %s,%s ,CURRENT_TIMESTAMP)",
                     (id_of_new_page, filename, content_type, "BINARY"))
         cur.close()
 
     return urls
 
+def wait_for_access_to_url(url):
+    with lock:
+        get_domain(url).wait()
+
 
 def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene strani in dodajenje linkov v queue
+    wait_for_access_to_url(url)
 
     #Dobimo spletno stran
     response = requests.get(url)
 
     status_code = response.status_code
     html_content = response.text
-    time.sleep(crawlDelay)
-
     cur = conn.cursor()
 
     #Preverjamo ali je HTML, Binary ali duplikat
@@ -212,18 +231,22 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
 
     else:
         with lock:
-            #Če je Binary naprimer slika, pdf,...
-            cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP ) RETURNING id",
-                            (id_of_new_site, 'BINARY', url, "NULL",  status_code, "NULL" ))
-            id_of_new_page = cur.fetchone()[0]
-            # response = requests.get(url)
-            # time.sleep(crawlDelay)
-            cur.execute("INSERT INTO crawldb.page_data VALUES(DEFAULT, %s, %s, %s)",
-                        (id_of_new_page,  response.headers['content-type'], "BINARY"))
-
+            cur.execute("SELECT id FROM crawldb.page WHERE url=" + "'" + url + "'")
+            data = cur.fetchone()
+            if not data:
+                #Če je Binary naprimer slika, pdf,...
+                cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP ) RETURNING id",
+                                (id_of_new_site, 'BINARY', url, "NULL",  status_code, "NULL" ))
+                id_of_new_page = cur.fetchone()[0]
+                # response = requests.get(url)
+                # time.sleep(crawlDelay)
+                cur.execute("INSERT INTO crawldb.page_data VALUES(DEFAULT, %s, %s, %s)",
+                            (id_of_new_page,  response.headers['content-type'], "BINARY"))
+            else:
+                id_of_new_page = data[0]
             cur.close()
     #Dodamo linke
-    urls = get_all_website_links(url, id_of_new_page, crawlDelay)
+    urls = get_all_website_links(url, id_of_new_page, crawlDelay, response)
     for curr_url in urls:
         queue.put(curr_url)
     '''
@@ -236,28 +259,30 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
 def get_next_url(my_worker):
     while not stop_and_save:
         with(lock):
-            # for worker in workers
-            if not my_worker.queue.empty():
-                return my_worker.queue.get()
+        #     # for worker in workers
+        #     if not my_worker.queue.empty():
+        #         return my_worker.queue.get()
+        #     else:
+            my_worker.currentIp = ""
+                # while not queue.empty():
+        #             try:
+        #                 target_url = queue.get(block=True)
+        #                 if my_worker.can_process_url(target_url):
+        #                     return target_url
+        #             except socket.gaierror as e:
+        #                 print("Pridobivanje IP naslovani bilo uspešno")
+        #                 print(e)
+        #             except UnicodeError as e:
+        #                 print("Pridobivanje IP naslovani bilo uspešno, ker je naslov predolg")
+        #                 print(e)
+        # time.sleep(5)
+            if not queue.empty():
+                return queue.get()
+            for worker in workers:
+                if not worker.currentIp == "":
+                    break
             else:
-                my_worker.currentIp = ""
-                while not queue.empty():
-                    try:
-                        target_url = queue.get(block=True)
-                        if my_worker.can_process_url(target_url):
-                            return target_url
-                    except socket.gaierror as e:
-                        print("Pridobivanje IP naslovani bilo uspešno")
-                        print(e)
-                    except UnicodeError as e:
-                        print("Pridobivanje IP naslovani bilo uspešno, ker je naslov predolg")
-                        print(e)
-        time.sleep(5)
-        for worker in workers:
-            if not worker.currentIp == "":
-                break
-        else:
-            return ""
+                return ""
     return ""
 
 def crawlNext(my_worker):
@@ -314,6 +339,7 @@ def checkPermissions(url):
     robotsURL = urljoin(base_url, "/robots.txt")
 
     #Preverimo ali stran ima robots.txt
+    wait_for_access_to_url(robotsURL)
     r = requests.get(robotsURL)
     time.sleep(5)
     if (r.status_code < 400):
@@ -327,10 +353,7 @@ def checkPermissions(url):
 
             delay = 5
         else:
-            if(rp.crawl_delay("*") > 5):
-                delay = rp.crawl_delay("*")
-            else:
-                delay = 5
+            get_domain(url).crawl_delay = max(int(rp.crawl_delay("*")), 5)
 
         if (rp.can_fetch("*", url)):
 
@@ -341,7 +364,7 @@ def checkPermissions(url):
         # Robots.txt ne obstaja na strani
 
         id_of_new_site = addSiteToDB(base_url, "", robotsURL)
-        scraper(url, id_of_new_site, 0)
+        scraper(url, id_of_new_site, 5)
     return
 
 def listen_to_keyboard():

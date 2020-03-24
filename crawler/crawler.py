@@ -30,28 +30,28 @@ workers = []
 ips = {}
 stop_and_save = False
 
-# class Worker:
-#     def __init__(self, index):
-#         self.index = index
-#         self.currentIp = ""
-#         self.queue = MultiProcessingQueue()
-#
-#         self.p = threading.Thread(target=crawlNext, args=(self,))
-#         self.p.start()
-#
-#     def join(self):
-#         self.p.join()
-#
-#     def set_current_ip(self, ip):
-#         with(worker_ip_lock):
-#             self.currentIp = ip
-#
-#     def get_current_ip(self):
-#         with(worker_ip_lock):
-#             return self.currentIp
-#
-#     def __str__(self):
-#         "[{}] {}".format(self.index, self.currentIp)
+class Worker:
+    def __init__(self, index):
+        self.index = index
+        self.currentIp = ""
+        self.queue = MultiProcessingQueue()
+
+        self.p = threading.Thread(target=crawlNext, args=(self,))
+        self.p.start()
+
+    def join(self):
+        self.p.join()
+
+    def set_current_ip(self, ip):
+        with(worker_ip_lock):
+            self.currentIp = ip
+
+    def get_current_ip(self):
+        with(worker_ip_lock):
+            return self.currentIp
+
+    def __str__(self):
+        "[{}] {}".format(self.index, self.currentIp)
 
 #TA ZADEVA ŠE NE DELA ČISTO, KER VRNE NEK ID NAMEST URL-JA.. MORDA JE TREBA NAREDIT DRUGAČE
 #--------------------------------------------

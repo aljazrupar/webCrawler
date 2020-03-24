@@ -216,7 +216,7 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
             id_of_new_page = cur.fetchone()[0]
             # response = requests.get(url)
             # time.sleep(crawlDelay)
-            cur.execute("INSERT INTO crawldb.page_data VALUES(DEFAULT,%s, %s,%s ,%s )",
+            cur.execute("INSERT INTO crawldb.page_data VALUES(DEFAULT, %s, %s, %s)",
                         (id_of_new_page,  response.headers['content-type'], "BINARY"))
 
             cur.close()

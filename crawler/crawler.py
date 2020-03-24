@@ -30,28 +30,28 @@ workers = []
 ips = {}
 stop_and_save = False
 
-class Worker:
-    def __init__(self, index):
-        self.index = index
-        self.currentIp = ""
-        self.queue = MultiProcessingQueue()
-
-        self.p = threading.Thread(target=crawlNext, args=(self,))
-        self.p.start()
-
-    def join(self):
-        self.p.join()
-
-    def set_current_ip(self, ip):
-        with(worker_ip_lock):
-            self.currentIp = ip
-
-    def get_current_ip(self):
-        with(worker_ip_lock):
-            return self.currentIp
-
-    def __str__(self):
-        "[{}] {}".format(self.index, self.currentIp)
+# class Worker:
+#     def __init__(self, index):
+#         self.index = index
+#         self.currentIp = ""
+#         self.queue = MultiProcessingQueue()
+#
+#         self.p = threading.Thread(target=crawlNext, args=(self,))
+#         self.p.start()
+#
+#     def join(self):
+#         self.p.join()
+#
+#     def set_current_ip(self, ip):
+#         with(worker_ip_lock):
+#             self.currentIp = ip
+#
+#     def get_current_ip(self):
+#         with(worker_ip_lock):
+#             return self.currentIp
+#
+#     def __str__(self):
+#         "[{}] {}".format(self.index, self.currentIp)
 
 #TA ZADEVA ŠE NE DELA ČISTO, KER VRNE NEK ID NAMEST URL-JA.. MORDA JE TREBA NAREDIT DRUGAČE
 #--------------------------------------------
@@ -340,6 +340,21 @@ def listen_to_keyboard():
             stop_and_save = True
             break
 
+def save_current_state():
+    cur = conn.cursor()
+    cur.execute("TRUNCATE TABLE crawldb.queue; TRUNCATE TABLE crawldb.visited")
+    cur.close()
+
+    while not queue.empty():
+        cur = conn.cursor()
+        cur.execute("INSERT INTO crawldb.queue VALUES(%s)", (queue.get(),))
+        cur.close()
+
+    for url in visited:
+        cur = conn.cursor()
+        cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url,))
+        cur.close()
+
 if __name__ == '__main__':
     # Povezava z pgAdmin
     global conn
@@ -352,25 +367,13 @@ if __name__ == '__main__':
     for seed in seed_urls:
         queue.put(seed)
     for i in range(num_workers):
-        workers += [Worker(i)]
+        workers += [Worker(i, crawlNext)]
 
     threading.Thread(target=listen_to_keyboard).start()
 
     for worker in workers:
         worker.join()
 
-    cur = conn.cursor()
-    cur.execute("TRUNCATE TABLE crawldb.queue; TRUNCATE TABLE crawldb.visited", (queue.get(),))
-    cur.close()
-
-    while not queue.empty():
-        cur = conn.cursor()
-        cur.execute("INSERT INTO crawldb.queue VALUES(%s)", (queue.get(), ))
-        cur.close()
-
-    for url in visited:
-        cur = conn.cursor()
-        cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url, ))
-        cur.close()
+    save_current_state()
 
     conn.close()

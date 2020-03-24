@@ -231,24 +231,22 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
         return
     '''
 
-def crawlNext(my_worker):
-    #Funkcija gre po vrsti in obdeluje urlje enega po enega
-    target_url = ""
-    while target_url == "":
+def get_next_url(my_worker):
+    while True:
         with(lock):
             # for worker in workers
             if not my_worker.queue.empty():
-                target_url = my_worker.queue.get()
+                return my_worker.queue.get()
             else:
                 my_worker.currentIp = ""
                 while not queue.empty():
                     target_url = queue.get(block=True)
-                    # hostname = remove_prefix(target_url, "http://")
                     domain = urlparse(target_url).netloc
 
                     if domain in ips:
                         ip = ips[domain]
                     else:
+                        print("Pridobivanje IP-ja za {}...".format(domain))
                         ip = socket.gethostbyname(domain)
                         ips[domain] = ip
 
@@ -258,16 +256,19 @@ def crawlNext(my_worker):
                             worker.queue.put(target_url)
                             break
                     else:
-                        break
-                else: # v vrsti ni še nobenega url-ja, ki bi ga worker lahko obdelal
-                    target_url = ""
+                        my_worker.currentIp = ip
+                        return target_url
         time.sleep(5)
-        if target_url == "":
-            for worker in workers:
-                if not worker.currentIp == "":
-                    break
-            else:
-                return
+        for worker in workers:
+            if not worker.currentIp == "":
+                break
+        else:
+            return ""
+
+def crawlNext(my_worker):
+    target_url = get_next_url(my_worker)
+    if target_url == "":
+        return
 
     print(target_url)
     if target_url not in visited:

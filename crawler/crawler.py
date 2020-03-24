@@ -28,6 +28,7 @@ worker_ip_lock  = threading.Lock()
 visitedPages = set()
 workers = []
 ips = {}
+stop_and_save = False
 
 class Worker:
     def __init__(self, index):
@@ -213,7 +214,7 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
     '''
 
 def get_next_url(my_worker):
-    while True:
+    while not stop_and_save:
         with(lock):
             # for worker in workers
             if not my_worker.queue.empty():
@@ -245,24 +246,21 @@ def get_next_url(my_worker):
                 break
         else:
             return ""
+    return ""
 
 def crawlNext(my_worker):
     target_url = get_next_url(my_worker)
-    if target_url == "":
-        return
+    while not target_url == "":
+        print(target_url)
+        if target_url not in visited:
 
-    print(target_url)
-    if target_url not in visited:
+            visited.add(target_url)
+            #TODO:
+            #executor.submit(checkPermissions, target_url)
 
-        visited.add(target_url)
-        #TODO:
-        #executor.submit(checkPermissions, target_url)
-
-        checkPermissions(target_url)
-    crawlNext(my_worker)
-    if (queue.empty()):
-        return
-
+            checkPermissions(target_url)
+        crawlNext(my_worker)
+        target_url = get_next_url(my_worker)
 
 def addSiteToDB(base_url, rp, robotsURL):
     #Funkcija doda novo domeno v bazo
@@ -334,6 +332,14 @@ def checkPermissions(url):
         scraper(url, id_of_new_site, 0)
     return
 
+def listen_to_keyboard():
+    while True:
+        if input() == ":q":
+            print("Ustavljanje in shranjevanje...")
+            global stop_and_save
+            stop_and_save = True
+            break
+
 if __name__ == '__main__':
     # Povezava z pgAdmin
     global conn
@@ -348,7 +354,23 @@ if __name__ == '__main__':
     for i in range(num_workers):
         workers += [Worker(i)]
 
+    threading.Thread(target=listen_to_keyboard).start()
+
     for worker in workers:
         worker.join()
+
+    cur = conn.cursor()
+    cur.execute("TRUNCATE TABLE crawldb.queue; TRUNCATE TABLE crawldb.visited", (queue.get(),))
+    cur.close()
+
+    while not queue.empty():
+        cur = conn.cursor()
+        cur.execute("INSERT INTO crawldb.queue VALUES(%s)", (queue.get(), ))
+        cur.close()
+
+    for url in visited:
+        cur = conn.cursor()
+        cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url, ))
+        cur.close()
 
     conn.close()

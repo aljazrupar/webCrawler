@@ -240,6 +240,7 @@ def get_next_url(my_worker):
                     if domain in ips:
                         ip = ips[domain]
                     else:
+                        print("Pridobivanje IP-ja za {}...".format(domain))
                         ip = socket.gethostbyname(domain)
                         ips[domain] = ip
 
@@ -249,6 +250,7 @@ def get_next_url(my_worker):
                             worker.queue.put(target_url)
                             break
                     else:
+                        my_worker.currentIp = ip
                         return target_url
         time.sleep(5)
         for worker in workers:

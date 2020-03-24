@@ -222,24 +222,29 @@ def get_next_url(my_worker):
             else:
                 my_worker.currentIp = ""
                 while not queue.empty():
-                    target_url = queue.get(block=True)
-                    domain = urlparse(target_url).netloc
+                    try:
+                        target_url = queue.get(block=True)
+                        domain = urlparse(target_url).netloc
 
-                    if domain in ips:
-                        ip = ips[domain]
-                    else:
-                        print("Pridobivanje IP-ja za {}...".format(domain))
-                        ip = socket.gethostbyname(domain)
-                        ips[domain] = ip
+                        if domain in ips:
+                            ip = ips[domain]
+                        else:
+                            print("Pridobivanje IP-ja za {}...".format(domain))
+                            ip = socket.gethostbyname(domain)
+                            ips[domain] = ip
 
-                    print("{} -> {}".format(domain, ip))
-                    for worker in workers:
-                        if worker.currentIp == ip:
-                            worker.queue.put(target_url)
-                            break
-                    else:
-                        my_worker.currentIp = ip
-                        return target_url
+                        print("{} -> {}".format(domain, ip))
+                        for worker in workers:
+                            if worker.currentIp == ip:
+                                worker.queue.put(target_url)
+                                break
+                        else:
+                            my_worker.currentIp = ip
+                            return target_url
+                    except socket.gaierror as e:
+                        print("Pridobivanje IP naslovani bilo uspešno")
+                        print(e)
+
         time.sleep(5)
         for worker in workers:
             if not worker.currentIp == "":

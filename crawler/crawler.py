@@ -211,7 +211,7 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
     else:
         with lock:
             #Če je Binary naprimer slika, pdf,...
-            cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT, %s, %s, %s, %s, %s, %s, ,CURRENT_TIMESTAMP ) RETURNING id",
+            cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP ) RETURNING id",
                             (id_of_new_site, 'BINARY', url, "NULL",  status_code, "NULL" ))
             id_of_new_page = cur.fetchone()[0]
             # response = requests.get(url)

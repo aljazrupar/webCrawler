@@ -51,20 +51,6 @@ class Worker:
         with(worker_ip_lock):
             return self.currentIp
 
-    def can_process_url(self, target_url):
-        domain = get_domain(target_url)
-
-
-
-        print("{} -> {}".format(domain, ip))
-        for worker in workers:
-            if worker.currentIp == ip:
-                worker.queue.put(target_url)
-                return False
-        else:
-            self.currentIp = ip
-            return True
-
     def __str__(self):
         "[{}] {}".format(self.index, self.currentIp)
 

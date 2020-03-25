@@ -238,10 +238,17 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
                 cur.execute("INSERT INTO crawldb.page VALUES(DEFAULT, %s, %s, %s, %s, %s, %s, CURRENT_TIMESTAMP ) RETURNING id",
                                 (id_of_new_site, 'BINARY', url, "NULL",  status_code, "NULL" ))
                 id_of_new_page = cur.fetchone()[0]
-                # response = requests.get(url)
-                # time.sleep(crawlDelay)
+
+                content_type = response.headers['content-type']
+
+                cur.execute("SELECT 1 FROM crawldb.data_type WHERE code =" + "'" + content_type + "'")
+                data = cur.fetchall()
+                if not data:
+                    cur.execute("INSERT INTO crawldb.data_type VALUES(%s)",
+                                (content_type, ))
+
                 cur.execute("INSERT INTO crawldb.page_data VALUES(DEFAULT, %s, %s, %s)",
-                            (id_of_new_page,  response.headers['content-type'], "BINARY"))
+                            (id_of_new_page, content_type, "BINARY"))
             else:
                 id_of_new_page = data[0]
             cur.close()

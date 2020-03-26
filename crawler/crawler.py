@@ -118,7 +118,6 @@ def get_domain(url):
 
 #TA FUNKCIJA GRE PO ENI SPLETNI STRANI IN IŠČE URLJE IN SLIKE
 def get_all_website_links(url,id_of_new_page, crawlDelay, response): # najde vse linke na enem URL
-
     urls = set()
 
     soup = BeautifulSoup(response.content, "html.parser")
@@ -145,25 +144,30 @@ def get_all_website_links(url,id_of_new_page, crawlDelay, response): # najde vse
     img_tags = soup.find_all('img')
 
     ImgUrls = [img['src'] for img in img_tags]
+
+    for imgUrl in ImgUrls + js_urls:
+        # zdruzi url z domeno ce ni ze cel link.
+        imgCleanUrl = urljoin(url, imgUrl)
+        parsed_img = urlparse(imgCleanUrl)
+
+        # sparsa link
+        imgCleanUrl = parsed_img.scheme + "://" + parsed_img.netloc + parsed_img.path
+        filename = imgCleanUrl.split("/")[-1]
+        content_type = filename.split(".")[-1]
+
+        if parsed_img.scheme in schemes:
+            save_image(id_of_new_page, filename, content_type)
+
+    return urls
+
+
+def save_image(id_of_new_page, filename, content_type):
     with lock:
         cur = conn.cursor()
-        for imgUrl in ImgUrls + js_urls:
-
-            # zdruzi url z domeno ce ni ze cel link.
-            imgCleanUrl = urljoin(url, imgUrl)
-            parsed_img = urlparse(imgCleanUrl)
-
-            # sparsa link
-            imgCleanUrl = parsed_img.scheme + "://" + parsed_img.netloc + parsed_img.path
-            filename = imgCleanUrl.split("/")[-1]
-            content_type = filename.split(".")[-1]
-
-            if parsed_img.scheme in schemes:
-                cur.execute("INSERT INTO crawldb.image VALUES(DEFAULT,%s, %s, %s,%s ,CURRENT_TIMESTAMP)",
+        cur.execute("INSERT INTO crawldb.image VALUES(DEFAULT,%s, %s, %s,%s ,CURRENT_TIMESTAMP)",
                     (id_of_new_page, filename, content_type, "BINARY"))
         cur.close()
 
-    return urls
 
 def wait_for_access_to_url(url):
     with lock:

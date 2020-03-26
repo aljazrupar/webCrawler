@@ -346,6 +346,9 @@ def checkPermissions(url):
     base_url = u.scheme + "://" + u.netloc
     robotsURL = urljoin(base_url, "/robots.txt")
 
+    if robotsURL == "/robots.txt":
+        return
+
     #Preverimo ali stran ima robots.txt
     wait_for_access_to_url(robotsURL)
     r = requests.get(robotsURL)

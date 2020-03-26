@@ -37,7 +37,7 @@ class Worker:
         self.currentIp = ""
         self.queue = MultiProcessingQueue()
 
-        self.p = threading.Thread(target=crawlNext, args=(self,))
+        self.p = threading.Thread(target=crawl, args=(self,))
         self.p.start()
 
     def join(self):
@@ -245,7 +245,7 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
     #Dodamo linke
     urls = get_all_website_links(url, id_of_new_page, crawlDelay, response)
     for curr_url in urls:
-        queue.put(curr_url)
+        enqueue(curr_url)
     '''
     if(not queue.empty()):
         crawlNext()
@@ -253,28 +253,43 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
         return
     '''
 
+def enqueue(url):
+    try:
+        with lock:
+            queue.put(url)
+            cur = conn.cursor()
+            cur.execute("INSERT INTO crawldb.queue VALUES(%s)", (url,))
+            cur.close()
+    except Exception() as e:
+        print("Shranjevanje URL-ja v tabelo queue podatkovna baze ni uspelo")
+        print(e)
+
+
+def dequeue():
+    url = queue.get()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM crawldb.queue WHERE url=%s;", (url,))
+    cur.close()
+
+    return url
+
+def add_to_visited(url):
+    try:
+        with lock:
+            visited.add(url)
+            cur = conn.cursor()
+            cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url,))
+            cur.close()
+    except Exception() as e:
+        print("Shranjevanje URL-ja v tabelo queue podatkovna baze ni uspelo")
+        print(e)
+
 def get_next_url(my_worker):
     while not stop_and_save:
         with(lock):
-        #     # for worker in workers
-        #     if not my_worker.queue.empty():
-        #         return my_worker.queue.get()
-        #     else:
             my_worker.currentIp = ""
-                # while not queue.empty():
-        #             try:
-        #                 target_url = queue.get(block=True)
-        #                 if my_worker.can_process_url(target_url):
-        #                     return target_url
-        #             except socket.gaierror as e:
-        #                 print("Pridobivanje IP naslovani bilo uspešno")
-        #                 print(e)
-        #             except UnicodeError as e:
-        #                 print("Pridobivanje IP naslovani bilo uspešno, ker je naslov predolg")
-        #                 print(e)
-        # time.sleep(TIMEOUT)
             if not queue.empty():
-                return queue.get()
+                return dequeue()
             for worker in workers:
                 if not worker.currentIp == "":
                     break
@@ -282,18 +297,14 @@ def get_next_url(my_worker):
                 return ""
     return ""
 
-def crawlNext(my_worker):
+def crawl(my_worker):
     target_url = get_next_url(my_worker)
     while not target_url == "":
         print(target_url)
         if target_url not in visited:
-
-            visited.add(target_url)
-            #TODO:
-            #executor.submit(checkPermissions, target_url)
-
             checkPermissions(target_url)
-        crawlNext(my_worker)
+            add_to_visited(target_url)
+
         target_url = get_next_url(my_worker)
 
 def addSiteToDB(base_url, rp, robotsURL):
@@ -372,22 +383,6 @@ def listen_to_keyboard():
             stop_and_save = True
             break
 
-def save_current_state():
-    cur = conn.cursor()
-    cur.execute("TRUNCATE TABLE crawldb.queue; TRUNCATE TABLE crawldb.visited")
-    cur.close()
-
-    while not queue.empty():
-        cur = conn.cursor()
-        cur.execute("INSERT INTO crawldb.queue VALUES(%s)", (queue.get(),))
-        cur.close()
-
-    for url in visited:
-        cur = conn.cursor()
-        cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url,))
-        cur.close()
-
-
 def load_last_state():
     cur = conn.cursor()
     cur.execute("SELECT * FROM crawldb.queue")
@@ -416,7 +411,7 @@ if __name__ == '__main__':
         seed_urls = ["http://gov.si", "http://evem.gov.si", "http://e-uprava.gov.si", "http://e-prostor.gov.si"]
 
         for seed in seed_urls:
-            queue.put(seed)
+            enqueue(seed)
 
     for i in range(num_workers):
         workers += [Worker(i)]
@@ -425,7 +420,5 @@ if __name__ == '__main__':
 
     for worker in workers:
         worker.join()
-
-    save_current_state()
 
     conn.close()

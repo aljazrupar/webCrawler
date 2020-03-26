@@ -58,10 +58,10 @@ class Domain:
     def __init__(self, ip, crawl_delay):
         self.ip = ip
         self.last_access = 0
-        self.crawl_delay = max(crawl_delay, 5)
+        self.crawl_delay = max(crawl_delay, TIMEOUT)
 
     def wait(self):
-        while self.last_access + 5 > time.time():
+        while self.last_access + TIMEOUT > time.time():
             time.sleep(self.crawl_delay)
         self.last_access = time.time()
 
@@ -111,7 +111,7 @@ def get_domain(url):
     else:
         print("Pridobivanje IP-ja za {}...".format(domain))
         ip = socket.gethostbyname(domain)
-        domain_obj = Domain(ip, 5)
+        domain_obj = Domain(ip, TIMEOUT)
         domains[domain] = domain_obj
         return domain_obj
 
@@ -268,7 +268,7 @@ def get_next_url(my_worker):
         #             except UnicodeError as e:
         #                 print("Pridobivanje IP naslovani bilo uspešno, ker je naslov predolg")
         #                 print(e)
-        # time.sleep(5)
+        # time.sleep(TIMEOUT)
             if not queue.empty():
                 return queue.get()
             for worker in workers:
@@ -334,7 +334,7 @@ def checkPermissions(url):
     #Preverimo ali stran ima robots.txt
     wait_for_access_to_url(robotsURL)
     r = requests.get(robotsURL)
-    time.sleep(5)
+    time.sleep(TIMEOUT)
     if (r.status_code < 400):
 
         rp = urllib.robotparser.RobotFileParser()
@@ -344,9 +344,9 @@ def checkPermissions(url):
         #Definiramo delay za requesti (da ga ne ddosamo) - TODO bo treba narest še pr threadingu...
         if(rp.crawl_delay("*") == None):
 
-            delay = 5
+            delay = TIMEOUT
         else:
-            get_domain(url).crawl_delay = max(int(rp.crawl_delay("*")), 5)
+            get_domain(url).crawl_delay = max(int(rp.crawl_delay("*")), TIMEOUT)
 
         if (rp.can_fetch("*", url)):
 
@@ -357,7 +357,7 @@ def checkPermissions(url):
         # Robots.txt ne obstaja na strani
 
         id_of_new_site = addSiteToDB(base_url, "", robotsURL)
-        scraper(url, id_of_new_site, 5)
+        scraper(url, id_of_new_site, TIMEOUT)
     return
 
 def listen_to_keyboard():

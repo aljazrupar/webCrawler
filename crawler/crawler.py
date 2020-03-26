@@ -138,14 +138,15 @@ def get_all_website_links(url,id_of_new_page, crawlDelay, response): # najde vse
         if("gov.si" in href):
             urls.add(href)
 
-    js_urls = get_Javascript_Onclick(soup)
+    for url in get_Javascript_Onclick(soup):
+        urls.add(url)
 
     #Najde vse like na strani in jih shrani v bazo image
     img_tags = soup.find_all('img')
 
     ImgUrls = [img['src'] for img in img_tags]
 
-    for imgUrl in ImgUrls + js_urls:
+    for imgUrl in ImgUrls:
         # zdruzi url z domeno ce ni ze cel link.
         imgCleanUrl = urljoin(url, imgUrl)
         parsed_img = urlparse(imgCleanUrl)

@@ -261,9 +261,8 @@ def enqueue(url):
             cur = conn.cursor()
             cur.execute("INSERT INTO crawldb.queue VALUES(%s)", (url,))
             cur.close()
-    except Exception() as e:
-        print("Shranjevanje URL-ja v tabelo queue podatkovna baze ni uspelo")
-        print(e)
+    except:
+        pass
 
 
 def dequeue():
@@ -281,9 +280,8 @@ def add_to_visited(url):
             cur = conn.cursor()
             cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url,))
             cur.close()
-    except Exception() as e:
-        print("Shranjevanje URL-ja v tabelo queue podatkovna baze ni uspelo")
-        print(e)
+    except:
+        pass
 
 def get_next_url(my_worker):
     while not stop_and_save:
@@ -303,8 +301,11 @@ def crawl(my_worker):
     while not target_url == "":
         print(target_url)
         if target_url not in visited:
-            checkPermissions(target_url)
-            add_to_visited(target_url)
+            try:
+                checkPermissions(target_url)
+                add_to_visited(target_url)
+            except:
+                print("Prišlo je do napake. Strani {} ni bilo mogoče obdelati".format(target_url))
 
         target_url = get_next_url(my_worker)
 

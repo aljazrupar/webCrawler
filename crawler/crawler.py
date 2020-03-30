@@ -37,7 +37,7 @@ class Worker:
         self.currentIp = ""
         self.queue = MultiProcessingQueue()
 
-        self.p = threading.Thread(target=crawlNext, args=(self,))
+        self.p = threading.Thread(target=crawl, args=(self,))
         self.p.start()
 
     def join(self):
@@ -58,10 +58,10 @@ class Domain:
     def __init__(self, ip, crawl_delay):
         self.ip = ip
         self.last_access = 0
-        self.crawl_delay = max(crawl_delay, 5)
+        self.crawl_delay = max(crawl_delay, TIMEOUT)
 
     def wait(self):
-        while self.last_access + 5 > time.time():
+        while self.last_access + TIMEOUT > time.time():
             time.sleep(self.crawl_delay)
         self.last_access = time.time()
 
@@ -111,14 +111,13 @@ def get_domain(url):
     else:
         print("Pridobivanje IP-ja za {}...".format(domain))
         ip = socket.gethostbyname(domain)
-        domain_obj = Domain(ip, 5)
+        domain_obj = Domain(ip, TIMEOUT)
         domains[domain] = domain_obj
         return domain_obj
 
 
 #TA FUNKCIJA GRE PO ENI SPLETNI STRANI IN IŠČE URLJE IN SLIKE
 def get_all_website_links(url,id_of_new_page, crawlDelay, response): # najde vse linke na enem URL
-
     urls = set()
 
     soup = BeautifulSoup(response.content, "html.parser")
@@ -139,31 +138,37 @@ def get_all_website_links(url,id_of_new_page, crawlDelay, response): # najde vse
         if("gov.si" in href):
             urls.add(href)
 
-    js_urls = get_Javascript_Onclick(soup)
+    for url in get_Javascript_Onclick(soup):
+        urls.add(url)
 
     #Najde vse like na strani in jih shrani v bazo image
     img_tags = soup.find_all('img')
 
     ImgUrls = [img['src'] for img in img_tags]
+
+    for imgUrl in ImgUrls:
+        # zdruzi url z domeno ce ni ze cel link.
+        imgCleanUrl = urljoin(url, imgUrl)
+        parsed_img = urlparse(imgCleanUrl)
+
+        # sparsa link
+        imgCleanUrl = parsed_img.scheme + "://" + parsed_img.netloc + parsed_img.path
+        filename = imgCleanUrl.split("/")[-1]
+        content_type = filename.split(".")[-1]
+
+        if parsed_img.scheme in schemes:
+            save_image(id_of_new_page, filename, content_type)
+
+    return urls
+
+
+def save_image(id_of_new_page, filename, content_type):
     with lock:
         cur = conn.cursor()
-        for imgUrl in ImgUrls + js_urls:
-
-            # zdruzi url z domeno ce ni ze cel link.
-            imgCleanUrl = urljoin(url, imgUrl)
-            parsed_img = urlparse(imgCleanUrl)
-
-            # sparsa link
-            imgCleanUrl = parsed_img.scheme + "://" + parsed_img.netloc + parsed_img.path
-            filename = imgCleanUrl.split("/")[-1]
-            content_type = filename.split(".")[-1]
-
-            if parsed_img.scheme in schemes:
-                cur.execute("INSERT INTO crawldb.image VALUES(DEFAULT,%s, %s, %s,%s ,CURRENT_TIMESTAMP)",
+        cur.execute("INSERT INTO crawldb.image VALUES(DEFAULT,%s, %s, %s,%s ,CURRENT_TIMESTAMP)",
                     (id_of_new_page, filename, content_type, "BINARY"))
         cur.close()
 
-    return urls
 
 def wait_for_access_to_url(url):
     with lock:
@@ -241,7 +246,7 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
     #Dodamo linke
     urls = get_all_website_links(url, id_of_new_page, crawlDelay, response)
     for curr_url in urls:
-        queue.put(curr_url)
+        enqueue(curr_url)
     '''
     if(not queue.empty()):
         crawlNext()
@@ -249,28 +254,41 @@ def scraper(url, id_of_new_site, crawlDelay):  # Funkcija za obdelovanje ene str
         return
     '''
 
+def enqueue(url):
+    try:
+        with lock:
+            queue.put(url)
+            cur = conn.cursor()
+            cur.execute("INSERT INTO crawldb.queue VALUES(%s)", (url,))
+            cur.close()
+    except:
+        pass
+
+
+def dequeue():
+    url = queue.get()
+    cur = conn.cursor()
+    cur.execute("DELETE FROM crawldb.queue WHERE url=%s;", (url,))
+    cur.close()
+
+    return url
+
+def add_to_visited(url):
+    try:
+        with lock:
+            visited.add(url)
+            cur = conn.cursor()
+            cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url,))
+            cur.close()
+    except:
+        pass
+
 def get_next_url(my_worker):
     while not stop_and_save:
         with(lock):
-        #     # for worker in workers
-        #     if not my_worker.queue.empty():
-        #         return my_worker.queue.get()
-        #     else:
             my_worker.currentIp = ""
-                # while not queue.empty():
-        #             try:
-        #                 target_url = queue.get(block=True)
-        #                 if my_worker.can_process_url(target_url):
-        #                     return target_url
-        #             except socket.gaierror as e:
-        #                 print("Pridobivanje IP naslovani bilo uspešno")
-        #                 print(e)
-        #             except UnicodeError as e:
-        #                 print("Pridobivanje IP naslovani bilo uspešno, ker je naslov predolg")
-        #                 print(e)
-        # time.sleep(5)
             if not queue.empty():
-                return queue.get()
+                return dequeue()
             for worker in workers:
                 if not worker.currentIp == "":
                     break
@@ -278,18 +296,17 @@ def get_next_url(my_worker):
                 return ""
     return ""
 
-def crawlNext(my_worker):
+def crawl(my_worker):
     target_url = get_next_url(my_worker)
     while not target_url == "":
         print(target_url)
         if target_url not in visited:
+            try:
+                checkPermissions(target_url)
+                add_to_visited(target_url)
+            except:
+                print("Prišlo je do napake. Strani {} ni bilo mogoče obdelati".format(target_url))
 
-            visited.add(target_url)
-            #TODO:
-            #executor.submit(checkPermissions, target_url)
-
-            checkPermissions(target_url)
-        crawlNext(my_worker)
         target_url = get_next_url(my_worker)
 
 def addSiteToDB(base_url, rp, robotsURL):
@@ -331,10 +348,13 @@ def checkPermissions(url):
     base_url = u.scheme + "://" + u.netloc
     robotsURL = urljoin(base_url, "/robots.txt")
 
+    if robotsURL == "/robots.txt":
+        return
+
     #Preverimo ali stran ima robots.txt
     wait_for_access_to_url(robotsURL)
     r = requests.get(robotsURL)
-    time.sleep(5)
+    time.sleep(TIMEOUT)
     if (r.status_code < 400):
 
         rp = urllib.robotparser.RobotFileParser()
@@ -344,9 +364,9 @@ def checkPermissions(url):
         #Definiramo delay za requesti (da ga ne ddosamo) - TODO bo treba narest še pr threadingu...
         if(rp.crawl_delay("*") == None):
 
-            delay = 5
+            delay = TIMEOUT
         else:
-            get_domain(url).crawl_delay = max(int(rp.crawl_delay("*")), 5)
+            get_domain(url).crawl_delay = max(int(rp.crawl_delay("*")), TIMEOUT)
 
         if (rp.can_fetch("*", url)):
 
@@ -357,7 +377,7 @@ def checkPermissions(url):
         # Robots.txt ne obstaja na strani
 
         id_of_new_site = addSiteToDB(base_url, "", robotsURL)
-        scraper(url, id_of_new_site, 5)
+        scraper(url, id_of_new_site, TIMEOUT)
     return
 
 def listen_to_keyboard():
@@ -367,22 +387,6 @@ def listen_to_keyboard():
             global stop_and_save
             stop_and_save = True
             break
-
-def save_current_state():
-    cur = conn.cursor()
-    cur.execute("TRUNCATE TABLE crawldb.queue; TRUNCATE TABLE crawldb.visited")
-    cur.close()
-
-    while not queue.empty():
-        cur = conn.cursor()
-        cur.execute("INSERT INTO crawldb.queue VALUES(%s)", (queue.get(),))
-        cur.close()
-
-    for url in visited:
-        cur = conn.cursor()
-        cur.execute("INSERT INTO crawldb.visited VALUES(%s)", (url,))
-        cur.close()
-
 
 def load_last_state():
     cur = conn.cursor()
@@ -412,7 +416,7 @@ if __name__ == '__main__':
         seed_urls = ["http://gov.si", "http://evem.gov.si", "http://e-uprava.gov.si", "http://e-prostor.gov.si"]
 
         for seed in seed_urls:
-            queue.put(seed)
+            enqueue(seed)
 
     for i in range(num_workers):
         workers += [Worker(i)]
@@ -421,7 +425,5 @@ if __name__ == '__main__':
 
     for worker in workers:
         worker.join()
-
-    save_current_state()
 
     conn.close()

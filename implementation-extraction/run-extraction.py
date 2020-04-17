@@ -2,9 +2,13 @@ import sys
 import os
 import pathlib
 from lxml import html
+from lxml.html.clean import clean_html
 import json
 import re
+
 #TODO pogledat kako bi prkazoval čšž
+#TODO HTML prerendering???
+
 def xpathOverstock(page):
     titles = page.xpath('/html/body/table[2]/tbody/tr[1]/td[5]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody//td/a/b/text()')
     contents = page.xpath('/html/body/table[2]/tbody/tr[1]/td[5]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody/tr/td[2]/table/tbody/tr/td[2]/span/text()')
@@ -45,12 +49,15 @@ def xpathRTV(page):
     }
     print("Output object:\n%s" % json.dumps(dataItem, indent=6))
 def xpathAvto(page):
-    name = page.xpath('//*[@id="results"]//div[3]/div[1]/a/span/text()')
-    price =page.xpath('//*[@id="results"]//div[4]/div[1]/div[2]/div/text()')
-    year =page.xpath('//*[@id="results"]//div[3]/div[1]/ul/li[1]/text()')
-    distance =page.xpath('//*[@id="results"]//div[3]/div[1]/ul/li[2]/text()')
-    engine =page.xpath('//*[@id="results"]//div[3]/div[1]/ul/li[3]/text()')
-    gear =page.xpath('//*[@id="results"]//div[3]/div[1]/ul/li[4]/text()')
+    name = page.xpath('//*[@id="results"]/div/div/div[1]/a/span/text()')
+    price =page.xpath('//*[@id="results"]/div/div/div[1]/div[2]/div[1]/text()')
+    print(name)
+    #//*[@id="results"]/div[5]/div[2]/div[1]/a/span
+    #// *[ @ id = "results"] / div[5] / div[3] / div[1] / div[2] / div
+    year =page.xpath('//*[@id="results"]/div/div/div[1]/ul/li[1]/text()')
+    distance =page.xpath('//*[@id="results"]/div/div/div[1]/ul/li[2]/text()')
+    engine =page.xpath('//*[@id="results"]/div/div/div[1]/ul/li[3]/text()')
+    gear =page.xpath('//*[@id="results"]/div/div/div[1]/ul/li[4]/text()')
 
     for count, i in enumerate(year):
         dataItem={
@@ -60,7 +67,7 @@ def xpathAvto(page):
             "Year": year[count][-4:],
             "Distance [km]": distance[count][:-3],
             "Engine": engine[count].split(",")[0],
-            "Power": engine[count].split("/")[1],
+            "Power": engine[count].split(",")[-1],
             "Gear": gear[count]
         }
         print("Output object:\n%s" % json.dumps(dataItem, indent=8))
@@ -78,7 +85,9 @@ def xpath(pages):
             continue
             xpathOverstock(tree)
         else:
+            continue
             xpathRTV(tree)
+
 def regexRTV(pages):
 
     regex = r"<h1>(.*)</h1>"
@@ -101,10 +110,9 @@ def regexRTV(pages):
     match = re.compile(regex).search(pages)
     date = match.group(1)
 
-    #TODO KAJ TUKAJ ŽELI IMET PRI CONTENT
-    regex = r"<figure(.*)"
+    regex = r"<div class=\"article-header-media\">([\S\s]+)</article>"
     match = re.compile(regex).search(pages)
-    content = match.group(1)
+    content = match.group(0)
 
     dataItem = {
        "Title": title,
@@ -141,7 +149,7 @@ def regexAvto(pages):
             "Year": i[0][-4:],
             "Distance [km]": i[1][:-3],
             "Engine": i[2].split(",")[0],
-            "Power": i[2].split("/")[1],
+            "Power": i[2].split(",")[-1],
             "Gear": i[3]
         }
         print("Output object:\n%s" % json.dumps(dataItem, indent=8))
@@ -175,15 +183,17 @@ def regexOverstock(pages):
     for i in match:
         Price.append(i)
 
-    regex = r"</td>\s*<td valign=\"top\">\s*<span class=\"normal\">\s*(.*)"
+    # TODO POPRAVIT CONTENT
+    regex = r"<span class=\"normal\">((.+)|\s)*<br>"
+    match = re.search(regex, pages,  flags=re.DOTALL)
+    match = match.group(0)
+    #match = re.compile(regex).findall(pages)
 
-    match = re.compile(regex).findall(pages)
-    #TODO POPRAVIT CONTENT
     Content = []
     for i in match:
-        Content.append(i)
         print(i)
-        print()
+    print(len(match))
+    # /TODO
 
     for count, i in enumerate(Titles):
         dataItem={
@@ -198,18 +208,20 @@ def regexOverstock(pages):
         print("Output object:\n%s" % json.dumps(dataItem, indent=7))
 def regex(pages):
     for i in pages:
-        with open(i, encoding="ISO-8859-1") as file:  # Use file to refer to the file object
+        with open(i, encoding="windows-1250") as file:  # Use file to refer to the file object
             data = file.read()
+
         tree = data
 
         if("Avto" in i):
             continue
+            continue
             regexAvto(tree)
         elif("jewelry" in i):
-            #continue
+            continue
             regexOverstock(tree)
         else:
-            continue
+
             regexRTV(tree)
 #def auto():
 

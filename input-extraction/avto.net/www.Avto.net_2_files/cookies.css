@@ -1,0 +1,33 @@
+.cookies {
+	position:relative;
+	left:0px;
+	top:0px;	
+	width: 100%; 
+	height: 60px; 
+	background-color:#000; 
+	margin-bottom:  10px;
+    COLOR: #CFD7DF;	
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 11px;
+    FONT-STYLE: normal;
+	text-align: center;
+}
+
+.cookies a { 
+	text-decoration:none;
+    FONT-SIZE: 11px;
+    COLOR: #FFFFFF;	
+} 
+.cookies a:link { 
+	text-decoration:none;
+    FONT-SIZE: 11px;
+    COLOR: #FFFFFF;	
+} 
+.cookie a:visited { 
+	text-decoration:none;
+    COLOR: #FFFFFF;	
+} 
+.cookies a:hover { 
+	text-decoration:underline; 
+    COLOR: #FFFFFF;	
+} 

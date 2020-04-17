@@ -1,0 +1,89 @@
+/* ---------------------------   OTHER ----------------------------*/
+.NoBack {
+	background:none; 
+}
+
+.Bold {
+	font-weight:bold;
+}
+.Dark {
+	background-color:#EBEBEB; 
+}
+.Light {
+	background-color:#FFFFFF; 
+}
+.Left {
+	text-align: left;
+}
+.Right{
+	text-align: right;
+}
+.Justify {
+	text-align: justify;
+}
+.FloatLeft {
+	float: left;
+}
+
+img.rollover {
+	top: 0;
+	left: 0;
+	z-index: 100;
+	display: inline-block;
+	cursor: pointer;
+}
+.none{
+	border: 0px;
+	background: none;
+}
+.Center {
+	text-align: center;
+	margin: 0px auto;
+}
+.CenterText {
+	text-align: center;
+}
+.CenterVertical {
+	vertical-align:middle;
+}
+.CenterHV {
+ 	position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.Makes ul { 
+	position: relative;
+	width: 100%;  
+	list-style-type:none;
+	margin: 0px;
+	padding: 0px;
+}
+.Makes ul li { 
+	position: relative;
+	width: 144x;
+	height: 18px; 
+	line-height: 18px; 
+	padding-left: 0px;
+	padding-top: 2px;
+	padding-bottom: 0px;
+}
+.Makes img { 
+	position: relative;
+	width: 60x;
+	max-height: 40px; 
+	line-height: 40px; 
+	padding-left: 0px;
+	padding-top: 0px;
+	padding-bottom: 10px;
+	border: none;
+}
+.Absolute {
+	position: absolute; /* IMPORTANT! */
+}
+.Transparent img {
+	opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}

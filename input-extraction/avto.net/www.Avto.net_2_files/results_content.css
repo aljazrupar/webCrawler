@@ -1,0 +1,1281 @@
+/* ---------------------------   2018 CSS  ----------------------------*/
+.contentwrapper {
+	position: relative;
+	float:left;
+	padding: 0px 0px 0px 0px;
+	width: 730px;
+	min-height:100px;
+}
+
+/* ---------------------------   RESULTS RUBRIKE TOP ----------------------------*/
+ul#resulttabs {
+		float: left;
+		padding: 0px;
+		margin: 0px;
+		width: 730px;
+		height: 30px;
+		list-style-type: none;
+}
+ul#resulttabs li {
+		display: inline; 
+}
+
+ul#resulttabs span {
+		float:left;
+		width: 120px;
+		height: 16px;
+		padding: 7px 0px 7px 0px;
+		margin-right: 7px;
+		font-size:14px;
+		line-height:14px;
+		text-align:center;
+		background-color: #8696A7;
+		color: #FFFFFF;
+}
+
+ul#resulttabs span:hover {
+		background-color: #072F57;
+		color: #FFFFFF;
+}
+ul#resulttabs span.Current {
+		background: #FFFFFF;
+		color: #072F57;
+}
+ul#resulttabs span.First {
+		width: 120px;
+}
+/* ---------------------------   VZOREC ----------------------------*/
+
+.ResultsRubrike {
+	position: relative;
+	float: left;
+	width: 126px;
+	height: 26px;
+	padding-top: 12px;
+	text-align:center;
+	background-color: #8696A7;
+	margin-right: 7px; 
+	/*border-style:solid;
+	border-width:2px 0px 0px 1px;
+	border-color:#E1E1E1; */
+}
+.ResultsRubrike:hover {
+	background-color: #FFFFFF; 
+}
+.ResultsRubrikeSelected {
+	padding-top: 12px;
+	background-color: #FFFFFF; 
+	/*border-width:0px 0px 0px 0px;*/
+}
+.ResultsRubrikeEmpty {
+	width: 115px;
+	border-width:0px 1px 0px 0px;
+}
+
+/* RESULTS CONTENT ------------------------------------------------------*/
+.ResultsTop {
+	position: relative;
+	float: left;
+	text-align:left;
+	width: 730px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	color: #072F57;	
+    font-size: 18px;
+	line-height: 40px;
+    font-weight: bold;
+}
+.ResultsSubTop {
+	position: relative;
+	float: left;
+	text-align:center;
+	width: 730px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	border-style:none;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+}
+.ResultsSubTopLeft {
+	float:left;
+	width: 530px;
+	height: 40px; 
+	line-height: 40px;
+	padding: 0px 0px 0px 0px;
+}
+.ResultsSubTopRight {
+	float:right;
+	text-align:right;
+	width: 200px;
+	padding: 0px 0px 0px 0px;
+}
+.ResultsSubTopView {
+	float:left;
+	width: 60px; 
+	height: 30px; 
+	line-height: 30px;
+	padding: 5px 0px 0px 0px;
+}
+.ResultsAdTop {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 728px;
+	height: 35px; 
+	line-height: 35px;
+	padding: 0px 0px 1px 0px; 
+	margin: 0px 0px 14px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#7F9DB9; 
+}
+.ResultsAdTopLeft {
+	float:left;
+	width: 400px;
+	height: 35px; 
+	line-height: 35px;
+	padding: 0px 0px 0px 5px;
+}
+.ResultsAdTopRightChangeView {
+	float:left;
+	width: 60px;
+	height: 35px; 
+	line-height: 35px;
+	padding: 0px 5px 0px 0px;
+}
+.ResultsAdTopRight {
+	float:left;
+	width: 313px;
+	height: 35px; 
+	line-height: 35px;
+	padding: 0px 5px 0px 0px;
+}
+.ResultsAdTopMid {
+	float:left;
+	width: 253px;
+	height: 35px; 
+	line-height: 35px;
+	padding: 0px 5px 0px 0px;
+}
+.ResultsAdBottom {
+	position: relative;
+	float: left;
+	background-color:#CFD7DF; 
+	width: 728px;
+	height: 35px; 
+	line-height: 35px;
+	padding: 0px 0px 1px 0px; 
+	margin: 20px 0px 10px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#7F9DB9; 
+}
+.ResultsTopSelectedCriteria {
+	position: relative;
+	float: left;
+	background-color:#CFD7DF; 
+	width: 728px;
+	height: 35px; 
+	line-height: 35px;
+	padding: 0px 0px 1px 0px; 
+	margin: 20px 0px 10px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#7F9DB9; 
+}
+
+
+/* RESULTS LIST VIEW --------------------------------------------------*/
+.ResultsAd {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	background-position: 0px 15px;
+	background-repeat:repeat-x;
+	width: 700px;
+	height: 186px;
+	padding: 0px 14px 0px 14px; 
+	margin: 0px 0px 14px 0px; 
+	/*margin: 0px 0px 0px 0px; */
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	border-color:#FFFFFF; 
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5);
+	-moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5); /* for Firefox 3.5+ */
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.5); /* for Safari and Chrome */
+}
+.ResultsAd:link {
+	background-image: none;
+}
+.ResultsAd:visited {
+	background-image: none;
+}
+.ResultsAd:hover {
+	/*box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5);*/
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,.5);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,.5); /* for Firefox 3.5+ */
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,.5); /* for Safari and Chrome */
+}
+
+.ResultsAd:hover .ResultsAdPrice, .ResultsAd:focus .ResultsAdPrice {
+    background-color: #E9E9E9;
+}
+.ResultsAd:active {
+	background-image: none;
+	/*background-color:#E9E9E9; */
+}
+
+.ResultsAd:hover .ResultsShowMore, .ResultsAd:focus .ResultsShowMore {
+	display: block;
+}
+/* 
+.ResultsAd:hover .BelowButtonBox, .ResultsAd:focus .BelowButtonBox {	
+	display: none;																					
+	}																			
+*/
+.ResultsShowMore {
+	display: none;
+}
+.ResultsAdCheck {
+	position: relative;
+	float: left;
+	width: 10px;
+	height: 120px;
+	padding: 0px 5px 0px 5px; 
+	margin: 0px; 
+}
+.ResultsAdPhoto {
+	position: relative;
+	background-color:#FFFFFF; 
+	float: left;
+	width: 160px;
+	height: 120px;
+	padding: 0px 0px 0px 7px; 
+	margin: 0px 0px 0px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#7F9DB9; 
+	border: none;
+}
+/* AD PHOTO CONTAINER --------------------------------------------------*/
+.ResultsAdPhotoContainer {
+	position: relative;
+	background-color:#FFFFFF; 
+	float: left;
+	width: 160px;
+	height: 158px;
+	padding: 14px 14px 14px 0px; 
+	margin: 0px 0px 0px 0px; 
+	border-style:solid;
+	border-width:0px 1px 0px 0px;
+	border-color:#E9E9E9; 
+	/*border: none;*/
+}
+.ResultsAdPhotoContainer img{
+	display: block;
+	margin: 0 auto;
+	border: none;
+	max-width: 160px;
+	max-height: 120px;
+}
+.ResultsAdPhotoTag {
+	position: absolute;
+    top: 0px;
+    left: 0;
+	z-index: 10;
+	width: 40px;
+	height: 18px;
+	line-height: 18px;
+	margin: 21px 0px 0px -15px;
+	padding: 0px 7px 0px 7px;
+	background-color:#008000;
+	color: #FFFFFF;
+	font-weight:bold;
+	font-size:12px;
+	border-style:solid;
+	border-width:1px 1px 1px 0px;
+	border-color:#FFF; 
+}
+
+ .ResultsHDPhotoTag {
+	position: absolute;
+    top: 0;
+    right: 0;
+	z-index: 10;
+	width: 20px;
+	height: 20px;
+	margin: 14px 14px 0px 0px;
+	padding: 0px 7px 0px 5px;
+	border: 0px;
+	color: #FFF;
+	font-size:16px;
+	font-weight:bold;
+	line-height:20px;
+	background:#000000;
+	border-style:solid;
+	border-width:0px 0px 1px 1px;
+	border-color:#FFF; 
+}
+.ResultsAdPhotoTop {
+	position: relative;
+    top: 0;
+    left: 0;
+	width: 160px;
+	height: 120px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+}
+.ResultsAdNOPhotoTop {
+	position: relative;
+    top: 0;
+    left: 0;
+	width: 160px;
+	height: 120px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	color: #E9E9E9;
+}
+.ResultsAdNOPhotoTop i{
+	position: relative;
+	width: 160px;
+	height: 80px;
+	line-height:80px;
+	padding: 20px 0px 0px 0px; 
+	font-size: 80px;
+	text-align: center;
+}
+.ResultsAdNOPhotoTop span{
+	position: relative;
+	width: 160px;
+	height: 20px;
+	line-height:20px;
+	padding: 0px 0px 0px 0px; 
+	font-size: 18px;
+	text-align: center;
+	font-weight:bold;
+}
+.ResultsAdPhotoTop a:hover{
+	text-decoration: none;
+}
+.ResultsAdNOPhotoTop a:hover{
+	text-decoration: none;
+}
+.ResultsAdPhotoBottom {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 160px;
+	height: 38px;
+	line-height: 38px;
+	margin: 135px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background-color:#7F9DB9 ; 
+	font-size:13px;
+	color: #FFFFFF;
+}
+.ResultsAdPhotoBottom img {
+	display: block;
+	margin: 0 0 0 0px;
+	padding: 10px 0px 0px 0px
+}
+.ResultsAdPhotoBottom span {
+	float:left;
+    margin:0 0 0 0px;
+	padding: 0px 0px 0px 0px;
+	vertical-align:middle;
+	border-style:solid;
+	border-width:0px;
+    height:38px;
+    line-height:38px;
+}
+.ResultsAdPhotoBottom i{
+	float:left;
+	padding: 0px 14px 0px 14px;
+    height:38px;
+    line-height:38px;
+}
+/* AD DATA CONTAINER --------------------------------------------------*/
+.ResultsAdData {
+	position: relative;
+	float: left;
+	text-align:left;
+	width: 327px;
+	max-width: 340px;
+	height: 160px;
+	padding: 14px 14px 0px 14px; 
+	margin: 0px; 
+	border-style:dotted;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+}
+.ResultsAdDataTop {
+	height: 83px;
+}
+.ResultsAdDataBottom {
+	height: 77px;
+}
+
+.ResultsAdData ul {
+	margin: 0px; 
+	height: 64px;
+	padding: 0px 0px 0px 0px; 
+	list-style-type:none;
+	list-style-position:inside;
+}
+.ResultsAdData li {
+	margin: 3px 0px 0px 0px;
+	padding: 0px 0px 0px 12px;
+	line-height: 12px;
+	background-image:url(https://www.avto.net/_graphics/bulletmini.gif);
+	background-repeat:no-repeat;
+	background-position: 0px 3px;
+}
+.ResultsAdData p {
+	position: relative;
+	max-width: 322px;
+	height: 31px;
+	text-align:left;
+	padding-left: 5px;
+	font-size: 10px; 
+	font-style: normal;
+    font-weight: normal;
+}
+.ResultsAdData img {
+	border: 0px;
+}
+/* AD PRICE CONTAINER --------------------------------------------------*/
+.ResultsAdPriceLogo {
+	position: relative;
+	float: right;
+	width: 170px;
+	height: 160px;
+	padding: 14px 0px 0px 0px; 
+	margin: 0px 0px 0px 0px; 
+    text-align: center;
+	border-style:none;
+	border-width:0px 0px 0px 0px;
+}
+.ResultsAdPrice {
+	position: relative;
+	float: left;
+	width: 168px;
+	height: 75px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 0px 5px 0px; 
+    text-align: center;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#E9E9E9; 
+	font-size: 18px; 
+	font-weight:bold;
+	color:#062f57; 
+	background-color: #FFFFFF;
+}
+.ResultsAdPriceTXTTop {
+	width: 100%; 
+	height: 16px;
+	margin: 0px 0px 0px 0px;
+	font-size: 12px; 
+	line-height: 16px;
+	font-weight:bold;
+	text-align:center;
+}
+.ResultsAdPriceTXTMiddle {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 40px;
+	padding: 3px 0px 2px 0px; 
+}
+.ResultsAdPriceTXTBottom {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 14px;
+}
+.ResultsAdPriceGrey {
+	color:#7F9DB9; 
+}
+.ResultsAdPriceRed {
+	color:#FF0000; 
+}
+.ResultsAdPriceAkcija {
+	width: 168px;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#FF0000; 
+	padding: 0px 0px 0px 0px; 
+}
+.ResultsAdPrice p {
+	line-height: 12px;
+	text-align:center;
+	font-size: 12px; 
+	color:#7F9DB9; 
+}
+.ResultsAdPrice p.Regular {
+	line-height: 18px;
+	text-align:center;
+	font-size: 18px; 
+	color:#062f57; 
+}
+.ResultsAdPrice p.Brutto {
+	line-height: 14px;
+	text-align:center;
+	font-size: 14px; 
+	color:#7F9DB9; 
+}
+.ResultsAdPrice p.StaraCena  {
+	font-size: 18px; 
+	line-height: 18px;
+	font-weight:bold;
+	text-align:center;
+	color:#7F9DB9; 
+	position: relative;
+	width: 110px; 
+	margin: 0px 30px 0px 30px;
+}
+.ResultsAdPrice p.StaraCena:before {
+	  position: absolute;
+	  content: "";
+	  left: 0;
+	  top: 50%;
+	  right: 0;
+	  border-top: 1px solid;
+	  border-color: inherit;
+	  -webkit-transform:rotate(-5deg);
+	  -moz-transform:rotate(-5deg);
+	  -ms-transform:rotate(-5deg);
+	  -o-transform:rotate(-5deg);
+	  transform:rotate(-5deg);
+ }
+ .ResultsAdPrice p.AkcijaCena {
+	width: 120px; 
+	margin: 2px 25px 0px 25px;
+	font-size: 18px; 
+	line-height: 20px;
+	font-weight:bold;
+	text-align:center;
+	color:#FF0000; 
+}
+.ResultsAdPriceStaraCena  {
+	height: 20px;
+	font-size: 18px; 
+	line-height: 18px;
+	font-weight:bold;
+	text-align:center;
+	color:#7F9DB9; 
+	position: relative;
+	width: 110px; 
+	margin: 0px 30px 0px 30px;
+}
+.ResultsAdPriceStaraCena:before {
+	  position: absolute;
+	  content: "";
+	  left: 0;
+	  top: 50%;
+	  right: 0;
+	  border-top: 1px solid;
+	  border-color: inherit;
+	  -webkit-transform:rotate(-5deg);
+	  -moz-transform:rotate(-5deg);
+	  -ms-transform:rotate(-5deg);
+	  -o-transform:rotate(-5deg);
+	  transform:rotate(-5deg);
+ }
+ .ResultsAdPriceAkcijaCena {
+	width: 120px; 
+	height: 20px;
+	margin: 0px 25px 0px 25px;
+	font-size: 18px; 
+	line-height: 20px;
+	font-weight:bold;
+	text-align:center;
+	color:#FF0000; 
+}
+.ResultsAdPriceRegular {
+	height: 20px;
+	line-height: 18px;
+	text-align:center;
+	font-size: 18px; 
+	color:#062f57; 
+}
+.ResultsAdPriceBruttoNeto {
+	height: 20px;
+	line-height: 14px;
+	text-align:center;
+	font-size: 14px; 
+	color:#7F9DB9; 
+}
+
+.ResultsAdPrice p.CenaTXTTop {
+	width: 100%; 
+	height: 16px;
+	margin: 0px 0px 5px 0px;
+	font-size: 12px; 
+	line-height: 16px;
+	font-weight:bold;
+	text-align:center;
+}
+.ResultsAdPrice p.CenaTXTBottom  {
+	width: 100%; 
+	height: 16px;
+	margin: 0px 0px 5px 0px;
+	font-size: 12px; 
+	line-height: 16px;
+	font-weight:bold;
+	text-align:center;
+}
+.ResultsAdPrice p.AkcijaCenaTXT {
+	color:#FFFFFF; 
+	background-color: #FF0000;
+}
+.AkcijaCenaTXT {
+	color:#FFFFFF; 
+	background-color: #FF0000;
+}
+.BottomCenaTXT {
+	width: 100%; 
+	height: 13px;
+	margin: 0px 0px 0px 0px;
+	padding-top: 1px;
+	font-size: 10px; 
+	line-height: 13px;
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+	color:#FFFFFF; 
+	background-color: #7F9DB9;
+	color:#000000; 
+	background-color: #E9E9E9;
+}
+.BottomCenaCountryTXT {
+	width: 100%; 
+	height: 13px;
+	margin: 0px 0px 0px 0px;
+	padding-top: 1px;
+	font-size: 10px; 
+	line-height: 13px;
+	font-weight:bold;
+	text-align:center;
+	vertical-align:middle;
+	color:#FFFFFF; 
+	background-color: #062f57;
+}
+
+.ResultsAdLogo {
+	position: relative;
+	background-color:#FFFFFF; 
+	float: left;
+	width: 158px;
+	height: 65px;
+	line-height: 65px; 
+	padding: 5px 5px 5px 5px; 
+	margin: 0px;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#E9E9E9;
+}
+.ResultsAdLogo img{
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	/*margin:auto 25px;*/
+	margin: auto;
+	vertical-align: middle;
+	max-width: 120px;
+	max-height: 60px;
+}
+/* RESULTS THUMBS VIEW --------------------------------------------------*/
+.ResultsThumbsAds {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 730px;
+	height: 240px;
+	padding: 10px 0px 10px 0px; 
+	margin: 0px; 
+	border-style:none;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+}
+.ResultsThumbsAdContainer {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 172px;
+	height: 228px;
+	padding: 10px 0px 10px 0px; 
+	margin: 0px; 
+	border-style:solid;
+	border-width:1px;
+	border-color:#7F9DB9; 
+}
+.ResultsThumbsAdContainer:link{
+}
+.ResultsThumbsAdContainer:visited{
+}
+.ResultsThumbsAdContainer:hover{
+		background-color:#E6EAEE; 
+}
+.ResultsThumbsAdContainer:active{
+}
+
+.ResultsThumbsAdSpace {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 11px;
+	height: 228px;
+	padding: 10px 0px 10px 0px; 
+	margin: 0px; 
+	border-style:none;
+	border-width:0px;
+	border-color:#7F9DB9; 
+}
+.ResultsThumbsAdPhoto {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 160px;
+	height: 120px;
+	padding: 5px 6px 5px 6px; 
+	margin: 0px; 
+}
+.ResultsThumbsAdPhotoTag {
+	position: absolute;
+    top: 0;
+    left: 0;
+	z-index: 10;
+	width: 40px;
+	height: 20px;
+	margin: 10px 0px 0px -6px;
+	padding: 0px 0px 0px 0px;
+	border: 0px;
+}
+.ResultsThumbsAdName {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 164px;
+	height: 40px;
+	margin: 130px 0px 0px 0px;
+	padding: 4px 4px 4px 4px;
+	/*background-color:#062f57 ; */
+	background-color:#CFD7DF ; 
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#062f57; 
+	font-size:12px;
+	color: #000000;
+}
+.ResultsThumbsAdName a:link {
+	color: #000000;
+	line-height: 15px;
+	font-size: 11px;
+    font-style: normal;
+    font-weight: strong;
+    text-decoration: none;
+}
+.ResultsThumbsAdName a:visited {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: strong;
+    text-decoration: none;
+}
+.ResultsThumbsAdName a:hover {
+    text-decoration: underline;
+    font-style: normal;
+    font-weight: strong;
+}
+.ResultsThumbsAdName a:active {
+    text-decoration: underline;
+    font-style: normal;
+    font-weight: strong;
+}
+
+.ResultsThumbsAdPhotoBadge {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 172px;
+	height: 21px;
+	margin: 152px 0px 0px 0px;
+	padding: 2px 0px 2px 0px;
+	background-color:#FFFFFF ; 
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	font-size:12px;
+	color: #FFFFFF;
+}
+.ResultsThumbsAdPhotoBadge span{
+	float:left;
+    margin:0 0 0 0px;
+	padding: 5px 0px 4px 0px;
+	vertical-align:middle;
+	border-style:solid;
+	border-width:0px;
+    height:11px;
+    line-height:11px;
+}
+.ResultsThumbsAdPhotoBadge i{
+	float:left;
+	padding: 5px 7px 4px 7px;
+}
+.ResultsThumbsAdData {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 162px;
+	height: 15px;
+	margin: 175px 0px 0px 0px;
+	padding: 5px 5px 5px 5px;
+	border-style:none;
+	border-width:0px;
+	border-color:#7F9DB9; 
+	font-size:12px;
+    font-weight: strong;
+	color: #000000;
+	/*background-color:#FFFFFF;*/
+	
+}
+.ResultsThumbsAdPrice {
+	position: absolute;
+	width: 162px;
+	height: 40px;
+	padding: 5px 5px 5px 5px; 
+	margin: 190px 0px 5px 0px; 
+    text-align: center;
+	border-style:dotted;
+	border-width:1px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	font-size: 17px; 
+	font-weight:bold;
+	color:#062f57; 
+}
+.ResultsThumbsAdPrice p {
+    text-align: center;
+	font-size: 11px; 
+	font-weight:normal;
+	color:#062f57; 
+}
+/* RESULTS THUMBS100 VIEW*/
+.ResultsThumbs100Ads {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 730px;
+	height: 270px;
+	padding: 10px 0px 10px 0px; 
+	margin: 0px; 
+	border-style:none;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+}
+.ResultsThumbs100AdContainer {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 230px;
+	height: 270px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	border-style:solid;
+	border-width:1px;
+	border-color:#7F9DB9; 
+}
+.ResultsThumbs100AdContainer:link{
+}
+.ResultsThumbs100AdContainer:visited{
+}
+.ResultsThumbs100AdContainer:hover{
+	background-color:#f47a20; 
+}
+.ResultsThumbs100AdContainer:active{
+}
+
+.ResultsThumbs100AdSpace {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 17px;
+	height: 270px;
+	padding: 10px 0px 10px 0px; 
+	margin: 0px; 
+	border-style:none;
+	border-width:0px;
+	border-color:#7F9DB9; 
+}
+
+.ResultsThumbs100AdPhoto {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 220px;
+	height: 160px;
+	padding: 0px 0px 0px 0px; 
+	margin: 5px; 
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	background-color:#FFFFFF; 
+}
+.ResultsThumbs100AdPhoto img{
+	display: block;
+	margin: 0 auto;
+	border: none;
+	max-width: 220px;
+	max-height: 160px;
+}
+
+.ResultsThumbs100AdPhotoTag {
+	position: absolute;
+    top: 0;
+    left: 0;
+	z-index: 10;
+	width: 40px;
+	height: 20px;
+	margin: 10px 0px 0px -6px;
+	padding: 0px 0px 0px 0px;
+	border: 0px;
+}
+.ResultsThumbs100AdName {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 220px;
+	height: 25px;
+	margin: 165px 5px 0px 5px;
+	padding: 5px 0px 5px 0px;
+	/*background-color:#062f57 ;*/
+	background-color:#FFFFFF ; 
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	font-size:12px;
+	color: #000000;
+}
+.ResultsThumbs100AdName a:link {
+	color: #000000;
+	line-height: 13px;
+	font-size: 12px;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.ResultsThumbs100AdName a:visited {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.ResultsThumbs100AdName a:hover {
+    text-decoration: underline;
+    font-style: normal;
+    font-weight: bold;
+}
+.ResultsThumbs100AdName a:active {
+    text-decoration: underline;
+    font-style: normal;
+    font-weight: bold;
+}
+
+.ResultsThumbs100AdPhotoBadge {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 220px;
+	height: 20px;
+	margin: 145px 0px 0px 5px;
+	padding: 0px 0px 0px 0px;
+	font-size:12px;
+	color: #FFFFFF;
+	background-color:#7F9DB9;  
+}
+.ResultsThumbs100AdPhotoBadge span{
+	float:right;
+    margin:0 0 0 0px;
+	padding: 5px 7px 4px 0px;
+	vertical-align:middle;
+	border-style:solid;
+	border-width:0px;
+    height:11px;
+    line-height:11px;
+}
+.ResultsThumbs100AdPhotoBadge i{
+	float:left;
+	padding: 4px 7px 4px 7px;
+}
+.ResultsThumbs100AdData {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 210px;
+	height: 13px;
+	line-height: 13px;
+	margin: 242px 5px 0px 5px;
+	padding: 5px;
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	font-size:12px;
+    font-weight: strong;
+	color: #000000;
+	background-color:#CFD8DF;
+}
+.ResultsThumbs100AdPrice {
+	position: absolute;
+	width: 210px;
+	height: 32px;
+	margin: 200px 5px 0px 5px; 
+	padding: 5px 5px 5px 5px; 
+    text-align: center;
+	border-style:dotted;
+	border-width:1px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	font-size: 17px; 
+	font-weight:bold;
+	color:#062f57; 
+	background-color:#FFFFFF;
+}
+.ResultsThumbs100AdPrice p {
+	line-height: 12px;
+	font-weight:bold;
+	text-align:center;
+	font-size: 12px; 
+	color:#7F9DB9; 
+}
+
+.ResultsThumbs100AdPrice p.Brutto {
+	line-height: 14px;
+	font-weight:bold;
+	text-align:center;
+	font-size: 14px; 
+	color:#7F9DB9; 
+}
+
+/* BADGE BACK */
+.ResultsAdPhotoBottomBadge {
+	background-color:#7F9DB9;  
+	background-color:#E9E9E9;  
+	color: #000000;
+}
+.ResultsAdPhotoBlackBadge {
+	background-color:#000000;  
+}
+
+.ResultsAdPhotoBottomTop {
+	background-color:#FF0000;  
+}
+
+/* RESULTS-BOTTOM */
+.ResultsBtm {
+	position: relative;
+	float: left;
+	text-align:center;
+	width: 730px;
+	padding: 0px 0px 0px 0px; 
+	margin: 10px 0px 0px 0px; 
+	border-style:none;
+}
+.ResultsBtmLeft {
+	float:left;
+	width: 190px;
+	height: 30px; 
+	text-align: left;
+	padding: 0px 0px 0px 0px;
+}
+.ResultsBtmRight {
+	float:left;
+	width: 540px;
+	min-height: 30px; 
+	text-align: left;
+	padding: 0px 0px 10px 0px;
+}
+
+.ResultsLine {
+	float:left;
+	width: 730px;
+	height: 1px;
+	padding: 0px; 
+	margin: 0px; 
+	background-color:#7F9DB9;
+}
+.ResultsRibbon-wrapper {
+	  width: 70px;
+	  height: 50px;
+	  overflow: hidden;
+	  position: absolute;
+	  top: -1px;
+	  left: -1px;
+	  z-index: 1000;
+}
+ .ResultsRibbon {
+	 font-size:12px;
+	 font-weight: bold;
+    color: #333;
+    text-align: center;
+    -webkit-transform: rotate(-35deg);
+    -moz-transform:    rotate(-35deg);
+    -ms-transform:     rotate(-35deg);
+    -o-transform:      rotate(-35deg);
+    position: relative;
+    padding: 2px 0;
+    top: 10px;
+    left: -30px;
+    width: 110px;
+    /*background-color: #ebb134;*/
+    background-color: #009900;
+	border-color: #FFFFFF;
+	border-style:solid;
+	border-width: 1px;
+    color: #fff;
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5);
+	-moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5); /* for Firefox 3.5+ */
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.5); /* for Safari and Chrome */
+}
+/* RESULTS-LEGEND */
+.ResultsLegend {
+	position: relative;
+	float: left;
+	text-align:center;
+	width: 944px;
+	padding: 0px 0px 0px 0px; 
+	margin: 14px; 
+	border-style:none;
+	text-align:left;
+}
+.ResultsLegendLeft {
+	float:left;
+	width: 200px;
+	height: 30px; 
+	text-align: right;
+	padding: 0px 14px 7px 0px;
+}
+.ResultsLegendRight {
+	float:left;
+	width: 730px;
+	min-height: 30px; 
+	text-align: left;
+	padding: 0px 0px 7px 0px;
+}
+
+.naslovB18 {
+    COLOR: #072F57;	
+    FONT-FAMILY: Verdana, Arial, Helvetica, sans-serif;
+    FONT-SIZE: 18px;
+    FONT-STYLE: normal;
+    FONT-WEIGHT: bold
+}
+/* TOP PONUDBA */
+.TopPonudba {
+	position: relative;
+	float: left;
+	text-align:left;
+	width: 340px;
+	height: 123px;
+	padding: 7px; 
+	margin: 0px; 
+	background-color:#CFD7DF;
+	border:1px solid #7F9DB9; 
+}
+.TopPonudbaTXT {
+	position: relative;
+	float: left;
+	text-align:left;
+	width: 20px;
+	height: 128px;
+}
+.TopPonudbaPhoto {
+	position: relative;
+	float: left;
+	text-align:left;
+	width: 160px;
+	height: 120px;
+	border: 1px solid #000000;
+}
+.TopPonudbaDataH1 {
+	position: relative;
+	float: left;
+	text-align:left;
+	max-width: 148px;
+	height: 28px;
+	padding: 0px 0px 0px 4px; 
+	overflow: hidden;
+}
+.TopPonudbaData {
+	position: relative;
+	float: left;
+	text-align:left;
+	width: 148px;
+	height: 80px;
+	padding: 0px 0px 0px 5px; 
+	margin: 0px; 
+	border-style:none;
+	border-width:0px 0px 0px 0px;
+}
+.TopPonudbaPrice {
+	position: relative;
+	float: left;
+	text-align:right;
+	width: 148px;
+	height: 15px;
+}
+/* CLICKABLE DIV */
+.DataHrefClick {
+	cursor: pointer;
+}
+.DataHrefClick span{
+	font-size: 11px;
+}
+/* ResultsAlert */
+.ResultsAlert {
+	position: relative;
+	float: left;
+	text-align:left;
+	width: 700px;
+	height: 14px;
+	line-height: 14px;
+	padding: 14px; 
+	margin: 0px 0px 14px 0px; 
+	background-color:#228B22;
+	border:0px solid #228B22; 
+	color:#FFF; 
+	font-size:14px;
+	font-weight: bold;
+}
+.ResultsAlert a {
+	color:#FFF; 
+	font-size:14px;
+	font-weight: bold;
+}
+.ResultsAlert i {
+	padding-right: 14px; 
+}
+.ResultsAlertProstiCas {
+	background-color:#0080ff;
+}
+.ResultsAlertLux {
+	background-color:#505050;
+}
+.ResultsAlertTop {
+	background-color:#FF0000;
+}
+.ResultsAlertRegular {
+	background-color:#FFFFFF;
+	color: #000000;
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5);
+	-moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5); /* for Firefox 3.5+ */
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.5); /* for Safari and Chrome */
+}
+.ResultsAlertRegularNavy {
+	background-color:#062F57;
+	color: #FFFFFF;
+}

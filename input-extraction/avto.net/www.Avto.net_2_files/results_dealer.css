@@ -1,0 +1,108 @@
+/* RESULTS CONTENT */
+.DealerDiv {
+	text-align:left;
+	width: 940px;
+	padding: 0px 14px 0px 0px; 
+	margin: 0px; 
+	color: #072F57;	
+	display: table;
+}
+.DealerDivLogo {
+	vertical-align:top;
+	text-align:center;
+	width: 215px;
+	padding: 14px 0px 14px 10px; 
+	margin: 0px; 
+	height: 180px;
+	display: table-cell;
+}
+.DealerDivLogoImg {
+	vertical-align:bottom;
+	text-align:center;
+	width: 215px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	height: 60%;
+	display: block;
+}
+.DealerDivLogoLinks {
+	text-align:center;
+	width: 215px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	height: 40%;
+	display: block;
+	vertical-align:bottom;
+}
+.DealerDivLogoButton {
+	float: left;
+	position:relative;
+	text-align:left;
+	width: 195px;
+	height: 27px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	display: block;
+	vertical-align:bottom;
+}
+.DealerDivData {
+	width: 711px;
+	padding:0px 0px 14px 14px;
+	border-style:dotted;
+	border-width:0px 0px 0px 1px;
+	border-color:#7F9DB9; 
+	display: table-cell;
+}
+.DealerDivDataNaziv {
+	float:left;
+	width: 695px;
+	height: 21px; 
+	padding: 14px 0px 4px 0px;
+	line-height: 22px;
+	font-size: 20px;
+	font-weight:bold;
+}
+.DealerDivDataSubNaziv {
+	float:left;
+	width: 565px;
+}
+.DealerDivDataPoslovalnica {
+	float:left;
+	width: 565px;
+	min-height: 17px; 
+	padding: 0px 0px 4px 0px;
+	line-height: 17px;
+	font-size: 16px;
+	font-weight:bold;
+}
+.DealerDivDataNaslov {
+	float:left;
+	width: 565px;
+	height: 13px; 
+	padding: 0px 0px 14px 0px;
+	line-height: 13px;
+	font-size: 13px;
+	font-weight:normal;
+}
+.DealerDivDataPhoneIcon {
+	float:left;
+	width: 30px;
+	height: 30px;
+	padding: 0px 10px 0px 0px;
+}
+.DealerDivDataPhone {
+	float:left;
+	width: 525px;
+	min-height: 30px;
+	padding: 0px 0px 0px 0px;
+	line-height: 18px;
+	font-size: 13px;
+}
+.DealerDivMedal {
+	text-align:center;
+	vertical-align:bottom;
+	width: 150px;
+	height: 158px;
+	padding: 0px 0px 14px 0px; 
+	display: table-cell;
+}

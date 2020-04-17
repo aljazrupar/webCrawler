@@ -1,0 +1,406 @@
+/* TOP PONUDBA LIST VIEW --------------------------------------------------*/
+.ResultsTOPAd {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	background-position: 0px 15px;
+	background-repeat:repeat-x;
+	width: 700px;
+	height: 278px;
+	padding: 14px 14px 14px 14px; 
+	margin: 0px 0px 14px 0px; 
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5);
+	-moz-box-shadow: 0px 1px 2px 0px rgba(0,0,0,.5); /* for Firefox 3.5+ */
+	-webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.5); /* for Safari and Chrome */
+}
+.ResultsTOPAd a:link {
+	/*text-decoration:none;
+	font-weight: normal;*/
+}
+.ResultsTOPAd:link {
+	background-image: none;
+}
+.ResultsTOPAd:visited {
+	background-image: none;
+}
+.ResultsTOPAd:hover {
+	box-shadow: 2px 2px 5px 0px rgba(0,0,0,.5);
+	-moz-box-shadow: 2px 2px 5px 0px rgba(0,0,0,.5); /* for Firefox 3.5+ */
+	-webkit-box-shadow: 2px 2px 5px 0px rgba(0,0,0,.5); /* for Safari and Chrome */
+}
+.ResultsTOPAd:active {
+	background-image: none;
+	/*background-color:#E9E9E9; */
+}
+.ResultsTOPAd:hover .ResultsAdPrice, .ResultsTOPAd:focus .ResultsAdPrice {
+    background-color: #E9E9E9;
+}
+
+.ResultsTOPAd:hover .ResultsShowMore, .ResultsTOPAd:focus .ResultsShowMore {
+	display: block;
+}
+/* 
+.ResultsAd:hover .BelowButtonBox, .ResultsAd:focus .BelowButtonBox {	
+	display: none;																					
+	}																			
+*/
+.ResultsShowMore {
+	display: none;
+}
+/* TOP PONUDBA PHOTO CONTAINER --------------------------------------------------*/
+.ResultsTOPAdPhotoContainer {
+	position: relative;
+	background-color:#FFFFFF; 
+	float: left;
+	width: 320px;
+	height: 278px;
+	padding: 0px; 
+	margin: 0px 0px 0px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#E9E9E9;
+	/*border: none;*/
+}
+.ResultsTOPAdPhotoContainer img{
+	display: block;
+	margin: 0 auto;
+	border: none;
+	max-width: 320px;
+	max-height: 240px;
+}
+.ResultsTOPAdPhotoTag {
+	position: absolute;
+    top: 0px;
+    left: 0;
+	z-index: 10;
+	width: 40px;
+	height: 18px;
+	line-height: 18px;
+	margin: 14px 0px 0px -15px;
+	padding: 0px 7px 0px 7px;
+	background-color:#008000;
+	color: #FFFFFF;
+	font-weight:bold;
+	font-size:12px;
+	border-style:solid;
+	border-width:1px 1px 1px 0px;
+	border-color:#FFF; 
+}
+.ResultsTOPTopPonudbaPhotoTag {
+	position: absolute;
+    top: 0px;
+    left: 0;
+	z-index: 10;
+	width: 90px;
+	height: 18px;
+	line-height: 18px;
+	margin: 14px 0px 0px -15px;
+	padding: 0px 7px 0px 7px;
+	background-color:#FF0000;
+	color: #FFFFFF;
+	font-weight:bold;
+	font-size:12px;
+	border-style:solid;
+	border-width:1px 1px 1px 0px;
+	border-color:#FFF; 
+}
+.ResultsTOPHDPhotoTag {
+	position: absolute;
+    top: 0;
+    right: 0;
+	z-index: 10;
+	width: 20px;
+	height: 20px;
+	margin: -2px -2px 0px 0px;
+	padding: 0px 7px 0px 5px;
+	border: 0px;
+	color: #FFF;
+	font-size:16px;
+	font-weight:bold;
+	line-height:20px;
+	background:#000000;
+	border: 1px solid #FFF;
+}
+.ResultsTOPAdPhotoTop {
+	position: relative;
+    top: 0;
+    left: 0;
+	width: 320px;
+	height: 240px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	background-color: #000;
+	background-color: #E9E9E9;
+}
+.ResultsTOPAdPhotoBottom {
+	position: relative;
+    top: 0;
+    left: 0;
+	width: 320px;
+	height: 38px;
+    line-height:38px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
+	background-color:#7F9DB9 ; 
+	border-style:solid;
+	border-width:1px;
+	border-color:#7F9DB9; 
+	font-size:16px;
+	color: #FFFFFF;
+	border: none;
+	text-align:center;
+}
+.ResultsTOPAdPhotoBottom img {
+	display: block;
+	margin: 0 0 0  14px;
+	padding: 10px 0px 0px 0px
+}
+.ResultsTOPAdPhotoBottom span {
+	float:left;
+    margin:0 0 0 0px;
+	vertical-align:middle;
+	border-style:solid;
+	border-width:0px;
+	line-height:38px;
+}
+.ResultsTOPAdPhotoBottom i{
+	float:left;
+	line-height:38px;
+	padding: 0px 14px 0px 14px;
+}
+/* AD DATA CONTAINER --------------------------------------------------*/
+.ResultsTOPAdData {
+	position: relative;
+	float: left;
+	text-align:left;
+	width: 364px;
+	height: 280px;
+	padding: 0px 0px 0px 14px; 
+	margin: 0px; 
+}
+.ResultsTOPAdDataTop {
+	height: 90px;
+}
+.ResultsTOPAdDataBottom {
+	height: 110px;
+}
+
+.ResultsTOPAdData ul {
+	margin: 0px; 
+	height: 64px;
+	padding: 0px 0px 0px 0px; 
+	list-style-type:none;
+	list-style-position:inside;
+}
+.ResultsTOPAdData li {
+	margin: 3px 0px 0px 0px;
+	padding: 0px 0px 0px 12px;
+	line-height: 12px;
+	background-image:url(https://www.avto.net/_graphics/bulletmini.gif);
+	background-repeat:no-repeat;
+	background-position: 0px 3px;
+}
+.ResultsTOPAdData p {
+	position: relative;
+	/*max-width: 340px;*/
+	height: 31px;
+	text-align:left;
+	padding-left: 5px;
+	font-size: 10px; 
+	font-style: normal;
+    font-weight: normal;
+}
+.ResultsTOPAdData img {
+	border: 0px;
+}
+/* AD PRICE CONTAINER --------------------------------------------------*/
+.ResultsTOPAdPriceLogo {
+	position: relative;
+	float: right;
+	width: 364px;
+	height: 80px;
+	padding: 0px 0px 0px 0px; 
+	margin: 2px 0px 0px 0px; 
+    text-align: center;
+	border-style:none;
+	border-width:0px 0px 0px 0px;
+}
+.ResultsTOPAdPrice {
+	position: relative;
+	float: left;
+	width: 168px;
+	height: 65px;
+	padding: 5px 0px 5px 0px; 
+	margin: 0px 0px 0px 0px; 
+    text-align: center;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#E9E9E9; 
+	font-size: 18px; 
+	font-weight:bold;
+	color:#062f57; 
+	/*background-color: #FFFFFF;*/
+}
+.ResultsTOPAdPriceGrey {
+	color:#7F9DB9; 
+}
+.ResultsTOPAdPriceRed {
+	color:#FF0000; 
+}
+.ResultsTOPAdPriceAkcija {
+	width: 168px;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#FF0000; 
+	padding: 0px 0px 10px 0px; 
+}
+.ResultsTOPAdPrice p {
+	height: 20px;
+	line-height: 12px;
+	text-align:center;
+	font-size: 12px; 
+	color:#7F9DB9; 
+}
+.ResultsTOPAdPrice p.Brutto {
+	line-height: 14px;
+	text-align:center;
+	font-size: 14px; 
+	color:#7F9DB9; 
+}
+.ResultsTOPAdPrice p.StaraCena {
+	width: 120px; 
+	margin: 0px 20px 0px 20px;
+	font-size: 18px; 
+	line-height: 20px;
+	font-weight:bold;
+	text-align:center;
+	color:#7F9DB9; 
+	position: relative;
+}
+.ResultsTOPAdPrice p.StaraCena:before {
+	  position: absolute;
+	  content: "";
+	  left: 0;
+	  top: 50%;
+	  right: 0;
+	  border-top: 1px solid;
+	  border-color: inherit;
+	
+	  -webkit-transform:rotate(-5deg);
+	  -moz-transform:rotate(-5deg);
+	  -ms-transform:rotate(-5deg);
+	  -o-transform:rotate(-5deg);
+	  transform:rotate(-5deg);
+ }
+ .ResultsTOPAdPrice p.AkcijaCena {
+	width: 120px; 
+	margin: 5px 20px 5px 20px;
+	font-size: 18px; 
+	line-height: 20px;
+	font-weight:bold;
+	text-align:center;
+	color:#FF0000; 
+}
+.ResultsTOPAdPrice p.AkcijaCenaTXT {
+	width: 100%; 
+	margin: 0px 0px 5px 0px;
+	padding-left: 0px;
+	font-size: 12px; 
+	line-height: 20px;
+	font-weight:bold;
+	text-align:center;
+	color:#FFFFFF; 
+	background-color: #FF0000;
+}
+
+.ResultsTOPAdLogo {
+	position: relative;
+	background-color:#FFFFFF; 
+	float: left;
+	width: 168px;
+	height: 65px;
+	line-height: 65px; 
+	padding: 5px 5px 5px 5px; 
+	margin: 0px 14px 0px 0px;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#E9E9E9;
+}
+.ResultsTOPAdLogo img{
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	/*margin:auto 25px;*/
+	margin: auto;
+	vertical-align: middle;
+	max-width: 120px;
+	max-height: 60px;
+}
+
+/* BADGE BACK */
+.ResultsTOPAdPhotoBottomBadge {
+	background-color:#E9E9E9;
+	color: #000000;  
+}
+.ResultsTOPAdPhotoBlackBadge {
+	background-color:#000000;  
+}
+
+.ResultsTOPAdPhotoBottomTop {
+	background-color:#FF0000;  
+}
+
+/* KOMENTAR */
+.ResultsKomentarTOP {
+	position: relative;
+	width: 364px;
+	height: 100px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	overflow: hidden;
+}
+.ResultsKomentarTOP p {
+	display: block;
+	position:relative;
+	width: 336px;
+	height: 72px; 
+	background: #E9E9E9;
+	padding: 14px;
+	margin-bottom: 5px;
+	font-size: 12px; 
+	line-height: 17px; 
+	font-style: italic;
+    font-weight: normal;
+   	font-family: Arial, Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+/* BUTTON BOX*/
+.ButtonBoxTOP {
+	position: absolute;
+	z-index: 10;
+	width: 320px;
+	height: 38px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+}
+.ButtonBoxTOPLeft {
+	float:left;
+	width: 148px;
+	padding: 0px 0px 0px 0px; 
+	margin: 5px 0px 0px 7px; 
+}
+.ButtonBoxTOPRight {
+	float:left;
+	width: 148px;
+	padding: 0px 0px 0px 0px; 
+	margin: 5px 0px 0px 7px; 
+}
+.ButtonBoxTOPBelowAd {
+	width: 944px;
+	padding: 7px 14px 3px 9px;
+}

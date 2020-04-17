@@ -1,0 +1,994 @@
+/* ---------------------------   BUTTON ----------------------------*/
+.buttonV1 {
+	display: block;
+	width: 306px;
+	height: 40px;
+	font-size:14px;
+	font-weight:bold;
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	border-radius: 5px; 
+    cursor:pointer;
+    line-height:130%;
+	border: solid 1px #666666;
+}
+.buttonV1 span{
+    margin:0 0 0 0px;
+    padding:0 0 0 0px;
+	vertical-align:middle;
+    border:none;
+    width:32px;
+    height:32px;
+}
+.buttonV1 i{
+	font-size:15px;
+    padding:0 20px 0 0;
+	vertical-align:middle;
+}
+.buttonV2 {
+	width: 320px;
+	height: 45px;
+	font-size:14px;
+	font-weight:bold;
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	border-radius: 5px; 
+    cursor:pointer;
+    line-height:130%;
+	border: solid 1px #666666;
+}
+.buttonV2 span{
+	float: left;
+    margin:0px 0px 0px 0px;
+    padding:15px 0px 0px 7px;
+	line-height: 14px;
+    border:none;
+}
+.buttonV2 i {
+	float: left;
+    padding:10px 7px 0px 14px;
+}
+.buttonTXT {
+	text-align: center;
+	width: 100%;
+	line-height: 45px;
+ 	font-size: 15px; 
+	font-style: normal;
+    font-weight:bold;
+}
+.buttonV3 {
+	text-align:left;
+	display: block;
+	width: 198px;
+	height: 40px;
+	font-size:14px;
+	font-weight:bold;
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	border-radius: 5px; 
+    cursor:pointer;
+    line-height:130%;
+	border: solid 1px #666666;
+}
+.buttonV3 span {
+    margin:0 0 0 0px;
+    padding:0 0 0 30px;
+	vertical-align:middle;
+    border:none;
+    width:100px;
+    height:32px;
+}
+.buttonV3 i {
+    padding:0px 0px 0px 20px;
+	vertical-align:middle;
+    width:32px;
+}
+.buttonV3.disabled {
+	opacity: 0.27;
+    cursor: not-allowed;
+	visibility:hidden;
+}
+.buttonV3.disabled i {
+	color: #F47A20;
+}
+/* ---------------------------   BUTTON ORANGE ----------------------------*/
+.buttonOrange {
+    color:#FFFFFF;
+	/*border: solid 1px #FAA51A;*/
+	border: solid 1px #F47A20;
+	background: #F47A20;
+	/* background: -webkit-gradient(linear, left top, left bottom, from(#FAA51A), to(#F47A20));
+	background: -moz-linear-gradient(top,  #FAA51A,  #F47A20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAA51A', endColorstr='#F47A20');*/
+}
+.buttonOrange:hover {
+	/*border: solid 1px #666666;*/
+	border: solid 1px #072F57;
+	color: #FFFFFF;
+	background: #072F57;
+}
+.buttonOrange:active {
+	color: #FFFFFF;
+	/* background: -webkit-gradient(linear, left top, left bottom, from(#010910), to(#1d446c));
+	background: -moz-linear-gradient(top,  #010910,  #1d446c);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#010910', endColorstr='#1d446c');*/
+}
+/* ---------------------------    SEARCHFORM    ----------------------------*/ 
+.SearchForm {
+	position: relative;
+	float:left;  
+	width: 615px; 
+	min-height: 7px; 
+	padding: 0px; 
+	margin: 0px 0px 0px 0px; 
+	font-style:normal;
+    font-weight: bold;
+	font-size: 12px;
+	line-height: 16px;
+	color:#000000; 
+	border-style:none;
+}
+.SearchFormHead {
+	position: relative;
+	float:left;  
+	width: 615px; 
+	min-height: 12px; 
+	padding: 7px 0px 7px 0px; 
+	margin: 0px 0px 7px 0px; 
+	font-style:normal;
+    font-weight: bold;
+	font-size: 16px;
+	line-height: 16px;
+	color:#000000; 
+	border-style:solid;
+	border-width:0px 0px 1px 0px;
+	border-color:#E9E9E9;
+}
+.SearchFormComment {
+	position: relative;
+	float:left;  
+	width: 615px; 
+	min-height: 7px; 
+	padding: 0px 0px 15px 0px; 
+	margin: 0px 0px 15px 0px; 
+	font-style:normal;
+    font-weight: normal;
+	line-height: 15px;
+	border-style:solid;
+	border-width:0px 0px 1px 0px;
+	border-color:#E9E9E9;
+}
+.SearchFormOpis {
+	position: relative;
+	float:left;  
+	width: 195px; 
+	height: 12px;
+	text-align:left; 
+	padding: 0px 0px 7px 0px; 
+	font: normal 12px; 
+	color:#666666;
+}
+.SearchFormHelp {
+	position: relative;
+	float:left;  
+	width: 615px; 
+	min-height: 7px; 
+	padding: 0px; 
+	margin: 0px 0px 14px 0px; 
+	font-style:normal;
+    font-weight: normal;
+	font-size: 12px;
+	line-height: 16px;
+	color:#000000; 
+	border-style:none;
+	text-align:justify;
+}
+.SearchFormHelpHalf {
+	position: relative;
+	float:left;  
+	width: 300px; 
+	min-height: 7px; 
+	padding: 0px; 
+	margin: 0px 0px 0px 0px; 
+	font-style:normal;
+    font-weight: normal;
+	font-size: 12px;
+	line-height: 16px;
+	color:#000000; 
+	border-style:none;
+	text-align:justify;
+}
+/* ---------------------------   SELECT ----------------------------*/
+.Select {
+	float: left;
+	border: 1px solid #B2B2B2;
+    width: 300px;
+	height: 25px;
+	padding: 0px;
+    /*border-radius: 3px;*/
+    overflow: hidden;
+	background-color: #ffffff;
+	background-image: url("https://www.avto.net/_graphics/form/arrow1.png") !important;
+	/*
+	background-image: url("https://www.avto.net/_graphics/form/arrow0.gif"), -webkit-linear-gradient(top, #f7f7f7 0, #F2F2F2 100%);
+	*/
+	background-repeat: no-repeat;
+    background-position: right center;
+}
+.Select:hover {
+    /*border-radius: 3px;*/
+	background-color: #FFFFFF;
+	background-image: url("https://www.avto.net/_graphics/form/arrow1.png") !important;
+	background-repeat: no-repeat;
+    background-position: right center;
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+}
+.Select select {
+    padding: 5px 8px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+	background: none;
+ 	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	text-overflow: '';
+   /* text-indent: -1px;*/
+	overflow:hidden;
+    width: 100%;
+}
+.Select select:focus {
+    outline: none;
+	font-weight:normal;
+}
+.Select select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+
+/* ---------------------------   SELECT MULTI ----------------------------*/
+.SelectMulti {
+	float: left;
+	border: 1px solid #B2B2B2;
+    width: 300px;
+	height: 150px;
+	padding: 0px;
+    /*border-radius: 3px;*/
+    overflow: hidden;
+	background-color: #ffffff;
+}
+.SelectMulti:hover {
+    /*border-radius: 3px;*/
+	background-color: #FFFFFF;
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1)
+}
+.SelectMulti select {
+    padding: 5px 0px 5px 0px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+	background: none;
+ 	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	text-overflow: '';
+    /*text-indent: -1px;*/
+	overflow:hidden;
+    width: 100%;
+	line-height: 20px;
+}
+.SelectMulti select:focus {
+    outline: none;
+}
+.SelectMulti select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+.SelectMulti option {
+    padding: 5px 0px 5px 10px;
+    width: 100%;
+	height: 20px;
+	line-height: 20px;
+}
+
+/* ---------------------------   INPUT CONTAINER ----------------------------*/
+.InputContainer {
+	float:left;  
+  	position:relative;
+	border: 1px solid #B2B2B2;
+	width: 548px;
+	height: 50px;
+}
+.InputContainer:hover {
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1)
+}
+
+.InputContainer i {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 0px 0px;
+    line-height: 50px;
+	text-align:center;
+    background-color: #E9E9E9;
+	border-right: 1px solid #B2B2B2;
+    position:absolute;
+    left:0px;
+    top:0px;
+    bottom:0px;
+    z-index:3;
+  }
+.InputContainer input {
+	padding: 5px 5px 5px 60px;
+	width: 483px;
+	height: 40px;
+	line-height: 40px;
+	border: none;
+	background: transparent;
+}
+/* ---------------------------   INPUT SEARCHFORM ----------------------------*/
+.InputSEARCH {
+	float:left;  
+  	position:relative;
+	border: 1px solid #B2B2B2;
+	width: 193px;
+	height: 25px;
+	margin: 0px 0px 15px 0px;
+}
+.InputSEARCH:hover {
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1)
+}
+
+.InputSEARCH input {
+	padding: 5px 5px 5px 5px;
+	width: 183px;
+	height: 15px;
+	line-height: 15px;
+	border: none;
+	background: transparent;
+}
+/* ---------------------------   INPUT SEARCH EQ ----------------------------*/
+.InputSearchEQ {
+	width: 620px;
+	height: 50px;
+}
+.InputSearchEQ input {
+	padding: 5px 5px 5px 60px;
+	width: 555px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 15px;
+}
+/* ---------------------------   INPUT SEARCH EQ PLUS RUBRIKE ----------------------------*/
+.InputSearchEQplus {
+	width: 400px;
+	height: 50px;
+}
+.InputSearchEQplus input {
+	padding: 5px 5px 5px 60px;
+	width: 335px;
+	height: 40px;
+	line-height: 40px;
+	font-size: 15px;
+}
+.SearchFormEQplus {
+	position: relative;
+	float:left;  
+	width: 212px; 
+	min-height: 7px; 
+	padding: 0px; 
+	margin: 0px 0px 0px 0px; 
+	font-style:normal;
+    font-weight: bold;
+	font-size: 12px;
+	line-height: 16px;
+	color:#000000; 
+	border-style:none;
+}
+.SelectEQPlus {
+	float: left;
+    width: 100%;
+	height: 50px;
+	padding: 0px;
+    overflow: hidden;
+	border-style:solid;
+	border-width:1px 1px 1px 0px;
+	border-color:#B2B2B2; 
+	background-color: #E9E9E9;
+	background-image: url("https://www.avto.net/_graphics/form/arrow50x50.png") !important;
+	background-repeat: no-repeat;
+    background-position: right center;
+}
+.SelectEQPlus:hover {
+	background-color: #E9E9E9;
+	background-image: url("https://www.avto.net/_graphics/form/arrow50x50.png") !important;
+	background-repeat: no-repeat;
+    background-position: right center;
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+}
+.SelectEQPlus select {
+    padding: 5px 8px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+	background: none;
+ 	-webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+	text-overflow: '';
+    /*text-indent: -1px;*/
+	overflow:hidden;
+	line-height: 40px;
+	font-size: 13px;
+}
+.SelectEQPlus select:focus {
+    outline: none;
+	font-weight:normal;
+}
+.SelectEQPlus select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+}
+/* ---------------------------   INPUT LOGIN ----------------------------*/
+.InputLogin {
+	width: 437px;
+	height: 50px;
+}
+.InputLogin input {
+	padding: 5px 5px 5px 60px;
+	width: 372px;
+	height: 40px;
+	line-height: 40px;
+}
+/* ---------------------------   INPUT PASSWORD ----------------------------*/
+.InputPassword {
+	width: 584px;
+	height: 50px;
+}
+.InputPassword input {
+	padding: 5px 5px 5px 60px;
+	width: 519px;
+	height: 40px;
+	line-height: 40px;
+}
+/* ---------------------------   INPUT REGISTER ----------------------------*/
+.InputRegister {
+	float:left;  
+  	position:relative;
+	border: 1px solid #B2B2B2;
+	width: 399px;
+	height: 25px;
+	margin: 0px 0px 15px 0px;
+}
+.InputRegister.Required {
+	width: 397px;
+	height: 25px;
+	background-color: #FFFF99;
+}
+.InputRegister:hover {
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1)
+}
+.InputRegister input {
+	padding: 5px 5px 5px 5px;
+	width: 389px;
+	height: 15px;
+	line-height: 15px;
+	border: none;
+	background: transparent;
+}
+.InputRegister i {
+    display: none;
+    width: 25px;
+    height: 25px;
+    line-height: 25px;
+	text-align:center;
+    position:absolute;
+    left:374px;
+    top:0px;
+    bottom:0px;
+    z-index:3;
+ }
+ .InputRegister i.required {
+    display: inline-block;
+ }
+ /* ---------------------------   INPUT ZIP----------------------------*/
+.InputZIP {
+	float:left;  
+  	position:relative;
+	border: 1px solid #B2B2B2;
+	width: 99px;
+	height: 25px;
+	margin: 0px 0px 15px 0px;
+}
+.InputZIP.Required {
+	width: 97px;
+	height: 25px;
+	background-color: #FFFF99;
+}
+.InputZIP:hover {
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1)
+}
+.InputZIP input {
+	padding: 5px 5px 5px 5px;
+	width: 89px;
+	height: 15px;
+	line-height: 15px;
+	border: none;
+	background: transparent;
+}
+/* ---------------------------   INPUT CITY----------------------------*/
+.InputCITY {
+	float:left;  
+  	position:relative;
+	border: 1px solid #B2B2B2;
+	width: 283px;
+	height: 25px;
+	margin: 0px 0px 15px 15px;
+}
+.InputCITY.Required {
+	width: 281px;
+	height: 25px;
+	background-color: #FFFF99;
+}
+.InputCITY:hover {
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1)
+}
+.InputCITY input {
+	padding: 5px 5px 5px 5px;
+	width: 273px;
+	height: 15px;
+	line-height: 15px;
+	border: none;
+	background: transparent;
+}
+/* ---------------------------   INPUT COMMENT ----------------------------*/
+
+.InputComment {
+	float:left;  
+  	position:relative;
+	border: 0px solid #B2B2B2;
+	width: 399px;
+	height: 25px;
+	margin: 0px 0px 15px 0px;
+	font: bold 14px; 
+	color:#666666;
+}
+/* ---------------------------   INPUT PHONE----------------------------*/
+ 
+.InputCountryCode {
+	float:right;  
+  	position:relative;
+	border: none;
+	max-width: 50px;
+	height: 25px;
+	margin: 0px 0px 15px 0px;
+    font-style: normal;
+    font-weight:bold;
+    text-decoration: none;
+	color: #000000;
+	text-align:right;
+}
+.InputPhone {
+	float:left;  
+  	position:relative;
+	border: 1px solid #B2B2B2;
+	width: 399px;
+	height: 25px;
+	margin: 0px 0px 15px 0px;
+}
+.InputPhone.Required {
+	width: 397px;
+	height: 25px;
+	background-color: #FFFF99;
+}
+.InputPhone:hover {
+	-moz-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+	-webkit-box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1);
+    box-shadow: inset 0 2px 1px 0 rgba(0, 0, 0, .1)
+}
+.InputPhone input {
+	padding: 5px 5px 5px 15px;
+	width: 300px;
+	height: 15px;
+	line-height: 15px;
+	border: none;
+	background: transparent;
+	background-color:#33FF00;
+}
+ 
+/* ---------------------------    CHECKBOX + RADIOS  ----------------------------*/ 
+.CheckFormContainer {
+	position: relative;
+	float:left;  
+	width: 195px; 
+	height: 25px;
+	text-align:left; 
+	padding: 0px 0px 7px 0px; 
+	font: normal 12px; 
+	color:#666666;
+}
+.checklabel {
+	margin-left: 3px;
+	display: inline-block;
+	max-width: 90%;
+	padding-bottom: 14px;
+}
+.checkradios-checkbox, .checkradios-radio{
+	position:relative;
+	display:inline-block;
+	vertical-align:top;
+	text-align:center;
+	border: 1px solid #B2B2B2;
+	color:#F47A20;
+	font-size:14px;
+	width:15px;
+	height:15px;
+	padding:5px 4px 5px 5px;
+	margin: 0px 5px 0px 0px;
+	cursor:pointer;
+	overflow:hidden;
+}
+.checkradios-radio{
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	border-radius: 50%;
+}
+/*Focus*/
+.checkradios-checkbox.focus, .checkradios-radio.focus{
+	border: 1px solid #B2B2B2;
+}
+.checkradio10{
+	font-size:14px;
+	width:15px;
+	height:15px;
+	padding:2px;
+	margin: 0px 7px 0px 0px;
+	background-color:#FFFFFF;
+}
+.checklabel10 {
+	text-align: left;
+	margin: 0px;
+	display: inline-block;
+	max-width: 90%;
+	padding-bottom: 14px;
+	color: #666666;
+}
+/*Hide original*/
+.checkradios-checkbox input[type=checkbox], .checkradios-radio input[type=radio]{
+	margin:0;
+	position:absolute;
+	top:0;
+	left:-9999%;
+	width:100%;
+	height:100%;
+	position:absolute;
+	display:inline-block;
+	vertical-align:bottom;
+}
+/* ---------------------------    OBLIKE  4 IN ROW----------------------------*/ 
+.OblikaContainer {
+	position: relative;
+	float: left;
+	width: 143px;
+	min-height: 90px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 14px 14px 0px; 
+	border:none;
+}
+.OblikaIkona {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 120px;
+	height: 60px;
+	padding: 0px 10px 0px 10px; 
+	margin: 0px 0px 0px 0px; 
+}
+.OblikaNaslov {
+	position: absolute;
+    top: 65px;
+    left: 0;
+	text-align: left;
+	width: 131px;
+	height: 20px;
+	margin: 0px 0px 0px 0px;
+	padding: 5px;
+	background-color:#F1F1F1;
+	border:solid 1px #B2B2B2; 
+	font-size:12px;
+	line-height: 18px;
+	font-weight: bold;
+	color: #666666;
+}
+/* ---------------------------    OBLIKE  3 IN ROW----------------------------*/ 
+.Oblika3Container {
+	position: relative;
+	float: left;
+	width: 193px;
+	min-height: 90px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 14px 15px 0px; 
+	border:none;
+}
+.Oblika3Ikona {
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 120px;
+	height: 60px;
+	padding: 0px 36px 0px 37px; 
+	margin: 0px 0px 0px 0px; 
+}
+.Oblika3Naslov {
+	position: absolute;
+    top: 65px;
+    left: 0;
+	text-align: left;
+	width: 181px;
+	height: 20px;
+	margin: 0px 0px 0px 0px;
+	padding: 5px;
+	background-color:#F1F1F1;
+	border:solid 1px #B2B2B2; 
+	font-size:12px;
+	line-height: 18px;
+	font-weight: bold;
+	color: #666666;
+}
+/* ---------------------------    OBLIKE  3 IN ROW Verzija 2----------------------------*/ 
+.Oblika3v2Container {
+	position: relative;
+	float: left;
+	width: 193px;
+	height: 75px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 14px 5px 0px; 
+	border:none;
+}
+.Oblika3v2Checkbox {
+	position: relative;
+	float: left;
+	width: 30px;
+	height: 30px;
+	padding: 30px 0px 15px 0px; 
+	margin: 0px 0px 0px 0px; 
+}
+.Oblika3v2Ikona {
+	position: relative;
+	float: left;
+	width: 120px;
+	height: 60px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 43px 0px 0px; 
+}
+.Oblika3v2IkonaOFF {
+	display:none;
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 120px;
+	height: 60px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 0px 0px 0px; 
+}
+.Oblika3v2Naslov {
+	position: relative;
+	float: left;
+	text-align: left;
+	width: 120px;
+	height: 15px;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 43px 0px 0px; 
+	font-size:12px;
+	line-height: 15px;
+	font-weight: bold;
+	color: #666666;
+	text-align:center;
+}
+/* ---------------------------    GUARANTEE  ----------------------------*/ 
+.GuaranteeContainer {
+	position: relative;
+	float: left;
+	width: 143px;
+	min-height: 20px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 14px 7px 0px; 
+	border:none;
+	color: #666666;
+}
+/* ---------------------------    COLORS  ----------------------------*/ 
+.ColorContainer {
+	position: relative;
+	float: left;
+	text-align:center;
+	width: 65px;
+	min-height: 20px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 3px 0px 0px; 
+	border:none;
+	color: #666666;
+}
+/* ---------------------------    PLUS BOX  ----------------------------*/ 
+.PlusBox {
+	position: relative;
+	width: 606px; 
+	height: 25px; 
+	padding: 7px; 
+	margin: 0px 0px 0px 0px; 
+	float:left;  
+	border:solid 1px #E1E1E1; 
+	font: bold 14px; 
+	color:#666666; 
+	background-color:#FAF9F9; 
+}
+.PlusBox span {
+	float: left;
+	float:left; 
+	width: 560px;
+	padding: 4px 0px 0px 5px;
+}
+.PlusBox i {
+	color: #F47A20;
+	float:left; 
+	width: 30px; 
+	padding: 0px 0px 0px 5px;
+}
+/* ---------------------------    ARROW BOX  ----------------------------*/ 
+.HelpBox {
+	position:relative;
+	width: 100%;
+	min-height: 100px;
+}
+.HelpBox i{
+	margin-right: 10px;
+}
+.HelpBox span{
+	font-style:normal;
+	text-align:justify;
+	line-height: 15px;
+}
+/* ---------------------------    GUARANTEE BOX  ----------------------------*/ 
+.GuaranteeBoxTop {
+	position:relative;
+	width: 100%;
+	height: 70px;
+}
+.GuaranteeBoxTop img{
+ 	position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+.GuaranteeBoxBtm{
+	position:relative;
+	width: 100%;
+	height: 20px;
+}
+.GuaranteeBoxBtm span{
+	float:left; 
+	display:block; 
+	width:300px;
+}
+.GuaranteeBoxBtm i{
+	margin: 0px 0px 0px 5px;
+}
+/* ---------------------------   FORM WIDTH CHANGER ----------------------------*/
+
+.Form6 {
+    width: 144px;
+}
+.Form4 {
+    width: 230px;
+}
+.Form300 {
+    width: 300px;
+}
+.Form402 {
+    width: 402px;
+	margin-bottom: 14px;
+}
+.Form399 {
+    width: 399px;
+	margin-bottom: 14px;
+}
+.Form195 {
+    width: 193px;
+	margin-bottom: 14px;
+}
+.Form190 {
+    width: 190px;
+	margin-bottom: 14px;
+}
+.Form133 {
+	float:left;  
+    width: 133px;
+}
+.Form95 {
+	float:left;  
+    width: 95px;
+}
+/* ---------------------------    FORM DIVS   ----------------------------*/ 
+.FormHead {
+	position: relative;
+	float:left;  
+	width: 615px; 
+	min-height: 7px; 
+	padding: 0px; 
+	margin: 0px 0px 15px 0px; 
+	font-style:normal;
+    font-weight: bold;
+	font-size: 16px;
+	line-height: 26px;
+	color:#000000; 
+	border-style:solid;
+	border-width:0px 0px 1px 0px;
+	border-color:#E9E9E9;
+}
+.FormComment {
+	position: relative;
+	float:left;  
+	width: 615px; 
+	min-height: 7px; 
+	padding: 0px 0px 15px 0px; 
+	margin: 0px 0px 15px 0px; 
+	font-style:normal;
+    font-weight: normal;
+	line-height: 15px;
+	border-style:solid;
+	border-width:0px 0px 1px 0px;
+	border-color:#E9E9E9;
+}
+.FormOpis {
+	position: relative;
+	float:left;  
+	width: 200px; 
+	height: 26px;
+	text-align:right; 
+	padding: 7px; 
+	margin: 0px 0px 0px 0px; 
+	font: bold 14px; 
+	color:#666666;
+}
+.Form1-1 {
+	position: relative;
+	float:left;  
+	width: 614px;
+	height: 35px;
+	line-height: 45px;
+}
+.Form1-2 {
+	position: relative;
+	float:left;  
+	width: 307px;
+	height: 35px;
+	line-height: 45px;
+}
+.KomentarForme {
+ 	font-size: 12px; 
+	font-style: normal;
+    font-weight: normal;
+}

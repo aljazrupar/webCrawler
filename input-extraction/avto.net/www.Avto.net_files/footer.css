@@ -1,0 +1,71 @@
+/* ---------------------------   FOOTER PUSH----------------------------*/
+.FooterPush {
+	height: 330px;
+}
+/* ---------------------------   FOOTER ----------------------------*/
+.FooterTOPWrapper {
+	height: 256px;
+	clear: both;
+	display: table;
+	width: 100%;
+	margin: 0px;
+	padding: 14px 0px 14px 0px;
+	background-color:#072F57;
+}
+.FooterData {
+	width: 970px;
+	margin: 0px auto;
+	padding: 0px;
+	color:#F1F1F1;
+}
+.FooterBTMWrapper {
+	clear: both;
+	display: table;
+	width: 100%;
+	margin: 0px;
+	padding: 4px 0px 4px 0px;
+	background-color:#000000;
+}
+/* ---------------------------   FOOTER FONTS ----------------------------*/
+.FooterData a:link {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+	color: #F1F1F1;
+}
+.FooterData a:visited {
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+		color: #F1F1F1;
+}
+.FooterData a:hover {
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: underline;
+		color: #F1F1F1;
+}
+.FooterData a:active {
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: underline;
+		color: #F1F1F1;
+}
+/* ---------------------------   FOOTER LISTS ----------------------------*/
+.FooterData ul { 
+	position: relative;
+	width: 100%;  
+	list-style-type:none;
+	margin: 0px;
+	padding: 0px;
+}
+.FooterData ul li { 
+	position: relative;
+	width: 144x;
+	height: 14px; 
+	line-height: 14px; 
+	padding-left: 0px;
+	padding-top: 2px;
+	padding-bottom: 0px;
+}

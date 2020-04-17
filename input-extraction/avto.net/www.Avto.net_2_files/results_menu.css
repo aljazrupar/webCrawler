@@ -1,0 +1,542 @@
+/* ---------------------------   2018 CSS  ----------------------------*/
+.menuwrapper {
+	position: relative;
+	float:left;
+	padding: 0px 0px 0px 0px;
+	width: 228px;
+	text-align:left;
+	margin-right: 14px;
+}
+/* ---------------------------   MENU BOX ----------------------------*/
+.MenuBox {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 226px;
+	padding: 5px 5px 5px 5px; 
+	margin: 0px; 
+	border-style:solid;
+	border-width:0px 1px 0px 1px;
+	border-color:#7F9DB9; 
+}
+.MenuBoxLeft {
+	float: left;
+	width: 30px;
+	padding: 0px 0px 0px 10px; 
+	margin: 0px; 
+}
+.MenuBoxRight {
+	float:left;
+	width: 166px;
+	line-height: 20px;
+	padding: 0px 0px 0px 10px; 
+	margin: 0px; 
+}
+.MenuBoxRight:hover {
+    TEXT-DECORATION: underline;
+}
+.MenuBoxLine {
+	float:left;
+	width: 100%;
+	height: 1px;
+	padding: 0px; 
+	margin: 0px; 
+	background-color:#7F9DB9;
+}
+.MenuBox a:link {
+	font-size: 11px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+}
+.MenuBox a:visited {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+}
+.MenuBox a:hover {
+    text-decoration: underline;
+    font-style: normal;
+    font-weight: normal;
+}
+.MenuBox a:active {
+    text-decoration: underline;
+    font-style: normal;
+    font-weight: normal;
+}
+.MenuBoxBorderLRTOP {
+	border-width:1px 1px 0px 1px;
+}
+.MenuBoxBorderLRBTM {
+	border-width:0px 1px 1px 1px;
+}
+
+/* ---------------------------   WHITE BOX ----------------------------*/
+.WhiteBox {
+	position: relative;
+	float: left;
+	text-align:center;
+	background-color:#FFFFFF; 
+	width: 190px;
+	min-height: 20px;
+	padding: 0px 5px 5px 5px; 
+	margin: 10px 0px 0px 0px; 
+}
+/* ---------------------------   LOGO BOX ----------------------------*/
+.LogoBox {
+	position: relative;
+	background-color:#FFFFFF; 
+	width: 120px;
+	height: 60px;
+	line-height: 60px; 
+	padding: 5px 20px 5px 20px; 
+	margin: 10px auto;
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#7F9DB9; 
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+	border-radius: 6px;
+	behavior: url(https://www.avto.net/_css/PIE.htc);
+}
+.LogoBox img{
+	position:absolute;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	margin:auto;
+	max-width: 120px;
+	max-height: 60px;
+}
+/* ---------------------------   CONTACT BOX ----------------------------*/
+.ContactBoxLeft {
+	float: left;
+	width: 30px;
+	padding: 0px 9px 0px 9px; 
+	margin: 0px; 
+}
+.ContactBoxRight {
+	float:left;
+	width: 150px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+}
+.ContactBoxCenter {
+	float: left;
+	width: 198px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	text-align: center;
+}
+/* ---------------------------   FORM BOX ----------------------------*/
+.FormBox {
+	position: relative;
+	float: left;
+	background-color:#CFD7DF; 
+	width: 178px;
+	padding: 2px 10px 0px 10px; 
+	margin: 0px; 
+	border-style:solid;
+	border-width:0px 1px 0px 1px;
+	border-color:#7F9DB9; 
+}
+.FormBoxBorderLRTOP {
+	border-width:1px 1px 0px 1px;
+	padding: 10px 10px 0px 10px;
+}
+.FormBoxBorderLRBTM {
+	border-width:0px 1px 1px 1px;
+	padding: 2px 10px 10px 10px;
+	margin: 0px 0px 10px 0px; 
+}
+.Kontakt {
+	FONT-SIZE: 16px;
+    FONT-STYLE: normal;
+    FONT-WEIGHT: bold;
+}
+/* ---------------------------   RESULTS MENU BOX ----------------------------*/
+.ResultsMenuFull {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 228px;
+	padding-bottom:14px;
+	margin: 0px; 
+	background-color: #FFF;
+}
+.ResultsMenuBox {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 228px;
+	padding: 0px 0px 1px 0px; 
+	margin: 0px; 
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+}
+.ResultsMenuBoxBorderLRTOP {
+	border-width:1px 1px 0px 1px;
+}
+.ResultsMenuBoxBorderLRBTM {
+	border-width:0px 1px 1px 1px;
+}
+
+.ResultsMenuBox a:link {
+	display:block;
+	font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+}
+.ResultsMenuBox a:visited {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+}
+.ResultsMenuBox a:hover {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+	color: #FFFFFF;
+}
+.ResultsMenuBox a:active {
+   text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.ResultsMenuBox li a:link {
+	display:block;
+	font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+}
+.ResultsMenuBox li a:visited {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: none;
+}
+.ResultsMenuBox li a:hover {
+   text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+}
+.ResultsMenuBox li a:active {
+   text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+}
+
+.ResultsMenuBox ul { 
+	position: relative;
+	width: 100%;  
+	list-style-type:none;
+	margin: 0px;
+	padding: 0px;
+}
+.ResultsMenuBox ul li { 
+	position: relative;
+	width: 198px;
+	height: 20px; 
+	line-height: 20px; 
+	padding-left: 20px;
+	padding-right: 10px;
+	/*padding-top: 2px;
+	padding-bottom: 0px;*/
+	font-size: 13px;
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+/*START DODATEK K LI */
+.ResultsMenuBox ul {
+	list-style-type:none;
+	list-style-position:inside;
+}
+.ResultsMenuBox li {
+	/*background-image:url(https://www.avto.net/_icons/arrow_right.png);
+	background-repeat:no-repeat;
+	background-position: 10px 8px;*/
+}
+
+.ResultsMenuBox li:before {
+  position: absolute;
+  font-family: 'FontAwesome';
+  top: 3px;
+  left: 10px;
+  content: "\f0da";
+}
+.ResultsMenuBox li.model {
+	background-image:url(https://www.avto.net/_icons/sublist_model.png);
+	background-repeat:no-repeat;
+	background-position: 0px 1px;
+	padding-left: 13px;
+	padding-right: 17px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+/* END DODATEK K LI */
+
+.ResultsMenuBox a:hover span{
+    text-decoration: none;
+    font-style: normal;
+    font-weight: normal;
+}
+.ResultsMenuBox ul li:hover {
+	background-color:#F47A20;
+	background-color:#062f57;
+	background-color:#E9E9E9;
+	color: #FFFFFF;
+	color: #000000;
+}
+
+.ResultsMenuBox ul li.model:hover{
+	background-color: #E9E9E9;
+	background-image:url(https://www.avto.net/_icons/sublist_model.png);
+}
+.ResultsMenuBox span { 
+	display:inline-block;
+	*float:left;
+	}
+.ResultsMenuBox span.stevec { 
+	float: right;
+	text-align: right;
+	/*padding: 0px 3px 0px 3px;
+	background-color: #062F57;
+	background-color: #E9E9E9;
+	color:#FFFFFF;
+	color:#000000;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	behavior: url(PIE.htc);*/
+}
+
+.ResultsMenuBoxLeft {
+	float:left;
+	display:block;
+	width: 186px;
+	padding: 0px 5px 0px 9px; 
+	margin: 0px; 
+	text-align:left;
+}
+.ResultsMenuBoxRight {
+	float: left;
+	display:block;
+	width: 19px;
+	padding: 0px 9px 0px 0px; 
+	margin: 0px; 
+	text-align: right;
+}
+/* NOVO 2018*/
+/*
+.ResultsMenuBoxnaziv {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 198px;
+	height: 38px;
+	padding: 14px; 
+	margin: 0px 0px 0px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#7F9DB9; 
+	color: #cfd7df;
+	font-size: 14px; 
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	line-height: 19px;
+	text-align:center;
+	border-radius: 6px 6px 0px 0px;
+	-moz-border-radius: 6px 6px 0px 0px;
+	-webkit-border-radius: 6px 6px 0px 0px;
+	behavior: url(https://www.avto.net/_css/PIE.htc);
+}
+.ResultsMenuBoxnazivTXT {
+	position: relative;
+	float: left;
+	background-color:#E9E9E9; 
+	width: 196px;
+	height: 36px;
+	margin: 0px 0px 0px 0px; 
+	color: #062f57;
+	font-size: 16px; 
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	line-height: 38px;
+	text-align:center;
+	
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#7F9DB9; 
+}
+/* STARO 2016*/
+.ResultsMenuBoxnaziv {
+	position: relative;
+	float: left;
+	background-color:#062f57; 
+	width: 226px;
+	height: 36px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 0px 0px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#062f57; 
+	color: #cfd7df;
+	/*font-style:italic;*/
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	text-align:center;
+}
+.ResultsMenuBoxnaziv:after{ /*arrow added to headernaziv DIV*/
+	z-index: 1000;
+	content:'';
+	position:absolute;
+	top:100%; /*should be set to 100% */
+	left:20px;
+	width:0;
+	height:0;
+	border-color: #062f57 transparent transparent transparent; /*border color should be same as div div background color*/
+	border-style: solid;
+	border-width: 9px;
+}
+.ResultsMenuBoxnazivTXT {
+	position: relative;
+	float: left;
+	width: 216px;
+	height: 36px;
+	margin: 0px 0px 0px 0px; 
+	background: none;
+	color: #E9E9E9;
+	font-size: 16px; 
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	line-height: 36px;
+	text-align:center;
+}
+/* NOVO 2018 */
+.ResultsMenuBoxPodrubrika{
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 214px;
+	padding: 7px 5px 0px 9px; 
+	margin: 0px; 
+	border-style:solid;
+	border-width:0px 0px 0px 0px;
+	border-color:#7F9DB9; 
+	font-weight:bold;
+	font-size: 14px; 
+}
+.ResultsMenuBoxLine {
+	float:left;
+	width: 228px;
+	height: 1px;
+	padding: 0px 0px 0px 0px; 
+	background-color:#FFFFFF;
+	border-style:solid;
+	border-width:0px 0px 2px 0px;
+	/*border-color:#7F9DB9; */
+	border-color:#E9E9E9; 
+}
+.ResultsMenuBoxnazivTrgovec {
+	position: relative;
+	float: left;
+	background-color:#062f57; 
+	width: 198px;
+	height: 19px;
+	padding: 8px 0px 8px 0px; 
+	margin: 10px 0px 0px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#062f57; 
+	color: #cfd7df;
+	font-size: 14px; 
+	/*font-style:italic;*/
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	line-height: 19px;
+	text-align:center;
+	/* ROUNDED BORDER */
+	border-radius: 6px 6px 0px 0px;
+	-moz-border-radius: 6px 6px 0px 0px;
+	-webkit-border-radius: 6px 6px 0px 0px;
+	behavior: url(https://www.avto.net/_css/PIE.htc);
+}
+.ResultsMenuBoxnazivTrgovec:after{ /*arrow added to headernaziv DIV*/
+	z-index: 1000;
+	content:'';
+	position:absolute;
+	top:100%; /*should be set to 100% */
+	left:90px;
+	width:0;
+	height:0;
+	border-color: #062f57 transparent transparent transparent; /*border color should be same as div div background color*/
+	border-style: solid;
+	border-width: 9px;
+}
+.ResultsMenuBoxponudbaTrgovec {
+	position: relative;
+	float: left;
+	background-color:#062f57; 
+	width: 198px;
+	height: 19px;
+	padding: 8px 0px 8px 0px; 
+	margin: 0px 0px 0px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#062f57; 
+	color: #cfd7df;
+	font-size: 14px; 
+	/*font-style:italic;*/
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	line-height: 19px;
+	text-align:center;
+	/* ROUNDED BORDER */
+	border-radius: 6px 6px 0px 0px;
+	-moz-border-radius: 6px 6px 0px 0px;
+	-webkit-border-radius: 6px 6px 0px 0px;
+	behavior: url(https://www.avto.net/_css/PIE.htc);
+}
+.ResultsMenuBoxnazivNOrounded {
+	position: relative;
+	float: left;
+	background-color:#FFFFFF; 
+	width: 198px;
+	height: 38px;
+	padding: 14px; 
+	margin: 0px 0px 0px 0px; 
+	border-style:solid;
+	border-width:1px 1px 1px 1px;
+	border-color:#7F9DB9; 
+	color: #cfd7df;
+	font-size: 14px; 
+	/*font-style:italic;*/
+	font-weight: bold;
+	-webkit-font-smoothing: antialiased;
+	line-height: 19px;
+	text-align:center;
+}
+/* ---------------------------   RESULTS MENU BOX ACCORDION ----------------------------*/
+.ResultsMenuAccordionHead, .ResultsMenuAccordionFoot {
+	text-align: right;	
+	cursor: pointer;
+	padding: 5px 12px 5px 0px;
+}
+.ResultsMenuAccordionHead span, .ResultsMenuAccordionFoot span {
+	text-align: left;	
+	cursor: pointer;
+	padding: 0px 5px 0px 0px;
+}
+.ResultsMenuAccordionHead span:hover, .ResultsMenuAccordionFoot span:hover {
+	text-decoration:underline;
+}
+.ResultsMenuAccordionBody {
+	display:none;
+}

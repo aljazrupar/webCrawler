@@ -1,0 +1,445 @@
+/* NEW VERSION, CSS ONLY*/
+.button2 {
+	width: 290px;
+	height: 40px;
+	font-size:14px;
+	font-weight:bold;
+    color:#FFFFFF;
+	-webkit-border-radius: 5px; 
+	-moz-border-radius: 5px; 
+	border-radius: 5px; 
+    cursor:pointer;
+    line-height:130%;
+	border: solid 1px #da7c0c;
+	background: #f47a20;
+	background: -webkit-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+	background: -moz-linear-gradient(top,  #faa51a,  #f47a20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#faa51a', endColorstr='#f47a20');
+}
+.button2 img, .button2 span{
+    margin:0 3px -3px 0 !important;
+    padding:0 0 0 20px;
+	vertical-align:middle;
+    border:none;
+    width:32px;
+    height:32px;
+}
+.button2 i{
+    padding:0 0 0 0px;;
+	vertical-align:middle;
+}
+.button2:hover {
+	border: solid 1px #000000;
+	color: #FFFFFF;
+	background: #072F57;
+}
+.button2:active {
+	color: #FFFFFF;
+	top: 1px;
+	background: -webkit-gradient(linear, left top, left bottom, from(#010910), to(#1d446c));
+	background: -moz-linear-gradient(top,  #010910,  #1d446c);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#010910', endColorstr='#1d446c');
+}
+/* BUTTON SIZES + COLORS + DEKOR*/
+/* BUTTON SIZES*/
+.buttonV2 {
+	width: 185px;
+	height: 25px;
+	margin: 5px;
+	padding: 0px;
+	font-weight:bold;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	border-radius: 4px; 
+    cursor:pointer;
+	line-height:10px;
+	border: solid 1px #da7c0c;
+}
+.buttonV2 a:link {
+    color:#FFFFFF;
+	font-size:11px;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+	height: 25px;
+	padding: 0px 0px 0px 0px;
+}
+.buttonV2 a:visited {
+    color:#FFFFFF;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.buttonV2 a:hover {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+}
+.buttonV2 a:active {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+}
+/* BUTTON DEKOR*/
+.buttonDekor span{
+    margin:0 0 0 0px;
+    padding:0 0 0 0px;
+	vertical-align:middle;
+    border:none;
+    width:32px;
+    height:32px;
+}
+.buttonDekor i{
+	font-size:15px;
+    padding:0 20px 0 0;
+	vertical-align:middle;
+}
+/* BUTTON DEKOR V2*/
+.buttonDekorV2 span{
+	float:left;
+    margin:0 0 0 0px;
+	padding: 6px 0px 4px 10px;
+	vertical-align:middle;
+	border-style:solid;
+	border-width:0px 0px 0px 1px;
+	border-color:#7F9DB9; 
+    height:15px;
+}
+.buttonDekorV2 span:hover{
+	border-color:#7F9DB9; 
+}
+
+.buttonDekorV2 i{
+	float:left;
+	width: 15px;
+	font-size:15px;
+	padding: 5px 7px 5px 7px;
+	text-align:center;
+}
+/* BUTTON V3*/
+.buttonDekorV3{
+    height:36px;
+}
+.buttonDekorV3 i{
+	float:left;
+	width: 26px;
+	height: 26px;
+	font-size:21px;
+	padding: 6px 7px 4px 7px;
+	text-align:center;
+}
+.buttonDekorV3 span{
+	float:left;
+    margin:0 0 0 0px;
+	padding: 6px 0px 4px 10px;
+	vertical-align:middle;
+	border-style:solid;
+	border-width:0px 0px 0px 1px;
+	border-color:#7F9DB9; 
+    height:26px;
+}
+.buttonDekorV3 span:hover{
+	border-color:#7F9DB9; 
+}
+
+
+
+
+/* BUTTON COLORS*/
+/* BUTTON BOX ---------------------------------------------------------*/
+.BelowButtonBox {
+	position: absolute;
+	width: 327px;
+	height: 77px;
+	padding: 0px 0px 0px 0px; 
+	margin: 0px; 
+	background: #E9E9E9;
+	overflow: hidden;
+}
+.BelowButtonBox p{
+	display: block;
+	position:relative;
+	width: 313px;
+	height: 55px; 
+	padding: 7px 7px 7px 7px;
+	font-size: 12px; 
+	line-height: 17px; 
+	font-style: italic;
+    font-weight: normal;
+   	font-family: Arial, Arial, Helvetica, sans-serif;
+	color: #000000;
+}
+
+.BelowButtonBox p:before,
+.BelowButtonBox p:after {
+    font-size: 21px;
+    font-weight: bold;
+    font-family: Times New Roman;
+    color: #7F9DB9;
+	display: none;
+}
+
+.BelowButtonBox p:before {
+    content: "\201C";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}
+
+.BelowButtonBox p:after {
+    content: "\201D";
+    position: absolute;
+    bottom: 15px;
+    right: 0px;
+}
+.ButtonBox {
+	position: absolute;
+	z-index: 10;
+	width: 323px;
+	height: 32px;
+	padding: 38px 0px 0px 4px; 
+	margin: 0px; 
+	
+}
+.ButtonBoxLeft {
+	float:left;
+	/*width: 130px;*/
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 0px 0px 0px; 
+}
+.ButtonBoxRight {
+	float:left;
+	/*width: 176px;*/
+	padding: 0px 0px 0px 0px; 
+	margin: 0px 0px 0px 0px; 
+}
+.ButtonBoxBelowAd {
+	width: 944px;
+	padding: 7px 14px 3px 9px;
+}
+
+/* FEEDBACK */
+.Feedback {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 335px;
+	height: 55px;
+	padding: 10px 10px 10px 5px; 
+	margin: 0px; 
+	background: #000000;
+}
+/* MOJAVTONET */
+.buttonMojRight {
+	width: 225px;
+	height: 27px;
+	margin: 7px 0px 0px 5px;
+	padding: 0px;
+	border: solid 1px #da7c0c;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	border-radius: 4px; 
+    cursor:pointer;
+	line-height:10px;
+	color:#FFFFFF;
+	font-size:11px;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.buttonMojRight span{
+	float:left;
+    margin: 0px;
+	padding: 6px 10px 4px 10px;
+	vertical-align:middle;
+	text-align:left;
+	border-style:solid;
+	border-width:0px 1px 0px 0px;
+	border-color:#7F9DB9; 
+	width: 165px;
+    height:15px;
+}
+.buttonMojRight span:hover{
+	border-color:#7F9DB9; 
+}
+.buttonMojRight i{
+	float:left;
+	font-size:15px;
+	width: 25px;
+	padding: 5px 5px 5px 5px;
+}
+/* MOJAVTONET PARKIRANO*/
+.buttonParkirano {
+	width: 155px;
+	height: 25px;
+	margin: 5px 10px 0px 0px;
+	padding: 0px;
+	font-weight:bold;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	border-radius: 4px; 
+    cursor:pointer;
+	line-height:15px;
+	border: solid 1px #da7c0c;
+}
+.buttonParkirano a:link {
+    color:#FFFFFF;
+	font-size:11px;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.buttonParkirano a:visited {
+    color:#FFFFFF;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.buttonParkirano a:hover {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+}
+.buttonParkirano a:active {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+}
+.buttonParkirano span{
+	float:left;
+    margin:0 0 0 0px;
+	padding: 4px 0px 10px 5px;
+	border-style:solid;
+	border-width:0px 0px 0px 1px;
+	border-color:#7F9DB9; 
+    height:11px;
+}
+.buttonParkirano i{
+	float:left;
+	width: 15px;
+	font-size:15px;
+	padding: 5px 5px 5px 5px;
+	text-align:center;
+}
+
+/* MOJAVTONET ODDAJ OGLASA*/
+.buttonOddaj {
+	width: 286px;
+	height: 45px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	font-weight:bold;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	border-radius: 4px; 
+    cursor:pointer;
+	line-height:15px;
+	border: solid 1px #da7c0c;
+}
+.buttonOddaj a:link {
+    color:#FFFFFF;
+	line-height:25px;
+	font-size:17px;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.buttonOddaj a:visited {
+    color:#FFFFFF;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.buttonOddaj a:hover {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+}
+.buttonOddaj a:active {
+    text-decoration: none;
+    font-style: normal;
+    font-weight: bold;
+}
+.buttonOddaj span{
+	float:left;
+    margin:0 0 0 0px;
+	padding: 10px 0px 10px 10px;
+	border-style:solid;
+	border-width:0px 0px 0px 1px;
+	border-color:#7F9DB9; 
+    height:25px;
+}
+.buttonOddaj i{
+	float:left;
+	width: 35px;
+	font-size:25px;
+	padding: 10px 5px 5px 5px;
+	text-align:center;
+}
+/* RESULTS DEALER */
+.buttonDealerAds {
+	width: 195px;
+	height: 27px;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	border: solid 1px #da7c0c;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px; 
+	border-radius: 4px; 
+    cursor:pointer;
+	line-height:10px;
+	color:#FFFFFF;
+	font-size:11px;
+    font-style: normal;
+    font-weight: bold;
+    text-decoration: none;
+}
+.buttonDealerAds span{
+	float:left;
+    margin: 0px;
+	padding: 6px 10px 4px 10px;
+	vertical-align:middle;
+	text-align:left;
+	border-style:solid;
+	border-width:0px 0px 0px 1px;
+	border-color:#7F9DB9; 
+	width: 135px;
+    height:15px;
+}
+.buttonDealerAds span:hover{
+	border-color:#7F9DB9; 
+}
+.buttonDealerAds i{
+	float:left;
+	font-size:15px;
+	width: 25px;
+	padding: 5px 5px 5px 5px;
+}
+/* ---------------------------   BUTTON ORANGE ----------------------------*/
+.buttonGreen {
+    color:#FFFFFF;
+	/*border: solid 1px #FAA51A;*/
+	border: solid 1px #009900;
+	background: #009900;
+	/* background: -webkit-gradient(linear, left top, left bottom, from(#FAA51A), to(#F47A20));
+	background: -moz-linear-gradient(top,  #FAA51A,  #F47A20);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#FAA51A', endColorstr='#F47A20');*/
+}
+.buttonGreen:hover {
+	/*border: solid 1px #666666;*/
+	border: solid 1px #072F57;
+	color: #FFFFFF;
+	background: #072F57;
+}
+.buttonGreen:active {
+	color: #FFFFFF;
+	/* background: -webkit-gradient(linear, left top, left bottom, from(#010910), to(#1d446c));
+	background: -moz-linear-gradient(top,  #010910,  #1d446c);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#010910', endColorstr='#1d446c');*/
+}
+
+
+

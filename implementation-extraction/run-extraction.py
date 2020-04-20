@@ -184,16 +184,13 @@ def regexOverstock(pages):
         Price.append(i)
 
     # TODO POPRAVIT CONTENT
-    regex = r"<span class=\"normal\">((.+)|\s)*<br>"
-    match = re.search(regex, pages,  flags=re.DOTALL)
-    match = match.group(0)
+    regex = r"<span class=\"normal\">([^<]*)"
+    match = re.compile(regex).findall(pages)
     #match = re.compile(regex).findall(pages)
 
     Content = []
     for i in match:
-        print(i)
-    print(len(match))
-    # /TODO
+        Content.append(i)
 
     for count, i in enumerate(Titles):
         dataItem={
@@ -218,7 +215,6 @@ def regex(pages):
             continue
             regexAvto(tree)
         elif("jewelry" in i):
-            continue
             regexOverstock(tree)
         else:
 

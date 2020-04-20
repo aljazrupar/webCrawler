@@ -47,11 +47,10 @@ def xpathRTV(page):
        "PublishedTime": publishedTime[1][2:-6],
        "Content": contentEncoded
     }
-    print("Output object:\n%s" % json.dumps(dataItem, indent=6))
+    print("Output object:\n%s" % json.dumps(dataItem, indent=6, ensure_ascii=False))
 def xpathAvto(page):
     name = page.xpath('//*[@id="results"]/div/div/div[1]/a/span/text()')
     price =page.xpath('//*[@id="results"]/div/div/div[1]/div[2]/div[1]/text()')
-    print(name)
     #//*[@id="results"]/div[5]/div[2]/div[1]/a/span
     #// *[ @ id = "results"] / div[5] / div[3] / div[1] / div[2] / div
     year =page.xpath('//*[@id="results"]/div/div/div[1]/ul/li[1]/text()')
@@ -70,22 +69,23 @@ def xpathAvto(page):
             "Power": engine[count].split(",")[-1],
             "Gear": gear[count]
         }
-        print("Output object:\n%s" % json.dumps(dataItem, indent=8))
+        print("Output object:\n%s" % json.dumps(dataItem, indent=8, ensure_ascii=False))
 def xpath(pages):
-
     for i in pages:
-        with open(i, encoding="ISO-8859-1") as file:  # Use file to refer to the file object
-            data = file.read()
-        tree = html.fromstring(data)
-
         if("Avto" in i):
-            continue
+            with open(i, encoding="windows-1250") as file:  # Use file to refer to the file object
+                data = file.read()
+            tree = html.fromstring(data)
             xpathAvto(tree)
         elif("jewelry" in i):
-            continue
+            with open(i, encoding="windows-1250") as file:  # Use file to refer to the file object
+                data = file.read()
+            tree = html.fromstring(data)
             xpathOverstock(tree)
         else:
-            continue
+            with open(i, encoding="utf-8") as file:  # Use file to refer to the file object
+                data = file.read()
+            tree = html.fromstring(data)
             xpathRTV(tree)
 
 def regexRTV(pages):
@@ -122,7 +122,7 @@ def regexRTV(pages):
        "PublishedTime": date,
        "Content": content
     }
-    print("Output object:\n%s" % json.dumps(dataItem, indent=6))
+    print("Output object:\n%s" % json.dumps(dataItem, indent=6, ensure_ascii=False))
 def regexAvto(pages):
 
     regex = r"<a class=\"Adlink\"(.*)>\s+<span>(.*)</span>\s+</a>"
@@ -152,7 +152,7 @@ def regexAvto(pages):
             "Power": i[2].split(",")[-1],
             "Gear": i[3]
         }
-        print("Output object:\n%s" % json.dumps(dataItem, indent=8))
+        print("Output object:\n%s" % json.dumps(dataItem, indent=8, ensure_ascii=False))
 def regexOverstock(pages):
 
     regex = r"<s>(.*)</s>"
@@ -205,20 +205,18 @@ def regexOverstock(pages):
         print("Output object:\n%s" % json.dumps(dataItem, indent=7))
 def regex(pages):
     for i in pages:
-        with open(i, encoding="windows-1250") as file:  # Use file to refer to the file object
-            data = file.read()
-
-        tree = data
-
         if("Avto" in i):
-            continue
-            continue
-            regexAvto(tree)
+            with open(i, encoding="windows-1250") as file:  # Use file to refer to the file object
+                data = file.read()
+            regexAvto(data)
         elif("jewelry" in i):
-            regexOverstock(tree)
+            with open(i, encoding="windows-1250") as file:  # Use file to refer to the file object
+                data = file.read()
+            regexOverstock(data)
         else:
-
-            regexRTV(tree)
+            with open(i, encoding="utf-8") as file:  # Use file to refer to the file object
+                data = file.read()
+            regexRTV(data)
 #def auto():
 
 if __name__ == '__main__':

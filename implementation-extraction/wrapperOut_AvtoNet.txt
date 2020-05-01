@@ -1,0 +1,398 @@
+<Wrapper><html>
+	<head>
+	<meta></meta>
+	<title>#Text</title>
+	<meta></meta>
+	<meta></meta>
+	<meta></meta>
+	<meta></meta>
+	<meta></meta>
+	<meta></meta>
+</head>
+	<body>
+	<div></div>
+	<div><div>
+		<div>
+			<div><a><img></img></a></div>
+			<div><ul>
+				<a><li><span><i></i>
+                          Objavi oglas
+                          </span></li></a>
+				<a><li><span><i></i>
+                          Parkirano
+                          </span></li></a>
+				<a><li><span><i></i>
+                          moj.avto.net
+                          </span></li></a>
+			</ul></div>
+			<div></div>
+		</div>
+		<div><div><ul>
+			<li><a><span><i></i></span></a></li>
+			<li><a><span>Avto</span></a></li>
+			<li><a><span>Moto</span></a></li>
+			<li><a><span>Gospodarska</span></a></li>
+			<li><a><span>Mehanizacija</span></a></li>
+			<li><a><span>Prosti èas</span></a></li>
+			<li><a><span>Deli in oprema</span></a></li>
+		</ul></div></div>
+	</div></div>
+	<div><div>
+		<div>
+			<a><span>Pojdi na uvodno stran</span></a>
+			<a><span>Mobilna stran</span></a>
+		</div>
+		<div>
+			<a><span>Avto oglasi</span></a>
+			<a><span>Katalog novih vozil</span></a>
+			<a><span>Cenitev vozil</span></a>
+			<a><span>Rent a car</span></a>
+			<a><span>Karambolirana / nebrezhibna vozila</span></a>
+			<a><span>Oldtimer-ji</span></a>
+			<a><span>Pregled po znamkah</span></a>
+		</div>
+		<div>
+			<a><span>Motorna kolesa</span></a>
+			<a><span>ATV  /UTV</span></a>
+			<a><span>Mopedi</span></a>
+			<a><span>Scooterji</span></a>
+			<a><span>Gokart</span></a>
+			<a><span>Oldtimer</span></a>
+			<a><span>Moto oprema</span></a>
+			<a><span>Poškodovana mot.kolesa</span></a>
+			<a><span>Rent a moto</span></a>
+		</div>
+		<div>
+			<a><span>Dostavna vozila</span></a>
+			<a><span>Tovorna vozila</span></a>
+			<a><span>Avtobusi</span></a>
+			<a><span>Tovorne prikolice</span></a>
+			<a><span>Ponudbe za najem</span></a>
+		</div>
+		<div>
+			<a><span>Gradbena mehanizacija</span></a>
+			<a><span>Kmetijska mehanizacija</span></a>
+			<a><span>Gozdarska mehanizacija</span></a>
+			<a><span>Komunalna mehanizacija</span></a>
+			<a><span>Vilièarji</span></a>
+			<a><span>Ponudbe za najem</span></a>
+		</div>
+		<div>
+			<a><span>Avtodomi</span></a>
+			<a><span>Poèitniške prikolice</span></a>
+			<a><span>Šotorske prikolice</span></a>
+			<a><span>Snemljivi bivalniki</span></a>
+			<a><span>Mobilne hišice</span></a>
+			<a><span>Camping oprema</span></a>
+			<a><span>Ponudbe za najem</span></a>
+		</div>
+		<div>
+			<a><span>Rezervni deli</span></a>
+			<a><span>Dodatna + tuning oprema</span></a>
+			<a><span>Avtoakustika</span></a>
+			<a><span>Olja in tekoèine</span></a>
+			<a><span>Pnevmatike</span></a>
+			<a><span>Platišèa</span></a>
+			<a><span>Servisna oprema</span></a>
+		</div>
+		<div>
+			<a><span>Prijava v sistem urejanja</span></a>
+			<a><span>Registracija</span></a>
+			<a><span>Oddaj nov oglas</span></a>
+			<a><span>Parkirani oglasi</span></a>
+		</div>
+		<div><a><span>Pregled vseh rubrik</span></a></div>
+	</div></div>
+	<div>
+		<div>
+			<div>
+				<div><h1>#Text</h1></div>
+				<div><div><a>
+					<i></i>
+					<span>Objavi nov oglas</span>
+				</a></div></div>
+			</div>
+			<div><div></div></div>
+			<div>
+				<div>
+					(<div>
+						<div><div>#Text</div></div>
+						<div>
+							<div></div>
+							<ul>
+								<div>
+                rubrika AVTO
+                
+</div>
+								<a><li><span>
+    PRODAM
+</span></li></a>
+								<a><li><span>#Text</span></li></a>
+								(<a><li><span>#Text</span></li></a>)?
+								<a><li><span>
+oglasi brez cene niso vidni
+</span></li></a>
+							</ul>
+						</div>
+						<div><div>Omejite prikaz:</div></div>
+						<div></div>
+						<div>
+							(<div>#Text</div>)+
+						</div>
+					</div>)+
+				</div>
+				<div>
+					<div>
+						<div>(<ul>
+							<a><li><i></i></li></a>
+							<a><li><i></i></li></a>
+						</ul>)?#Text#Text</div>
+						<div>
+
+sortiraj:
+            <div><form><select>
+							<option>po znamki: A do Z</option>
+							<option>po znamki: Z do A</option>
+							<option>po ceni: cenejši najprej</option>
+							<option>po ceni: najdražji najprej</option>
+							<option>po letniku: novejši najprej</option>
+							<option>po letniku: starejši najprej</option>
+							<option>po prevoženih km - manj najprej</option>
+							<option>po prevoženih km  - veè najprej</option>
+							<option>po moèi motorja - veè najprej</option>
+							<option>po moèi motorja  - manj najprej</option>
+							<option>novejši oglasi najprej</option>
+							<option>starejši oglasi najprej</option>
+						</select></form></div></div>
+					</div>
+					<form>
+						<input></input>
+						(<div>
+							(<div><div>#Text(<a><img></img></a>)?</div></div>)+
+						</div>)+
+					</form>
+					<div>
+						(<a><div>
+							<i></i>
+							<span>#Text</span>
+						</div></a>)?#Text
+						(<div><ul>
+							<a><li>#Text</li></a>
+							<li>#Text</li>
+							<a><li>#Text</li></a>
+							<a><li>#Text</li></a>
+							<a><li>#Text</li></a>
+							<a><li>#Text</li></a>
+							<a><li>#Text</li></a>
+							<a><li>#Text</li></a>
+							<a><li>#Text</li></a>
+							<a><li>#Text</li></a>
+						</ul></div>)?
+						(<a><div>
+							<span>#Text</span>
+							<i></i>
+						</div></a>)?
+					</div>
+				</div>
+			</div>
+			<div></div>
+			<div>
+				<div><h1>Legenda oznak:</h1></div>
+				<div>
+					<div><img></img></div>
+					<div>Oglas ki je bil objavljen ali spremenjen v zadnjih 48 urah</div>
+					<div><a><img></img></a></div>
+					<div>Možnost 1- ali 2-letno podaljšanega Jamstva za rabljeno vozilo 
+                <a>DasWeltAuto (klikni za veè informacij)</a></div>
+					<div><a><img></img></a></div>
+					<div>Vozilo z jamstvom iz ponudbe 
+                <a>BMW Premium Selection (klikni za veè informacij)</a></div>
+					<div>
+						<i></i>
+						<span><strong>19.900 €</strong></span>
+					</div>
+					<div>Vozilo oz. mehanizacija še ni na zalogi (cena prikazana v sivi barvi)</div>
+					<div><span><strong> TOP PONUDBA </strong></span></div>
+					<div>Vozilo je na predlog prodajalca dodatno izpostavljeno</div>
+					<div><span><strong> AKCIJSKA CENA... </strong></span></div>
+					<div>Ponudba je na voljo po posebni ceni, npr: Akcijski, Ugodni, Znižani ali internetni ceni</div>
+					<div><span><strong> HD </strong></span></div>
+					<div>Oglas vsebuje fotografije HD velikosti</div>
+					<div><strong>(*) cena + DDV</strong></div>
+					<div>
+             Pri gospodarskih vozilih in mehanizaciji, kadar je ponudnik PRAVNA OSEBA, je lahko uvodoma navedena neto cena (brez DDV), ker je taka ponudba obièajno namenjena prodaji gospodarskim subjektom.
+						<br></br>
+V vsakem primeru pa je poleg te cene navedena tudi konèna maloprodajna cena z vkljuèenim DDV. 
+						<br></br>Kadar uporabnik išèe le po netto ceni (brez DDV), so prikazani le oglasi z vpisano tako brutto kot netto ceno.
+              
+					</div>
+					<div><strong>(*) EXPORT cena</strong></div>
+					<div>
+             Kadar je ob ceni navedena opomba "EXPORT cena", je cena prikazana brez vkljuèenih dajatev za registracijo vozila v Sloveniji (DDV, DMV, ...). Takšna cena je informativne narave, in je aktualna izkljuèno za kupce, ki želijo vozilo izvoziti iz Slovenije in registrirati v tujini.
+              </div>
+					<div><strong>(*) FINANCIRANJE</strong></div>
+					<div>
+             Ponudba financiranja je informativna. Podrobnejše informacije so na voljo s klikom na posamezni oglas, v polju Cena
+              </div>
+					<div><strong>(*) cena fco.</strong></div>
+					<div>
+             Kadar je pod ceno navedena oznaka fco. DRŽAVA, navedeno predstavlja, da cena obièajno predstavlja ceno na naslovu trgovca, ki se ne nahaja v Sloveniji. 
+              </div>
+					<div><strong><i></i> OLDTIMER</strong></div>
+					<div>
+             	Vozilo, ki ima oldtimer certifikat, je med zadetki posebej oznaèeno z ustrezno ikono. Velja pa dodati, da so
+             	na spletni strani avto.net v rubriki OLDTIMER prikazana vozila, ki imajo OLDTIMER certifikat, kakor tudi vozila, ki morda certifikata še nimajo, vendar ustrezajo starostni meji.
+						<br></br>
+Po definiciji mednarodne zveze starodobnih vozil FIVA (Tehnièni pravilnik, toèka 1.2.) je starodobno vozilo: 
+				"Varovano zgodovinsko vozilo" mehanièno gnano vozilo, izdelano pred veè kot 30 leti, ohranjeno in vzdrževano v zgodovinsko pravilnem stanju in za katerega skrbi oseba ali organizacija zaradi njegovega zgodovinskega in tehniškega pomena, ga pa ne uporablja za vsakodnevni prevoz.
+				Kot vozilo, ki se ne uporablja za vsakodnevni prevoz, se razume tisti starodobnik, katerega lastnik uporablja v ljubiteljske namene. Za vsakodnevne prevoze pa  sam poseduje drugo registrirano (sodobno) vozilo.
+				Vozila starosti do 30 let dokazujejo status starodobnika z najmanj dvakratno udeležbo na prireditvah po koledarju SVS ali z veè kot letnim èlanstvom lastnika v enem od društev èlanov SVS.
+				
+						<br></br>V Sloveniji sta za izdajanje certifikatov starodobnika pristojni dve zvezi starodobnih vozil: Slovenska veteranska avto moto zveza
+				– 
+						<a>SVAMZ</a>, s sedežem na
+				Vranskem. ter  
+						<a>Zveza
+				Slovenskih društev ljubiteljev starodobnih vozil – SVS</a>, s sedežem na
+				Škofljici.
+                
+					</div>
+					<div><strong><span><i></i>
+                    POŠKODOVANO
+                    </span></strong></div>
+					<div>
+             Vozilo je oznaèeno kot POŠKODOVANO, kadar je na vozilu manjša škoda, ki zahteva popravilo, npr. poškodbe od toèe... 
+             Oznaka, ki jo praviloma dodeli oglaševalec sam,  naj bi prikazovala današnje stanje in ne zgodovino vozila. 
+             </div>
+					<div><strong><span><i></i>
+                    KARAMBOLIRANO
+                    </span></strong></div>
+					<div>
+             Vozilo ki je oznaèeno kot KARAMBOLIRANO, kadar je bilo udeleženo v prometni nesreèi, in je namenjeno prodaji celotnega - nepopravljenega vozila.
+             Oznaka, ki jo praviloma dodeli oglaševalec sam,  naj bi prikazovala današnje stanje in ne zgodovino vozila. 
+             </div>
+					<div><strong><span><i></i>
+                    V OKVARI
+                    </span></strong></div>
+					<div>
+            Vozilo je oznaèeno V OKVARI, kadar je prisotna tehnièna okvara, npr. okvara motorja ali menjalnika, ali kadar vozilo NI tehnièno izpravno. 
+             Oznaka, ki jo praviloma dodeli oglaševalec sam,  naj bi prikazovala današnje stanje in ne zgodovino vozila. 
+             </div>
+				</div>
+			</div>
+		</div>
+		<div></div>
+	</div>
+	<div>
+		<div>
+			<div><div><h2>Hitri pregled rubrik</h2></div></div>
+			<div>
+				<div><h3>Avto</h3></div>
+				<div><h3>Moto</h3></div>
+				<div><h3>Gospodarska vozila</h3></div>
+				<div><h3>Prosti èas</h3></div>
+				<div><h3>Oprema</h3></div>
+				<div><h3>moj.avto.net</h3></div>
+			</div>
+			<div>
+				<div><ul>
+					<li><a>Avto oglasi</a></li>
+					<li><a>Pregled po znamkah</a></li>
+					<li><a>Oldtimer</a></li>
+					<li><a>Karambolirana vozila</a></li>
+					<li><a>Katalog novih vozil</a></li>
+					<li><a>Cenitev vozil</a></li>
+					<li><a>Rent a car</a></li>
+				</ul></div>
+				<div><ul>
+					<li><a>Motorna kolesa</a></li>
+					<li><a>ATV, UTV, 4 kolesniki</a></li>
+					<li><a>Mopedi</a></li>
+					<li><a>Scooterji</a></li>
+					<li><a>Mini moto</a></li>
+					<li><a>Go-Kart</a></li>
+					<li><a>Motorne sani</a></li>
+					<li><a>Oldtimer</a></li>
+					<li><a>Rent a moto</a></li>
+					<li><a>Moto oprema</a></li>
+				</ul></div>
+				<div><ul>
+					<li><a>Dostavna</a></li>
+					<li><a>Tovorna</a></li>
+					<li><a>Avtobusi</a></li>
+					<li><a>Tovorne prikolice</a></li>
+					<br></br>
+					<h3>Mehanizacija</h3>
+					<li><a>Gradbena mehanizacija</a></li>
+					<li><a>Kmetijska mehanizacija</a></li>
+					<li><a>Gozdarska mehanizacija</a></li>
+					<li><a>Komunalna mehanizacija</a></li>
+					<li><a>Vilièarji</a></li>
+					<li><a>Ponudbe za najem</a></li>
+					<li><a>Rezervni deli in dodatna oprema</a></li>
+				</ul></div>
+				<div><ul>
+					<li><a>Avtodomi</a></li>
+					<li><a>Poèitniške prikolice</a></li>
+					<li><a>Mobilne hišice</a></li>
+					<li><a>Snemljivi bivalniki</a></li>
+					<li><a>Ponudbe za najem</a></li>
+					<li><a>Camping oprema</a></li>
+					<li><a>Navtika</a></li>
+					<li></li>
+				</ul></div>
+				<div><ul>
+					<li><a>Rezervni deli</a></li>
+					<li><a>Dodatna oprema</a></li>
+					<li><a>Avtoakustika</a></li>
+					<li><a>Olja in tekoèine</a></li>
+					<li><a>Pnevmatike</a></li>
+					<li><a>Platišèa</a></li>
+					<li><a>Servisna oprema</a></li>
+				</ul></div>
+				<div><ul>
+					<li><a>Registracija trgovca</a></li>
+					<li><a>Prijava trgovca v sistem</a></li>
+					<li><a>moj.avto.net</a></li>
+					<li></li>
+					<li><a>Oddajte nov oglas</a></li>
+					<li><a>Urejanje oglasa</a></li>
+					<li></li>
+					<li><a>Pomoè uporabnikom</a></li>
+					<li><a>Pravno obvestilo in Varstvo zasebnosti</a></li>
+					<li></li>
+					<li><a>O piškotkih</a></li>
+					<li><a>Cenik oglaševanja</a></li>
+				</ul></div>
+			</div>
+		</div>
+		<div><div>
+			<div>
+				<a>Avtonet d.o.o., Obala 77, SI-6320 Portorož, T: 080 / 28 77 ali 05 / 6713 700, F: 05 / 6713 701</a>
+				<br></br>
+				<a>© Avtonet d.o.o. 1997-2020. Vse pravice pridržane.</a>
+			</div>
+			<div><a><img></img></a></div>
+		</div></div>
+	</div>
+	<noscript><div><img></img></div></noscript>
+	<div></div>
+	<div><div></div></div>
+	<div></div>
+	<div><div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<div></div>
+		<a></a>
+		<div></div>
+		<a><span></span></a>
+		<a><span></span></a>
+	</div></div>
+</body>
+</html></Wrapper>

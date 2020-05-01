@@ -1,0 +1,255 @@
+<Wrapper><html>
+	<head>
+	<meta></meta>
+	<meta></meta>
+	<meta></meta>
+	<title>Overstock.com, save up to 80% every day!</title>
+</head>
+	<body>
+	<input></input>
+	<table><tbody>
+		<tr>
+			<td></td>
+			<td><table><tbody>
+				<tr><td>
+					<table><tbody><tr>
+						<td><a><img></img></a></td>
+						<td><img></img></td>
+						<td><a><img></img></a></td>
+					</tr></tbody></table>
+					<map>
+						<area></area>
+						<area></area>
+						<area></area>
+						<area></area>
+						<area></area>
+					</map>
+				</td></tr>
+				<tr><td>
+					<a><img></img></a>
+					<a><img></img></a>
+					<a><img></img></a>
+					<a><img></img></a>
+					<a><img></img></a>
+					<a><img></img></a>
+					<a><img></img></a>
+				</td></tr>
+			</tbody></table></td>
+		</tr>
+		<tr><td><img></img></td></tr>
+		<form></form>
+		<tr><td><table><tbody><tr>
+			<td><table><tbody><tr>
+				<td>
+					<span>Search:</span>
+					<select>
+						<option>All Stores</option>
+						<option>Home & Garden</option>
+						<option>Electronics & Computers</option>
+						<option>Books, Movies, CDs, Games</option>
+						<option>Jewelry, Watches & Gifts</option>
+						<option>Sports, Travel & Toys</option>
+						<option>Worldstock</option>
+						<option>Apparel, Shoes & Access.</option>
+					</select>
+				</td>
+				<td></td>
+				<td><input></input></td>
+				<td><input></input></td>
+			</tr></tbody></table></td>
+			<td>
+				<img></img>
+				<br></br>
+				<a><img></img></a>
+			</td>
+			<td><img></img></td>
+		</tr></tbody></table></td></tr>
+		<tr><td><img></img></td></tr>
+	</tbody></table>
+	<table><tbody>
+		<tr>
+			<td><img></img></td>
+			<td>
+				<br></br>
+				<table><tbody><tr><td><table><tbody>
+					(<tr>
+						<td></td>
+						<td><span><b>#Text</b></span></td>
+					</tr>)+
+				</tbody></table></td></tr></tbody></table>
+				<br></br>
+				<span><b>Stores</b></span>
+				<br></br>
+				<table><tbody>
+					<tr><td><a>Apparel, Shoes & Access.</a></td></tr>
+					<tr><td><a>Books, Movies, CDs, Games</a></td></tr>
+					<tr><td><a>Electronics & Computers</a></td></tr>
+					<tr><td><a>Home & Garden</a></td></tr>
+					<tr><td><a><b>Jewelry, Watches & Gifts</b></a></td></tr>
+					<tr><td><a>Sports, Travel & Toys</a></td></tr>
+					<tr><td><a>Worldstock</a></td></tr>
+				</tbody></table>
+				<br></br>
+				<span><b>New Stock</b></span>
+				<br></br>
+				<table><tbody>
+					<tr><td><a>Ralph Lauren $29.95</a></td></tr>
+					<tr><td><a>Ben Sherman 53% off</a></td></tr>
+					<tr><td><a>Pre-order Harry Potter DVD</a></td></tr>
+					<tr><td><a>HP 2GHz System $499</a></td></tr>
+					<tr><td><a>New Items within 7 Days</a></td></tr>
+				</tbody></table>
+				<br></br>
+				<span><b>Customer Service</b></span>
+				<br></br>
+				<table><tbody>
+					<tr><td><a>Shopping Cart & Checkout</a></td></tr>
+					<tr><td><a>Track Your Order</a></td></tr>
+					<tr><td><a>Your Account</a></td></tr>
+					<tr><td><a>Help & FAQ</a></td></tr>
+					<tr><td><a>Best Price Guarantee</a></td></tr>
+				</tbody></table>
+				<br></br>
+				<span><b>About Us</b></span>
+				<br></br>
+				<table><tbody>
+					<tr><td><a>About Us</a></td></tr>
+					<tr><td><a>Privacy & Security</a></td></tr>
+					<tr><td><a>Terms & Conditions</a></td></tr>
+					<tr><td><a>Become An Affiliate</a></td></tr>
+					<tr><td><a>Business Purchases</a></td></tr>
+					<tr><td><a>Have Products to Sell?</a></td></tr>
+					<tr><td><a>Investor Relations</a></td></tr>
+				</tbody></table>
+				<img></img>
+				<br></br>
+			</td>
+			<td><img></img></td>
+			<td><img></img></td>
+			<td>
+				<br></br>
+				<b>
+					<a>Jewelry, Watches & Gifts</a> 
+ > 
+					<a>Jewelry</a> 
+ > 
+					<a>#Text</a> 
+ > View All 
+
+				</b>
+				<br></br>
+				<table><tbody>
+					<tr><td>
+						<br></br>
+						<table><tbody><tr><td><table><tbody>
+							<tr>
+								<td><span><b>List Sorted By:</b></span></td>
+								<td>
+									<b>Top Sellers</b> | 
+									<a>Discount</a> | 
+									<a>Newest First</a> | 
+									<a>Price</a> | 
+									<a>Quantity</a> | 
+									<a>Markdowns</a>
+								</td>
+							</tr>
+							(<tr>
+								<td><span><b>#Text</b></span></td>
+								<td>
+									<b>#Text</b>#Text
+									<b>#Text</b>#Text
+									<b>#Text</b>#Text
+									<a>#Text</a>#Text
+									<a>#Text</a>#Text
+									<a>#Text</a>
+								</td>
+							</tr>)?
+						</tbody></table></td></tr></tbody></table>
+					</td></tr>
+					<tr><td><table><tbody><tr><td><table><tbody>
+						(<tr>
+							<td><table><tbody>
+								<tr><td><a><img></img></a></td></tr>
+								<tr><td><a>More Info...</a></td></tr>
+							</tbody></table></td>
+							<td>
+								<a><b>#Text</b></a>
+								<br></br>
+								<table><tbody><tr>
+									<td><table><tbody>
+										<tr>
+											<td><b>List Price:</b></td>
+											<td><s>#Text</s></td>
+										</tr>
+										<tr>
+											<td><b>Price:</b></td>
+											<td><span><b>#Text</b></span></td>
+										</tr>
+										<tr>
+											<td><b>You Save:</b></td>
+											<td><span>#Text</span></td>
+										</tr>
+									</tbody></table></td>
+									<td>
+										<span>#Text
+											<br></br>
+											<a><span><b>Click here to purchase.</b></span></a>
+										</span>
+										<br></br>
+										(<table><tbody><tr><td><a><img></img></a></td></tr></tbody></table>)?
+									</td>
+								</tr></tbody></table>
+							</td>
+						</tr>)+
+					</tbody></table></td></tr></tbody></table></td></tr>
+					<tr><td>
+						<br></br>
+						<table><tbody><tr><td><table><tbody>
+							<tr>
+								<td><span><b>List Sorted By:</b></span></td>
+								<td>
+									<b>Top Sellers</b> | 
+									<a>Discount</a> | 
+									<a>Newest First</a> | 
+									<a>Price</a> | 
+									<a>Quantity</a> | 
+									<a>Markdowns</a>
+								</td>
+							</tr>
+							(<tr>
+								<td><span><b>#Text</b></span></td>
+								<td>
+									<b>#Text</b>#Text
+									<b>#Text</b>#Text
+									<b>#Text</b>#Text
+									<a>#Text</a>#Text
+									<a>#Text</a>#Text
+									<a>#Text</a>
+								</td>
+							</tr>)?
+						</tbody></table></td></tr></tbody></table>
+					</td></tr>
+				</tbody></table>
+			</td>
+		</tr>
+		<tr>
+			<td><img></img></td>
+			<td>© 2003<br></br>Overstock.com</td>
+			<td><img></img></td>
+			<td>
+				<br></br>
+				<span>* $2.95 flat rate shipping to the lower 48 states only.  Some items excluded due to size and/or weight.</span>
+				<img></img>
+				<br></br>
+				<img></img>
+			</td>
+		</tr>
+		<tr><td><img></img></td></tr>
+	</tbody></table>
+	<map>
+		<area></area>
+		<area></area>
+		<area></area>
+	</map>
+</body>
+</html></Wrapper>

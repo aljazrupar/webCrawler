@@ -1,11 +1,12 @@
 from bs4 import BeautifulSoup, Comment
 import bs4
+import os.path
 
 
 class Object:
     def __init__(self, tag, value):
         self.tag = tag
-        self.value = value # pride v postev pri text
+        self.value = value  # pride v postev pri text
         self.children = list()
         self.optional = False
         self.repeating = False
@@ -34,88 +35,16 @@ class Object:
                     else:
                         break
 
-# def compare_object(object1, object2):
-#     if object1.tag == "text" and object2.tag == "text":
-#         if object1.value == object2.value:
-#             return True
-#         else:
-#             return False
-#
-#     elif object1.tag == object2.tag:
-#         if len(object1.children) == len(object2.children):
-#             for ch1, ch2 in zip(object1.children, object2.children):
-#                 if not compare_object(ch1, ch2):
-#                     return False
-#             return True
-#         else:
-#             return False
-#     else:
-#         return False
-
-# def square_matching(wrapper):
-#     if len(wrapper.children) > 1:
-#         # print(wrapper.children)
-#         for i in range(1, len(wrapper.children)):
-#             if compare_object(wrapper.children[0], wrapper.children[i]):
-#                 wrapper.children[0].repeating = True
-#                 wrapper.children[i].deleted = True
-#             else:
-#                 square_matching(wrapper.children[i])
-#     elif len(wrapper.children) == 1:
-#         square_matching(wrapper.children[0])
-#     else:
-#         return
-#
-#
 def check_repeating(children):
     repeating_tags = list()
     for child in children:
         if child.repeating:
             repeating_tags.append(child.tag)
     return repeating_tags
-#
-#
-# def print_children(children, f):
-#     already_printed = list()
-#     if len(children) > 0:
-#         repeating_tags = check_repeating(children)
-#         for child in children:
-#             if child.tag in repeating_tags and child.tag not in already_printed:
-#                 already_printed.append(child.tag)
-#                 f.write("( " + "\n")
-#                 print_wrapper1(child, f)
-#                 f.write(")+" + "\n")
-#             elif child.tag not in repeating_tags:
-#                 print_wrapper1(child, f)
-#
-#
-# def print_wrapper1(wrapper, f):
-#     if wrapper.tag == "text":
-#         f.write(wrapper.value + "\n")
-#     else:
-#         already_printed = list()
-#         if len(wrapper.children) > 0:
-#             repeating_tags = check_repeating(wrapper.children)
-#             for child in wrapper.children:
-#                 if child.tag in repeating_tags and child.tag not in already_printed:
-#                     already_printed.append(child.tag)
-#                     f.write("( " + "\n")
-#                     print_wrapper1(child, f)
-#                     f.write(")+" + "\n")
-#                 elif child.tag not in repeating_tags:
-#                     print_wrapper1(child, f)
-#         elif wrapper.optional:
-#             f.write("( <" + wrapper.tag + ">" + "\n")
-#             for child in wrapper.children:
-#                 print_wrapper1(child, f)
-#             f.write("</" + wrapper.tag + "> )?" + "\n")
-#         else:
-#             f.write("<" + wrapper.tag + ">" + "\n")
-#             for child in wrapper.children:
-#                 print_wrapper1(child, f)
-#             f.write("</" + wrapper.tag + ">" + "\n")
 
-def print_wrapper1(wrapper, f, depth = 0):
+
+
+def print_wrapper1(wrapper, f, depth=0):
     special = wrapper.repeating or wrapper.optional
     child_tag_cnt = 0
     repeating = False
@@ -142,7 +71,7 @@ def print_wrapper1(wrapper, f, depth = 0):
             if do_new_line:
                 f.write("\n")
                 f.write(indent + "\t")
-            print_wrapper1(child, f, depth+1 if do_new_line else depth)
+            print_wrapper1(child, f, depth + 1 if do_new_line else depth)
     f.write("%s</%s>" % ("\n" + indent if child_tag_cnt > 1 else "", wrapper.tag))
 
     if wrapper.repeating and wrapper.optional:
@@ -151,6 +80,7 @@ def print_wrapper1(wrapper, f, depth = 0):
         f.write(")?")
     elif wrapper.repeating:
         f.write(")+")
+
 
 def print_wrapper(wrapper):
     print("tag-> ", wrapper.tag, ", Value-> ", wrapper.value, " rep->", wrapper.repeating)
@@ -187,8 +117,6 @@ def add_all_contents(element, curr_object):  # add all contents of an element
         elif type(el) is bs4.NavigableString and not el.string.isspace():
             newObject = Object("text", "#Text")
             curr_object.children.append(newObject)
-        else:
-            print("Error--> different type")
 
 
 def add_rest_of_el(el1, el2, wrapper):
@@ -234,7 +162,6 @@ def search(el1, el2, wrapper):
     while count1 < len(el1.contents) and count2 < len(el2.contents):
         element1 = el1.contents[count1]
         element2 = el2.contents[count2]
-        # print("count1 -> ", count1, " count 2 -> ", count2)
 
         # elements are just texts
         if type(element1) is bs4.NavigableString and type(element2) is bs4.NavigableString:
@@ -253,12 +180,9 @@ def search(el1, el2, wrapper):
                 newObject = Object("text", None)
                 if element1.string == element2.string:
                     newObject.value = element1.string
-                    # print("Same string--> ", element1.string)
                 else:
-                    print("#text1 = ", element1.string, "#text2 = ", element2.string)
+                    # print("#text1 = ", element1.string, "#text2 = ", element2.string)
                     newObject.value = "#Text"
-                    # print("bumbem -----------------> ", element1.string)
-                    # print("#Text", element1.string)
                 wrapper.children.append(newObject)
 
             count1 += 1
@@ -268,8 +192,6 @@ def search(el1, el2, wrapper):
             newObject = Object(element1.name, None)
             wrapper.children.append(newObject)
             if len(element1.contents) > 0 and len(element2.contents) > 0:
-                # print(element1.contents)
-                # print("resursive, both len > 0")
                 search(element1, element2, newObject)
             elif len(element1.contents) != 0 and len(element2.contents) == 0:
                 newObject.value = "#Contents"
@@ -335,11 +257,12 @@ def main():
     f1_j = open("../input-extraction/overstock.com/jewelry01.html", 'r')
     f2_j = open("../input-extraction/overstock.com/jewelry02.html", 'r')
 
-    f1_r = open("../input-extraction/rtvslo.si/Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html", 'r')
-    f2_r = open("../input-extraction/rtvslo.si/Volvo XC 40 D4 AWD momentum_ suvereno med najboljs╠îe v razredu - RTVSLO.si.html", 'r')
+    f1_r = open("../input-extraction/rtvslo.si/Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html",
+                'r')
+    f2_r = open("../input-extraction/rtvslo.si/Volvo.html", 'r')
 
-    f1_a = open("../input-extraction/avto.net/www.avto.net.html", 'r')
-    f2_a = open("../input-extraction/avto.net/www.avto.net_2.html", 'r')
+    f1_a = open("../input-extraction/avto.net/www.Avto.net.html", 'r')
+    f2_a = open("../input-extraction/avto.net/www.Avto.net_ 2.html", 'r')
 
     soup1_j = BeautifulSoup(f1_j.read(), features="lxml")
     soup2_j = BeautifulSoup(f2_j.read(), features="lxml")
@@ -367,7 +290,6 @@ def main():
     search(soup1_a, soup2_a, wrapper_a)
     f3_a = open("wrapperOut_AvtoNet.txt", "w")
     print_wrapper1(wrapper_a, f3_a)
-
 
 
 if __name__ == '__main__': main()

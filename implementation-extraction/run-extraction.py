@@ -6,8 +6,6 @@ from lxml.html.clean import clean_html
 import json
 import re
 
-#TODO pogledat kako bi prkazoval čšž
-#TODO HTML prerendering???
 
 def xpathOverstock(page):
     titles = page.xpath('/html/body/table[2]/tbody/tr[1]/td[5]/table/tbody/tr[2]/td/table/tbody/tr/td/table/tbody//td/a/b/text()')
@@ -238,5 +236,6 @@ if __name__ == '__main__':
         regex(paths)
     elif(method == "B"):
         xpath(paths)
-    #else:
-    #    auto(paths)
+    elif(method == "C"):
+        exec(open("web.py").read())
+

@@ -332,29 +332,42 @@ def search(el1, el2, wrapper):
 
 
 def main():
-    # f1 = open("../input-extraction/overstock.com/jewelry01.html", 'r')
-    # f2 = open("../input-extraction/overstock.com/jewelry02.html", 'r')
-    f1 = open("../input-extraction/rtvslo.si/Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html", 'r')
-    f2 = open("../input-extraction/rtvslo.si/Volvo XC 40 D4 AWD momentum_ suvereno med najboljs╠îe v razredu - RTVSLO.si.html", 'r')
-    # f1 = open("test1.html", 'r')
-    # f2 = open("test2.html", 'r')
-    soup1 = BeautifulSoup(f1.read(), features="lxml")
-    soup2 = BeautifulSoup(f2.read(), features="lxml")
-    repair_tree(soup1)
-    #print(soup1)
-    repair_tree(soup2)
-    wrapper = Object("Wrapper", "start")
-    search(soup1, soup2, wrapper)
-    #square_matching(wrapper)
+    f1_j = open("../input-extraction/overstock.com/jewelry01.html", 'r')
+    f2_j = open("../input-extraction/overstock.com/jewelry02.html", 'r')
 
-    f3 = open("wrapperOut.txt", "w")
-    print_wrapper1(wrapper, f3)
-    print(print_wrapper(wrapper))
-    #TODO -> Ce sta 2 elementa ista na istem nivoju(childrens) oznaci kot repeating in izpisi samo enega.
-    # ((< ...> ) ? pomeni opcijski element
-    # (<....> ) + pomeni repeating element
-    # #Text pomeni isti element v obeh html z razlicnim textom.
-    # text: object.tag = "text", object.value = #Text, ce razlicna. in npr Abraham ce isti string.
-    # tag: object.tag = neki druzga kot text. object.childrens = njegovi sinovi.
+    f1_r = open("../input-extraction/rtvslo.si/Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html", 'r')
+    f2_r = open("../input-extraction/rtvslo.si/Volvo XC 40 D4 AWD momentum_ suvereno med najboljs╠îe v razredu - RTVSLO.si.html", 'r')
+
+    f1_a = open("../input-extraction/avto.net/www.avto.net.html", 'r')
+    f2_a = open("../input-extraction/avto.net/www.avto.net_2.html", 'r')
+
+    soup1_j = BeautifulSoup(f1_j.read(), features="lxml")
+    soup2_j = BeautifulSoup(f2_j.read(), features="lxml")
+    repair_tree(soup1_j)
+    repair_tree(soup2_j)
+    wrapper_j = Object("Wrapper", "start")
+    search(soup1_j, soup2_j, wrapper_j)
+    f3_j = open("wrapperOut_jewlery.txt", "w")
+    print_wrapper1(wrapper_j, f3_j)
+
+    soup1_r = BeautifulSoup(f1_r.read(), features="lxml")
+    soup2_r = BeautifulSoup(f2_r.read(), features="lxml")
+    repair_tree(soup1_r)
+    repair_tree(soup2_r)
+    wrapper_r = Object("Wrapper", "start")
+    search(soup1_r, soup2_r, wrapper_r)
+    f3_r = open("wrapperOut_rtv.txt", "w")
+    print_wrapper1(wrapper_r, f3_r)
+
+    soup1_a = BeautifulSoup(f1_a.read(), features="lxml")
+    soup2_a = BeautifulSoup(f2_a.read(), features="lxml")
+    repair_tree(soup1_a)
+    repair_tree(soup2_a)
+    wrapper_a = Object("Wrapper", "start")
+    search(soup1_a, soup2_a, wrapper_a)
+    f3_a = open("wrapperOut_AvtoNet.txt", "w")
+    print_wrapper1(wrapper_a, f3_a)
+
+
 
 if __name__ == '__main__': main()

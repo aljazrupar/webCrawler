@@ -11,6 +11,29 @@ class Object:
         self.repeating = False
         # self.deleted = False
 
+    def is_equal(self, other):
+        if other is None:
+            return False
+        if self.tag == other.tag:
+            if self.tag == "text":
+                if self.value == self.value:
+                    return True
+                else:
+                    return False
+            else:
+                return True
+        return False
+
+    def repair_repetitions(self, newObject):
+        if not newObject == None:
+            for i in range(len(self.children) - 1, -1, -1):
+                child = self.children[i]
+                if not child.repeating:
+                    if child.is_equal(newObject):
+                        child.repeating = True
+                    else:
+                        break
+
 # def compare_object(object1, object2):
 #     if object1.tag == "text" and object2.tag == "text":
 #         if object1.value == object2.value:
@@ -44,12 +67,12 @@ class Object:
 #         return
 #
 #
-# def check_repeating(children):
-#     repeating_tags = list()
-#     for child in children:
-#         if child.repeating:
-#             repeating_tags.append(child.tag)
-#     return repeating_tags
+def check_repeating(children):
+    repeating_tags = list()
+    for child in children:
+        if child.repeating:
+            repeating_tags.append(child.tag)
+    return repeating_tags
 #
 #
 # def print_children(children, f):
@@ -92,6 +115,42 @@ class Object:
 #                 print_wrapper1(child, f)
 #             f.write("</" + wrapper.tag + ">" + "\n")
 
+def print_wrapper1(wrapper, f, depth = 0):
+    special = wrapper.repeating or wrapper.optional
+    child_tag_cnt = 0
+    repeating = False
+
+    children = []
+
+    for child in wrapper.children:
+        if child.tag == "text":
+            children.append(child.value)
+        else:
+            if not repeating:
+                children.append(child)
+            child_tag_cnt += 1
+            repeating = child.repeating
+
+    do_new_line = child_tag_cnt > 1
+    indent = "\t" * (depth - 1) if child_tag_cnt > 1 else ""
+
+    f.write("%s<%s>" % ("(" if special else "", wrapper.tag))
+    for child in children:
+        if type(child) is bs4.NavigableString or type(child) is str:
+            f.write(child)
+        else:
+            if do_new_line:
+                f.write("\n")
+                f.write(indent + "\t")
+            print_wrapper1(child, f, depth+1 if do_new_line else depth)
+    f.write("%s</%s>" % ("\n" + indent if child_tag_cnt > 1 else "", wrapper.tag))
+
+    if wrapper.repeating and wrapper.optional:
+        f.write(")*")
+    elif wrapper.optional:
+        f.write(")?")
+    elif wrapper.repeating:
+        f.write(")+")
 
 def print_wrapper(wrapper):
     print("tag-> ", wrapper.tag, ", Value-> ", wrapper.value, " rep->", wrapper.repeating)
@@ -125,7 +184,7 @@ def add_all_contents(element, curr_object):  # add all contents of an element
             if len(el.contents) > 0:
                 newObject.value = "Contents"
                 add_all_contents(el, newObject)
-        elif type(el) is bs4.NavigableString:
+        elif type(el) is bs4.NavigableString and not el.string.isspace():
             newObject = Object("text", "#Text")
             curr_object.children.append(newObject)
         else:
@@ -141,7 +200,8 @@ def add_rest_of_el(el1, el2, wrapper):
 
 
 def add_new_element(element, wrapper, optional, repeating):
-    if type(element) is bs4.NavigableString:
+    newObject = None
+    if type(element) is bs4.NavigableString and not element.string.isspace():
         newObject = Object("text", None)
         newObject.value = "#Text"
         newObject.optional = optional
@@ -153,6 +213,7 @@ def add_new_element(element, wrapper, optional, repeating):
         newObject.repeating = repeating
         wrapper.children.append(newObject)
         add_all_contents(element, newObject)
+    return newObject
 
 
 def find_next(element1, el2, count2):
@@ -188,16 +249,17 @@ def search(el1, el2, wrapper):
                 count2 += 1
                 continue
 
-            newObject = Object("text", None)
-            if element1.string == element2.string:
-                newObject.value = element1.string
-                # print("Same string--> ", element1.string)
-            else:
-                print("#text1 = ", element1.string, "#text2 = ", element2.string)
-                newObject.value = "#Text"
-                # print("bumbem -----------------> ", element1.string)
-                # print("#Text", element1.string)
-            wrapper.children.append(newObject)
+            if not element1.string.isspace() or not element2.string.isspace():
+                newObject = Object("text", None)
+                if element1.string == element2.string:
+                    newObject.value = element1.string
+                    # print("Same string--> ", element1.string)
+                else:
+                    print("#text1 = ", element1.string, "#text2 = ", element2.string)
+                    newObject.value = "#Text"
+                    # print("bumbem -----------------> ", element1.string)
+                    # print("#Text", element1.string)
+                wrapper.children.append(newObject)
 
             count1 += 1
             count2 += 1
@@ -256,7 +318,8 @@ def search(el1, el2, wrapper):
             if match == -1:
                 add_new_element(el1.contents[i], wrapper, True, False)
             else:
-                add_new_element(el1.contents[i], wrapper, False, True)
+                newObject = add_new_element(el1.contents[i], wrapper, False, True)
+                wrapper.repair_repetitions(newObject)
 
     elif len(el2.contents) > count2:
         for i in range(count2, len(el2.contents)):
@@ -264,16 +327,17 @@ def search(el1, el2, wrapper):
             if match == -1:
                 add_new_element(el2.contents[i], wrapper, True, False)
             else:
-                add_new_element(el2.contents[i], wrapper, False, True)
+                newObject = add_new_element(el2.contents[i], wrapper, False, True)
+                wrapper.repair_repetitions(newObject)
 
 
 def main():
-    # f1 = open("jewelry01.html", 'r')
-    # f2 = open("jewelry02.html", 'r')
-    # f1 = open("Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html", 'r')
-    # f2 = open("Volvo XC 40 D4 AWD momentum_ suvereno med najboljše v razredu - RTVSLO.si.html", 'r')
-    f1 = open("test1.html", 'r')
-    f2 = open("test2.html", 'r')
+    # f1 = open("../input-extraction/overstock.com/jewelry01.html", 'r')
+    # f2 = open("../input-extraction/overstock.com/jewelry02.html", 'r')
+    f1 = open("../input-extraction/rtvslo.si/Audi A6 50 TDI quattro_ nemir v premijskem razredu - RTVSLO.si.html", 'r')
+    f2 = open("../input-extraction/rtvslo.si/Volvo XC 40 D4 AWD momentum_ suvereno med najboljs╠îe v razredu - RTVSLO.si.html", 'r')
+    # f1 = open("test1.html", 'r')
+    # f2 = open("test2.html", 'r')
     soup1 = BeautifulSoup(f1.read(), features="lxml")
     soup2 = BeautifulSoup(f2.read(), features="lxml")
     repair_tree(soup1)
@@ -284,7 +348,7 @@ def main():
     #square_matching(wrapper)
 
     f3 = open("wrapperOut.txt", "w")
-    #print_wrapper1(wrapper, f3)
+    print_wrapper1(wrapper, f3)
     print(print_wrapper(wrapper))
     #TODO -> Ce sta 2 elementa ista na istem nivoju(childrens) oznaci kot repeating in izpisi samo enega.
     # ((< ...> ) ? pomeni opcijski element

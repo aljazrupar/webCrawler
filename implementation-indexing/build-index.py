@@ -1,4 +1,5 @@
 import os
+from collections import Counter, defaultdict
 
 import nltk
 from bs4 import BeautifulSoup, Comment
@@ -67,6 +68,16 @@ def get_hmtl_file_names(input_dir_name):
             if file.endswith(".html"):
                 yield "%s/%s" % (dir_path, file)
 
+
+def get_words_indexes(words):
+    indexes = defaultdict(list)
+
+    for i, word in enumerate(words):
+        indexes[word].append(i)
+
+    return indexes
+
+
 def init_db():
     c = conn.cursor()
 
@@ -92,14 +103,28 @@ def init_db():
 
     c.close()
 
+
+def save_word(word, doc, f, indexes):
+    c = conn.cursor()
+    if len(c.execute("SELECT * FROM IndexWord WHERE word = ?", (word,)).fetchall()) == 0:
+        c.execute("INSERT INTO IndexWord values (?);", (word, ))
+    c.execute("INSERT INTO Posting values (?, ?, ?, ?);", (word, doc, f, ",".join(map(str, indexes))))
+    c.close()
+
+
 conn = sqlite3.connect('../implementation-indexing/inverted-index.db')
 
 init_db()
 
 for filename in get_hmtl_file_names("../input-index/"):
-        soup = BeautifulSoup(open(filename, encoding="utf-8"), "html.parser")
-        repair_tree(soup)
-        tokens = []
-        for text in soup.findAll(text=True):
-            tokens += list(word for word in word_tokenize(text.lower()) if word not in stop_words_slovene)
-        print(tokens)
+    soup = BeautifulSoup(open(filename, encoding="utf-8"), "html.parser")
+    repair_tree(soup)
+    tokens = []
+    for text in soup.findAll(text=True):
+        tokens += list(word for word in word_tokenize(text.lower()) if word not in stop_words_slovene)
+
+    n_tokens = len(tokens)
+
+    for (word, indexes) in get_words_indexes(tokens).items():
+        save_word(word, filename, len(indexes)/n_tokens, indexes)
+    print(tokens)

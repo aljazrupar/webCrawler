@@ -1,14 +1,15 @@
 import os
-from collections import Counter, defaultdict
+from collections import defaultdict
 
 import nltk
 from bs4 import BeautifulSoup, Comment
+import sqlite3
 from nltk import word_tokenize
 from nltk.corpus import stopwords
-import sqlite3
 
 nltk.download('punkt')
 nltk.download('stopwords')
+
 
 stop_words_slovene = set(stopwords.words("slovene")).union(set(
         ["ter","nov","novo", "nova","zato","še", "zaradi", "a", "ali", "april", "avgust", "b", "bi", "bil", "bila", "bile", "bili", "bilo", "biti",
@@ -48,6 +49,11 @@ stop_words_slovene = set(stopwords.words("slovene")).union(set(
          "četrtek", "četrti", "četrto", "čez", "čigav", "š", "šest", "šesta", "šesti", "šesto", "štiri", "ž", "že",
          "svoj", "jesti", "imeti","\u0161e", "iti", "kak", "www", "km", "eur", "pač", "del", "kljub", "šele", "prek",
          "preko", "znova", "morda","kateri","katero","katera", "ampak", "lahek", "lahka", "lahko", "morati", "torej"]))
+
+
+def process_text(text):
+    return list(word for word in word_tokenize(text.lower()) if word not in stop_words_slovene)
+
 
 def repair_tree(soup):
     for script in soup.find_all("script"):
@@ -112,7 +118,8 @@ def save_word(word, doc, f, indexes):
     c.close()
 
 
-conn = sqlite3.connect('../implementation-indexing/inverted-index.db')
+conn = sqlite3.connect('inverted-index.db')
+conn.isolation_level = None # autocommit
 
 init_db()
 
@@ -121,10 +128,9 @@ for filename in get_hmtl_file_names("../input-index/"):
     repair_tree(soup)
     tokens = []
     for text in soup.findAll(text=True):
-        tokens += list(word for word in word_tokenize(text.lower()) if word not in stop_words_slovene)
+        tokens += process_text(text)
 
     n_tokens = len(tokens)
 
     for (word, indexes) in get_words_indexes(tokens).items():
         save_word(word, filename, len(indexes)/n_tokens, indexes)
-    print(tokens)

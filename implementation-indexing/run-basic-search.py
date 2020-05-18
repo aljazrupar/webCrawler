@@ -2,12 +2,13 @@ import itertools
 import os
 import sys
 from collections import defaultdict
-
+import time
 import nltk
 from bs4 import BeautifulSoup, Comment
 import sqlite3
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+import re
 
 nltk.download('punkt')
 nltk.download('stopwords')
@@ -87,20 +88,44 @@ def get_words_indexes(words):
     return indexes
 
 
-def print_result(result):
+def print_result(result, words):
+    first = True
+
     for doc in result:
-        soup = BeautifulSoup(open(doc[0], encoding="utf-8"), "html.parser")
-        repair_tree(soup)
-        tokens = []
-        for text in soup.findAll(text=True):
-            tokens += process_text(text)
 
-        neigbourhood = []
-        for i in doc[2]:
-            neigbourhood += list(neighbour_i for neighbour_i in range(i - 3, i + 4) if
-                                 neighbour_i >= 0 and neighbour_i < len(tokens) or neighbour_i not in neigbourhood)
+        if first == True:
+            dash = '-' * 50
+            print(dash)
+            print('{:<8s}{:<30s}{:<100s}'.format("Frequency", "Documents", "Snippet"))
+            print(dash)
+            first = False
+        else:
+            soup = BeautifulSoup(open(doc[0], encoding="utf-8"), "html.parser")
+            repair_tree(soup)
 
-        print("%s %d %s" % (doc[0].split("/")[-1], doc[1], " ".join(tokens[i] for i in neigbourhood)))
+            tokens = []
+
+            for text in soup.findAll(text=True):
+
+                for x in words:
+
+                    if x in process_text(text):
+
+                        if len(tokens) < 140:
+                            if (len(tokens) != 0):
+                                tokens += [" ... "]
+                            if (len(text) > 50):
+                                splitText = re.split(x, text.replace("\n", ""), flags=re.IGNORECASE)
+                                textLeft = splitText[0].split(" ")
+                                textRight = splitText[1].split(" ")
+                                tokens += " ".join(textLeft[-3:]) + x + " ".join(textRight[:3])
+
+                            else:
+                                tokens += text.replace("\n", "")
+
+            if (len(tokens) > 0):
+                print('{:<8s}{:<30s}{:<100s}'.format(str(doc[1]), doc[0].split("/")[-1],
+                                                     "".join(tokens).replace("\t", "")))
 
 
 def query(indexes):
@@ -113,15 +138,13 @@ def query(indexes):
 
     return result
 
+#------------------MAIN----------------------
 
-args = sys.argv[1:]
-if len(args) <= 0:
-    print("Prosimo podajte iskalne parametre kot argumente programa")
+a=time.perf_counter()
 
-q = []
+argInput = input("Query: ")
 
-for arg in args:
-    q += process_text(arg)
+process_text(argInput)
 
 result = defaultdict(list)
 
@@ -135,7 +158,13 @@ for (path, filename) in get_hmtl_file_names(INPUT_DIR):
         tokens += process_text(text)
 
     for (word, indexes) in get_words_indexes(tokens).items():
-        if word in q:
+        if word in argInput:
             result[path] += indexes
 
-print_result(query(result))
+b=time.perf_counter()
+timeUsed=b-a
+
+print("\tResults for a query: " + argInput + "\n")
+print("\tResults found in " + str(timeUsed) + "s.\n")
+
+print_result(query(result), process_text(argInput))

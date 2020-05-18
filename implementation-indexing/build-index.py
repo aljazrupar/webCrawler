@@ -1,6 +1,6 @@
 import os
 from collections import defaultdict
-
+import time
 import nltk
 from bs4 import BeautifulSoup, Comment
 import sqlite3
@@ -109,7 +109,6 @@ def init_db():
 
     c.close()
 
-
 def save_word(word, doc, f, indexes):
     c = conn.cursor()
     if len(c.execute("SELECT * FROM IndexWord WHERE word = ?", (word,)).fetchall()) == 0:
@@ -118,12 +117,14 @@ def save_word(word, doc, f, indexes):
     c.close()
 
 
+a=time.perf_counter()
 conn = sqlite3.connect('inverted-index.db')
 conn.isolation_level = None # autocommit
 
 init_db()
 
 for filename in get_hmtl_file_names("../input-index/"):
+
     soup = BeautifulSoup(open(filename, encoding="utf-8"), "html.parser")
     repair_tree(soup)
     tokens = []
@@ -133,4 +134,8 @@ for filename in get_hmtl_file_names("../input-index/"):
     n_tokens = len(tokens)
 
     for (word, indexes) in get_words_indexes(tokens).items():
-        save_word(word, filename, len(indexes)/n_tokens, indexes)
+        save_word(word, filename, len(indexes), indexes)
+
+    print(a-time.perf_counter())
+b=time.perf_counter()
+print("Čas procesiranje je: ", a-b)

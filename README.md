@@ -1,9 +1,21 @@
-# WebExtraction
+# Buidling and querying over an index
 
-Automatic web extraction based on Road Runner like algorithm.
 
-How to run:
+First run:
 
-python run-extraction.py (A/B/C)
+python build-index.py
 
-Output wrapper for each comparison is written in output txt file.
+Once the index in built you can run:
+
+python run-basic-search.py 
+
+and then write the querry
+
+or 
+
+python run-sqlite-search.py 
+
+and then write the querry
+
+To able to run the file you should have python 3.8 and libraries nltk, bs4, collections, sys, os, sqlite3 installed.
+

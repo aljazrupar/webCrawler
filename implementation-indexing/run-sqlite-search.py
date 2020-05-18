@@ -1,11 +1,14 @@
 import sqlite3
-
+import time
 from bs4 import BeautifulSoup, Comment
 from nltk import word_tokenize
 from nltk.corpus import stopwords
+import re
+import sys
 
 stop_words_slovene = set(stopwords.words("slovene")).union(set(
-    ["ter","nov","novo", "nova","zato","še", "zaradi", "a", "ali", "april", "avgust", "b", "bi", "bil", "bila", "bile", "bili", "bilo", "biti",
+    ["ter", "nov", "novo", "nova", "zato", "še", "zaradi", "a", "ali", "april", "avgust", "b", "bi", "bil", "bila",
+     "bile", "bili", "bilo", "biti",
      "blizu", "bo", "bodo", "bojo", "bolj", "bom", "bomo", "boste", "bova", "boš", "brez", "c", "cel", "cela",
      "celi", "celo", "d", "da", "daleč", "dan", "danes", "datum", "december", "deset", "deseta", "deseti", "deseto",
      "devet", "deveta", "deveti", "deveto", "do", "dober", "dobra", "dobri", "dobro", "dokler", "dol", "dolg",
@@ -40,12 +43,13 @@ stop_words_slovene = set(stopwords.words("slovene")).union(set(
      "vsake", "vsaki", "vsakomur", "vse", "vsega", "vsi", "vso", "včasih", "včeraj", "x", "z", "za", "zadaj",
      "zadnji", "zakaj", "zaprta", "zaprti", "zaprto", "zdaj", "zelo", "zunaj", "č", "če", "često", "četrta",
      "četrtek", "četrti", "četrto", "čez", "čigav", "š", "šest", "šesta", "šesti", "šesto", "štiri", "ž", "že",
-     "svoj", "jesti", "imeti","\u0161e", "iti", "kak", "www", "km", "eur", "pač", "del", "kljub", "šele", "prek",
-     "preko", "znova", "morda","kateri","katero","katera", "ampak", "lahek", "lahka", "lahko", "morati", "torej"]))
+     "svoj", "jesti", "imeti", "\u0161e", "iti", "kak", "www", "km", "eur", "pač", "del", "kljub", "šele", "prek",
+     "preko", "znova", "morda", "kateri", "katero", "katera", "ampak", "lahek", "lahka", "lahko", "morati", "torej"]))
 
 
 def process_text(text):
     return list(word for word in word_tokenize(text.lower()) if word not in stop_words_slovene)
+
 
 def q_index(q):
     c = conn.cursor()
@@ -62,6 +66,7 @@ def q_index(q):
     c.close()
     return words
 
+
 def repair_tree(soup):
     for script in soup.find_all("script"):
         script.decompose()
@@ -74,22 +79,57 @@ def repair_tree(soup):
     for link in soup.find_all("link"):
         link.decompose()
 
-def print_result(result):
+
+def print_result(result, words):
+    first = True
+
     for doc in result:
-        soup = BeautifulSoup(open(doc[0], encoding="utf-8"), "html.parser")
-        repair_tree(soup)
-        tokens = []
-        for text in soup.findAll(text=True):
-            tokens += process_text(text)
 
-        neigbourhood = []
-        for i in list(map(int, doc[2].split(","))):
-            neigbourhood += list(neighbour_i for neighbour_i in range(i-3, i+4) if neighbour_i >= 0 and neighbour_i < len(tokens) or neighbour_i not in neigbourhood)
+        if first == True:
+            dash = '-' * 50
+            print(dash)
+            print('{:<8s}{:<30s}{:<100s}'.format("Frequency", "Documents", "Snippet"))
+            print(dash)
+            first = False
+        else:
+            soup = BeautifulSoup(open(doc[0], encoding="utf-8"), "html.parser")
+            repair_tree(soup)
 
-        print("%s %d %s" % (doc[0], doc[1], " ".join(tokens[i] for i in neigbourhood)))
+            tokens = []
 
+            for text in soup.findAll(text=True):
+
+                for x in words:
+
+                    if x in process_text(text):
+
+                        if len(tokens) < 140:
+                            if (len(tokens) != 0):
+                                tokens += [" ... "]
+                            if (len(text) > 50):
+                                splitText= re.split(x, text.replace("\n", ""), flags=re.IGNORECASE)
+                                textLeft = splitText[0].split(" ")
+                                textRight = splitText[1].split(" ")
+                                tokens += " ".join(textLeft[-3:]) + x + " ".join(textRight[:3])
+
+                            else:
+                                tokens += text.replace("\n", "")
+
+            if (len(tokens) > 0):
+                print('{:<8s}{:<30s}{:<100s}'.format(str(doc[1]), doc[0].split("/")[-1],
+                                                     "".join(tokens).replace("\t", "")))
+
+
+# ------------------MAIN----------------------
 
 conn = sqlite3.connect('inverted-index.db')
-q = process_text(input("Query: "))
-print_result(q_index(q))
+argInput = input("Query: ")
+a = time.perf_counter()
+q = process_text(argInput)
+b = time.perf_counter()
+timeUsed = b - a
 
+print("\tResults for a query: " + argInput + "\n")
+print("\tResults found in " + str(timeUsed) + "s.\n")
+
+print_result(q_index(q), q)
